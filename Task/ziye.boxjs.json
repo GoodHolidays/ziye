@@ -43,7 +43,7 @@
 "script": "https://raw.githubusercontent.com/ziye12/QCZJSPEED/main/Task/qczjspeed.js"
 },
 {
-"id": "xiaoleziye",
+"id": "xiaole",
 "name": "小乐",
 "keys": ["xiaoleurl", "xiaolehd","xiaoleurl2", "xiaolehd2","xiaoleurl3", "xiaolehd3","xiaoleurl4", "xiaolehd4","xiaoleurl5", "xiaolehd5","xiaoleurl6", "xiaolehd6","xiaoleurl7", "xiaolehd7","xiaoleurl8", "xiaolehd8","xiaoleurl9", "xiaolehd9","xiaoleurl10", "xiaolehd10"],
 "author": "@ziye",
@@ -62,8 +62,8 @@
 "desc": "指定任务最多跑几个账号，根据抓取的账号数据个数来设值"
 }
 ],
-"repo": "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/xiaoleziye.js",
-"icons": ["https://raw.githubusercontent.com/ziye12/JavaScript/master/xiaoleziye.png", "https://raw.githubusercontent.com/ziye12/JavaScript/master/xiaoleziye.png"],
-"script": "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/xiaoleziye.js"
+"repo": "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/xiaole.js",
+"icons": ["https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/xiaole.png", "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/xiaole.png"],
+"script": "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/xiaole.js"
 }]
 }
