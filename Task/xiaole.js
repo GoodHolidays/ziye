@@ -30,7 +30,7 @@ hostname=minapp.xqrobot.net,
 
 ############## 圈x
 #小乐获取ck
-https:\/\/minapp\.xqrobot\.net\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/xiaole.js
+https:\/\/minapp\.xqrobot\.net\/* url script-request-body https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/xiaole.js
 
 ############## loon
 
