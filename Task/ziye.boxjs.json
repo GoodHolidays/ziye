@@ -45,7 +45,7 @@
 {
 "id": "xiaoleziye",
 "name": "小乐",
-"keys": ["xiaoleurlVal", "xiaoleheaderVal","xiaoleurlVal2", "xiaoleheaderVal2","xiaoleurlVal3", "xiaoleheaderVal3","xiaoleurlVal4", "xiaoleheaderVal4","xiaoleurlVal5", "xiaoleheaderVal5","xiaoleurlVal6", "xiaoleheaderVal6","xiaoleurlVal7", "xiaoleheaderVal7","xiaoleurlVal8", "xiaoleheaderVal8","xiaoleurlVal9", "xiaoleheaderVal9","xiaoleurlVal10", "xiaoleheaderVal10"],
+"keys": ["xiaoleurl", "xiaoleheader","xiaoleurl2", "xiaoleheader2","xiaoleurl3", "xiaoleheader3","xiaoleurl4", "xiaoleheader4","xiaoleurl5", "xiaoleheader5","xiaoleurl6", "xiaoleheader6","xiaoleurl7", "xiaoleheader7","xiaoleurl8", "xiaoleheader8","xiaoleurl9", "xiaoleheader9","xiaoleurl10", "xiaoleheader10"],
 "author": "@ziye",
 "settings": [{
 "id": "slSuffix",
