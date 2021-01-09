@@ -154,7 +154,7 @@ if ($request && $request.url.indexOf("/user.php?mod=sign&") >= 0) {
     );
     $.msg($.name + $.idx, `获取签到url: 成功🎉`, ``);		
     const xiaoleheaderVal = JSON.stringify($request.headers);
-    if (xiaoleheaderVal) $.setdata(xiaoleheaderVal, "xiaoleheader" + $.idx);
+    if (xiaoleheaderVal) $.setdata(xiaoleheaderVal, "xiaolehd" + $.idx);
     $.log(
       `[${$.name + $.idx}] 获取签到header✅: 成功,xiaoleheaderVal: ${xiaoleheaderVal}`
     );
