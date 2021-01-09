@@ -1,0 +1,69 @@
+{
+"id": "ziye.app.sub",
+"name": "ziye 脚本订阅",
+"author": "@ZIYE",
+"icon": "",
+"repo": "https://github.com/ziye12/QCZJSPEED",
+"apps": [{
+"id": "qczjspeed",
+"name": "汽车之家极速版",
+"keys": ["GetUserInfourl", "GetUserInfoheader", "coinbody", "taskbody", "activitybody",  "Goldcoinbody",  "videobody", "Welfarevideobody", "Welfarebody", "addCoinbody", "addCoin2body", "reportAssbody", "reportAssheader", "cointowalletbody","GetUserInfourl2", "GetUserInfoheader2", "coinbody2", "taskbody2", "activitybody2", "Goldcoinbody2",  "videobody2", "Welfarevideobody2", "Welfarebody2", "addCoinbody2", "addCoin2body2", "reportAssbody2", "reportAssheader2", "cointowalletbody2","GetUserInfourl3", "GetUserInfoheader3", "coinbody3", "taskbody3", "activitybody3", "Goldcoinbody3",  "videobody3", "Welfarevideobody3", "Welfarebody3", "addCoinbody3", "addCoin2body3", "reportAssbody3", "reportAssheader3", "cointowalletbody3","GetUserInfourl4", "GetUserInfoheader4", "coinbody4", "taskbody4", "activitybody4", "Goldcoinbody4",  "videobody4", "Welfarevideobody4", "Welfarebody4", "addCoinbody4", "addCoin2body4", "reportAssbody4", "reportAssheader4", "cointowalletbody4","GetUserInfourl5", "GetUserInfoheader5", "coinbody5", "taskbody5", "activitybody5", "Goldcoinbody5",  "videobody5", "Welfarevideobody5", "Welfarebody5", "addCoinbody5", "addCoin2body5", "reportAssbody5", "reportAssheader5", "cointowalletbody5","GetUserInfourl6", "GetUserInfoheader6", "coinbody6", "taskbody6", "activitybody6", "Goldcoinbody6",  "videobody6", "Welfarevideobody6", "Welfarebody6", "addCoinbody6", "addCoin2body6", "reportAssbody6", "reportAssheader6", "cointowalletbody6","GetUserInfourl7", "GetUserInfoheader7", "coinbody7", "taskbody7", "activitybody7", "Goldcoinbody7",  "videobody7", "Welfarevideobody7", "Welfarebody7", "addCoinbody7", "addCoin2body7", "reportAssbody7", "reportAssheader7", "cointowalletbody7","GetUserInfourl8", "GetUserInfoheader8", "coinbody8", "taskbody8", "activitybody8", "Goldcoinbody8",  "videobody8", "Welfarevideobody8", "Welfarebody8", "addCoinbody8", "addCoin2body8", "reportAssbody8", "reportAssheader8", "cointowalletbody8","GetUserInfourl9", "GetUserInfoheader9", "coinbody9", "taskbody9", "activitybody9", "Goldcoinbody9",  "videobody9", "Welfarevideobody9", "Welfarebody9", "addCoinbody9", "addCoin2body9", "reportAssbody9", "reportAssheader9", "cointowalletbody9","GetUserInfourl10", "GetUserInfoheader10", "coinbody10", "taskbody10", "activitybody10", "Goldcoinbody10",  "videobody10", "Welfarevideobody10", "Welfarebody10", "addCoinbody10", "addCoin2body10", "reportAssbody10", "reportAssheader10", "cointowalletbody10","GetUserInfourl1", "GetUserInfoheader11", "coinbody11", "taskbody11", "activitybody11", "Goldcoinbody11",  "videobody11", "Welfarevideobody11", "Welfarebody11", "addCoinbody11", "addCoin2body11", "reportAssbody12", "reportAssheader11", "cointowalletbody11","GetUserInfourl12", "GetUserInfoheader12", "coinbody12", "taskbody12", "activitybody12", "Goldcoinbody12",  "videobody12", "Welfarevideobody12", "Welfarebody12", "addCoinbody12", "addCoin2body12", "reportAssbody12", "reportAssheader12", "cointowalletbody12","GetUserInfourl13", "GetUserInfoheader13", "coinbody13", "taskbody13", "activitybody13", "Goldcoinbody13",  "videobody13", "Welfarevideobody13", "Welfarebody13", "addCoinbody13", "addCoin2body13", "reportAssbody13", "reportAssheader13", "cointowalletbody13","GetUserInfourl14", "GetUserInfoheader14", "coinbody14", "taskbody14", "activitybody14", "Goldcoinbody14",  "videobody14", "Welfarevideobody14", "Welfarebody14", "addCoinbody14", "addCoin2body14", "reportAssbody14", "reportAssheader14", "cointowalletbody14","GetUserInfourl15", "GetUserInfoheader15", "coinbody15", "taskbody15", "activitybody15", "Goldcoinbody15",  "videobody15", "Welfarevideobody15", "Welfarebody15", "addCoinbody15", "addCoin2body15", "reportAssbody15", "reportAssheader15", "cointowalletbody15","GetUserInfourl16", "GetUserInfoheader16", "coinbody16", "taskbody16", "activitybody16", "Goldcoinbody16",  "videobody16", "Welfarevideobody16", "Welfarebody16", "addCoinbody16", "addCoin2body16", "reportAssbody16", "reportAssheader16", "cointowalletbody16","GetUserInfourl17", "GetUserInfoheader17", "coinbody17", "taskbody17", "activitybody17", "Goldcoinbody17",  "videobody17", "Welfarevideobody17", "Welfarebody17", "addCoinbody17", "addCoin2body17", "reportAssbody17", "reportAssheader17", "cointowalletbody17","GetUserInfourl18", "GetUserInfoheader18", "coinbody18", "taskbody18", "activitybody18", "Goldcoinbody18",  "videobody18", "Welfarevideobody18", "Welfarebody18", "addCoinbody18", "addCoin2body18", "reportAssbody18", "reportAssheader18", "cointowalletbody18","GetUserInfourl19", "GetUserInfoheader19", "coinbody19", "taskbody19", "activitybody19", "Goldcoinbody19",  "videobody19", "Welfarevideobody19", "Welfarebody19", "addCoinbody19", "addCoin2body19", "reportAssbody19", "reportAssheader19", "cointowalletbody19","GetUserInfourl20", "GetUserInfoheader20", "coinbody20", "taskbody20", "activitybody20", "Goldcoinbody20",  "videobody20", "Welfarevideobody20", "Welfarebody20", "addCoinbody20", "addCoin2body20", "reportAssbody20", "reportAssheader20", "cointowalletbody20"],
+"author": "@ziye",
+"settings": [{
+"id": "qczjSuffix",
+"name": "当前账号",
+"val": "1",
+"type": "number",
+"desc": "当前抓取ck记录的账号序号，如：1、2、4、"
+},
+{
+"id": "qczjCount",
+"name": "账号个数",
+"val": "1",
+"type": "number",
+"desc": "指定任务最多跑几个账号，根据抓取的账号数据个数来设值"
+},
+{
+"id": "qczjIns",
+"name": "获取body",
+"val": "0",
+"type": "number",
+"desc": "0不获取，1获取惊喜福利body，2获取视频body,3获取福利视频body,4获取福利body"
+},
+{
+"id": "qczjCASH",
+"name": "提现标准",
+"val": "0",
+"type": "number",
+"desc": "0不提现，可设置0 0.5 2 5 10 20 "
+}
+],
+"repo": "https://github.com/ziye12/QCZJSPEED/blob/main/Task/qczjspeed.js",
+"icons": ["https://raw.githubusercontent.com/Orz-3/task/master/qczj.png", "https://raw.githubusercontent.com/Orz-3/task/master/qczj.png"],
+"script": "https://raw.githubusercontent.com/ziye12/QCZJSPEED/main/Task/qczjspeed.js"
+},
+{
+"id": "xiaoleziye",
+"name": "小乐",
+"keys": ["xiaoleurlVal", "xiaoleheaderVal","xiaoleurlVal2", "xiaoleheaderVal2","xiaoleurlVal3", "xiaoleheaderVal3","xiaoleurlVal4", "xiaoleheaderVal4","xiaoleurlVal5", "xiaoleheaderVal5","xiaoleurlVal6", "xiaoleheaderVal6","xiaoleurlVal7", "xiaoleheaderVal7","xiaoleurlVal8", "xiaoleheaderVal8","xiaoleurlVal9", "xiaoleheaderVal9","xiaoleurlVal10", "xiaoleheaderVal10"],
+"author": "@ziye",
+"settings": [{
+"id": "slSuffix",
+"name": "当前账号",
+"val": "1",
+"type": "number",
+"desc": "当前抓取ck记录的账号序号，如：1、2、4、"
+},
+{
+"id": "qczjCount",
+"name": "账号个数",
+"val": "1",
+"type": "number",
+"desc": "指定任务最多跑几个账号，根据抓取的账号数据个数来设值"
+}
+],
+"repo": "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/xiaoleziye.js",
+"icons": ["https://raw.githubusercontent.com/ziye12/JavaScript/master/xiaoleziye.png", "https://raw.githubusercontent.com/ziye12/JavaScript/master/xiaoleziye.png"],
+"script": "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/xiaoleziye.js"
+}]
+}
