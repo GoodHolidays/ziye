@@ -7,7 +7,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 
 转载请备注个名字，谢谢
 
-⚠️小乐
+⚠️小乐 脚本签到无视规则  脚本签到无视规则  脚本签到无视规则
 一共1个位置 1个ck  2条 Secrets 
 多账号换行
 
