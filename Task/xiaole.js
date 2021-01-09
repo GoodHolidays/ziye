@@ -129,14 +129,14 @@ if ($.isNode()) {
 
 } else {	
   xiaoleurlArr.push($.getdata("xiaoleurl"));	
-  xiaoleheaderArr.push($.getdata("xiaoleheader"));  
+  xiaoleheaderArr.push($.getdata("xiaolehd"));  
   
   // 根据boxjs中设置的额外账号数，添加存在的账号数据进行任务处理
   let xlCount = ($.getval('xlCount') || '1') - 0;
   for (let i = 2; i <= xlCount; i++) {
     if ($.getdata(`xiaoleurl${i}`)) {	
   xiaoleurlArr.push($.getdata(`xiaoleurl${i}`));	
-  xiaoleheaderArr.push($.getdata(`xiaoleheader${i}`));  
+  xiaoleheaderArr.push($.getdata(`xiaolehd${i}`));  
   
     }
   }
@@ -205,7 +205,7 @@ if (!Length) {
   for (let i = 0; i < Length; i++) {
 	if (COOKIE.xiaoleurlVal) {
   xiaoleurlVal = XL_COOKIES.xiaoleurlVal[i];		
-  xiaoleheaderVal = XL_COOKIES.xiaoleheaderVal[i];  
+  xiaoleheaderVal = XL_COOKIES.xiaoleheader[i];  
   
     }
     if (!COOKIE.xiaoleurlVal) {
