@@ -48,14 +48,14 @@
 "keys": ["xiaoleurl", "xiaolehd","xiaoleurl2", "xiaolehd2","xiaoleurl3", "xiaolehd3","xiaoleurl4", "xiaolehd4","xiaoleurl5", "xiaolehd5","xiaoleurl6", "xiaolehd6","xiaoleurl7", "xiaolehd7","xiaoleurl8", "xiaolehd8","xiaoleurl9", "xiaolehd9","xiaoleurl10", "xiaolehd10"],
 "author": "@ziye",
 "settings": [{
-"id": "slSuffix",
+"id": "xlSuffix",
 "name": "当前账号",
 "val": "1",
 "type": "number",
 "desc": "当前抓取ck记录的账号序号，如：1、2、4、"
 },
 {
-"id": "qczjCount",
+"id": "xlCount",
 "name": "账号个数",
 "val": "1",
 "type": "number",
