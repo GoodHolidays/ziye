@@ -73,8 +73,6 @@ const nowTimes = new Date(
   new Date().getTimezoneOffset() * 60 * 1000 +
   8 * 60 * 60 * 1000
 );
-
-
 if ($.isNode() && process.env.XL_URL) {
   COOKIES_SPLIT = process.env.COOKIES_SPLIT || "\n";
   console.log(
@@ -98,21 +96,14 @@ if ($.isNode() && process.env.XL_URL) {
   } else {
     middlexiaoleHEADER = process.env.XL_HEADER.split();
   } 
-    
 }
-
-
 if (COOKIE.xiaoleurlVal) {
   XL_COOKIES = {
 "xiaoleurlVal": COOKIE.xiaoleurlVal.split('\n'),
 "xiaoleheaderVal": COOKIE.xiaoleheaderVal.split('\n'),
-
   }
-
   Length = XL_COOKIES.xiaoleurlVal.length;
 }
-
-
 if (!COOKIE.xiaoleurlVal) {
 if ($.isNode()) {
   Object.keys(middlexiaoleURL).forEach((item) => {
@@ -125,25 +116,20 @@ if ($.isNode()) {
       xiaoleheaderArr.push(middlexiaoleHEADER[item]);
     }
   });  
-
-
 } else {	
   xiaoleurlArr.push($.getdata("xiaoleurl"));	
   xiaoleheaderArr.push($.getdata("xiaolehd"));  
-  
   // 根据boxjs中设置的额外账号数，添加存在的账号数据进行任务处理
   let xlCount = ($.getval('xlCount') || '1') - 0;
   for (let i = 2; i <= xlCount; i++) {
     if ($.getdata(`xiaoleurl${i}`)) {	
   xiaoleurlArr.push($.getdata(`xiaoleurl${i}`));	
   xiaoleheaderArr.push($.getdata(`xiaolehd${i}`));  
-  
     }
   }
  }
  Length = xiaoleurlArr.length
 }
-
 function GetCookie() {
 //签到
 if ($request && $request.url.indexOf("/user.php?mod=sign&") >= 0) {
@@ -160,7 +146,6 @@ if ($request && $request.url.indexOf("/user.php?mod=sign&") >= 0) {
     );
     $.msg($.name + $.idx, `获取签到header: 成功🎉`, ``);
     } 
-
 }
 console.log(
   `================== 脚本执行 - 北京时间(UTC+8)：${new Date(
@@ -169,11 +154,9 @@ console.log(
     8 * 60 * 60 * 1000
   ).toLocaleString()} =====================\n`
 );
-
 console.log(
   `============ 共 ${Length} 个${$.name}账号=============\n`
 );
-
 let isGetCookie = typeof $request !== 'undefined'
 if (isGetCookie) {
   GetCookie()
@@ -181,7 +164,6 @@ if (isGetCookie) {
   !(async () => {
     await all();
     await msgShow();
-    
   })()
       .catch((e) => {
         $.log('', `❌ ${O}, 失败! 原因: ${e}!`, '')
@@ -190,28 +172,24 @@ if (isGetCookie) {
         $.done();
       })
 }
-
-
 async function all() {
 if (!Length) {
     $.msg(
 	$.name, 
 	'提示：⚠️请点击前往获取cookie\n', 
-	'https://raw.githubusercontent.com/ziye12/JavaScript/master/xiaole.png', 
-	{"open-url": "https://raw.githubusercontent.com/ziye12/JavaScript/master/xiaole.png"}
+	'https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/xiaole.png', 
+	{"open-url": "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/xiaole.png"}
 	);
     return;
   }
   for (let i = 0; i < Length; i++) {
 	if (COOKIE.xiaoleurlVal) {
   xiaoleurlVal = XL_COOKIES.xiaoleurlVal[i];		
-  xiaoleheaderVal = XL_COOKIES.xiaoleheader[i];  
-  
+  xiaoleheaderVal = XL_COOKIES.xiaoleheaderVal[i];  
     }
     if (!COOKIE.xiaoleurlVal) {
   xiaoleurlVal = xiaoleurlArr[i];		
   xiaoleheaderVal = xiaoleheaderArr[i];  
-  
   }
   O = (`${$.name + (i + 1)}🔔`);
   await console.log(`-------------------------\n\n🔔开始运行【${$.name+(i+1)}】`)      
@@ -220,7 +198,6 @@ if (!Length) {
       await Sign();//签到   
       }	  
   }
-
 }
 //通知
 function msgShow() {
@@ -228,18 +205,14 @@ function msgShow() {
       if (notifyInterval != 1) {
         console.log($.name + '\n' + $.message);
       }
-
       if (notifyInterval == 1) {
         $.msg($.name, ``, $.message);
       }
-      
-
       if (notifyttt == 1 && $.isNode())
         await notify.sendNotify($.name, $.message);	
 	resolve()
   })
 }
-
 //账户信息  
 function coin(timeout = 0) {
   return new Promise((resolve) => {
@@ -304,7 +277,6 @@ $.message +='【重复签到】:'+$.Sign.show+'\n'
     },timeout)
   })
 }
-
 
 
 // prettier-ignore
