@@ -15,7 +15,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 第一步 微信扫码 https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/xiaole.png  获取授权
 
 第二步 
-开代理软件，添加主机名 重写 ，然后进签到，点签到获取cookie
+开代理软件，添加主机名 重写 ，然后点 我的 获取url header
 
 
 变量对应关系👇
@@ -30,7 +30,7 @@ hostname=minapp.xqrobot.net,
 
 ############## 圈x
 #小乐获取ck
-https:\/\/minapp\.xqrobot\.net\/* url script-request-body https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/xiaole.js
+https:\/\/minapp\.xqrobot\.net\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/xiaole.js
 
 ############## loon
 
@@ -132,19 +132,19 @@ if ($.isNode()) {
 }
 function GetCookie() {
 //签到
-if ($request && $request.url.indexOf("/user.php?mod=sign&") >= 0) {
+if ($request && $request.url.indexOf("/user.php?mod=index&") >= 0) {
     const xiaoleurlVal = $request.url;
     if (xiaoleurlVal) $.setdata(xiaoleurlVal, "xiaoleurl" + $.idx);
     $.log(
-      `[${$.name + $.idx}] 获取签到url✅: 成功,xiaoleurlVal: ${xiaoleurlVal}`
+      `[${$.name + $.idx}] 获取url✅: 成功,xiaoleurlVal: ${xiaoleurlVal}`
     );
-    $.msg($.name + $.idx, `获取签到url: 成功🎉`, ``);		
+    $.msg($.name + $.idx, `获取url: 成功🎉`, ``);		
     const xiaoleheaderVal = JSON.stringify($request.headers);
     if (xiaoleheaderVal) $.setdata(xiaoleheaderVal, "xiaolehd" + $.idx);
     $.log(
-      `[${$.name + $.idx}] 获取签到header✅: 成功,xiaoleheaderVal: ${xiaoleheaderVal}`
+      `[${$.name + $.idx}] 获取header✅: 成功,xiaoleheaderVal: ${xiaoleheaderVal}`
     );
-    $.msg($.name + $.idx, `获取签到header: 成功🎉`, ``);
+    $.msg($.name + $.idx, `获取header: 成功🎉`, ``);
     } 
 }
 console.log(
@@ -160,6 +160,8 @@ console.log(
 let isGetCookie = typeof $request !== 'undefined'
 if (isGetCookie) {
   GetCookie()
+$.done();
+
 } else {
   !(async () => {
     await all();
@@ -218,7 +220,7 @@ function coin(timeout = 0) {
   return new Promise((resolve) => {
     setTimeout( ()=>{
       let url = {
-        url: xiaoleurlVal.replace(/mod=sign/g, `mod=index`),   
+        url: xiaoleurlVal,
         headers: JSON.parse(xiaoleheaderVal),		
       }
       $.post(url, async(err, resp, data) => {
@@ -250,11 +252,12 @@ function coin(timeout = 0) {
 function Sign(timeout = 0) {
   return new Promise((resolve) => {
     setTimeout( ()=>{
-	  const body= `pesubmit=`;
+	 let body= `pesubmit=`;
+  xiaolesignheader=xiaoleheaderVal.replace(/json/g, `x-www-form-urlencoded`);
       let url = {
-    url: xiaoleurlVal,
-    headers: JSON.parse(xiaoleheaderVal),	
-		body: body,	
+    url: xiaoleurlVal.replace(/mod=index/g, `mod=sign`),  
+    headers: JSON.parse(xiaolesignheader),	
+    body: body,	
       }
       $.post(url, async(err, resp, data) => {
         try {
