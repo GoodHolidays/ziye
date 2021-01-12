@@ -2,7 +2,7 @@
 "id": "ziye.app.sub",
 "name": "ziye 脚本订阅",
 "author": "@ZIYE",
-"icon": "https://github.com/ziye12/JavaScript/blob/main/ziye.jpg",
+"icon": "https://github.com/ziye12/JavaScript/blob/main/ziye.jpg,https://github.com/ziye12/JavaScript/blob/main/ziye.jpg ",
 "repo": "https://github.com/ziye12",
 "apps": [{
 "id": "qczjspeed",
