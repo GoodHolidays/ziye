@@ -216,13 +216,11 @@ if (!Length) {
 
 await integral();//兑换信息
 await clocklog();//打卡记录 
-if (CZ>=out){
-console.log('随机延迟'+out+'秒')
-}
 if($.clocklog.info&&!$.clocklog.info.log.length){
 	  await clock()
 	};//首次打卡
 if($.clocklog.info.log.length&&CZ>=out&&$.clocklog.info.log.length<=9){
+console.log('随机延迟'+out+'秒')
 await clock();//打卡
 }  
 
