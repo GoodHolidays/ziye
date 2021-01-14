@@ -7,7 +7,11 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 
 转载请备注个名字，谢谢
 
-⚠️小乐 脚本签到无视规则  脚本签到无视规则  脚本签到无视规则
+⚠️小乐
+可以签到 10次 共0.3
+打卡  符合规则可以打卡
+
+
 一共1个位置 1个ck  2条 Secrets 
 多账号换行
 
@@ -56,8 +60,8 @@ const logs = 0; // 0为关闭日志，1为开启
 const notifyttt = 1// 0为关闭外部推送，1为12 23 点外部推送
 const notifyInterval = 1;// 0为关闭通知，1为所有通知，
 
-
-$.message = '', COOKIES_SPLIT = '';
+let CZ;
+$.message = '', $.index = '', $.clocklog = '', COOKIES_SPLIT = '';
 
 const xiaoleurlArr = [];
 let xiaoleurlVal = ``;
@@ -67,12 +71,22 @@ let middlexiaoleURL = [];
 let middlexiaoleHEADER = [];
 
 
+//随机时间
+do out = Math.floor(Math.random()*10);
+        while( out < 3 )
 //时间
 const nowTimes = new Date(
   new Date().getTime() +
   new Date().getTimezoneOffset() * 60 * 1000 +
   8 * 60 * 60 * 1000
 );
+
+ts = Math.round((new Date().getTime() +
+    new Date().getTimezoneOffset() * 60 * 1000 +
+    8 * 60 * 60 * 1000)/1000).toString();
+tts = Math.round(new Date().getTime() +
+    new Date().getTimezoneOffset() * 60 * 1000 +
+    8 * 60 * 60 * 1000).toString();
 if ($.isNode() && process.env.XL_URL) {
   COOKIES_SPLIT = process.env.COOKIES_SPLIT || "\n";
   console.log(
@@ -199,6 +213,23 @@ if (!Length) {
 	  if ($.coin.info&&$.coin.info.task_list[0].state==0){
       await Sign();//签到   
       }	  
+
+await integral();//兑换信息
+await clocklog();//打卡记录 
+if (CZ>=out){
+console.log('随机延迟'+out+'秒')
+}
+if($.index.info&&!$.clocklog.info.log.length){
+	  await clock()
+	};//首次打卡
+if($.clocklog.info.log.length&&CZ>=out&&$.clocklog.info.log.length<=9){
+await clock();//打卡
+}  
+
+await index();//打卡信息  
+	  if ($.integral.info && $.mibi*$.money >=0.3){
+	  await exchange();//兑换
+	  }
   }
 }
 //通知
@@ -269,7 +300,7 @@ $.message +='【签到成功】:'+$.Sign.show+'\n'
 }
 if ($.Sign.result==false)
  {
-$.message +='【重复签到】:'+$.Sign.show+'\n'
+$.message +='【签到失败】:'+$.Sign.show+'\n'
 }
         } catch (e) {
           $.logErr(e, resp);
@@ -280,6 +311,147 @@ $.message +='【重复签到】:'+$.Sign.show+'\n'
     },timeout)
   })
 }
+
+//兑换信息
+function integral(timeout = 0) {
+  return new Promise((resolve) => {
+    setTimeout( ()=>{
+      let url = {
+url: xiaoleurlVal.replace(`user.php?mod=index`, `daka.php?mod=my&act=integral`),
+        headers: JSON.parse(xiaoleheaderVal),
+      }
+      $.get(url, async(err, resp, data) => {
+        try {
+          if (logs) $.log(`${O}, 兑换中心🚩: ${data}`);
+          $.integral = JSON.parse(data);
+		  if ($.integral.result == true ){
+		$.mibi = $.integral.info.mibi
+		$.money = $.integral.info.config.currency_money
+
+		  $.message +=
+'【米币价值】：'+$.money+'元'+'\n'+
+'【米币余额】：'+$.mibi*$.money+'元'+'\n'
+        }
+        } catch (e) {
+          $.logErr(e, resp);
+        } finally {
+          resolve()
+        }
+      })
+    },timeout)
+  })
+}
+
+//打卡记录
+function clocklog(timeout = 0) {
+  return new Promise((resolve) => {
+    setTimeout( ()=>{
+      let url = {
+url: xiaoleurlVal.replace(`user.php?mod=index`, `daka.php?mod=clock&act=log&level=1&p=1&today=1`),
+    headers: JSON.parse(xiaoleheaderVal),		
+      }
+      $.get(url, async(err, resp, data) => {
+        try {
+          if (logs) $.log(`${O}, 签到🚩: ${data}`);
+          $.clocklog = JSON.parse(data);
+if ($.clocklog.result==true&& $.clocklog.info.log.length)
+ {
+		let v=$.clocklog.info.log.length-1  
+		let dktime = $.clocklog.info.log[v].created
+		let newtime=dktime.replace(dktime[10],'T')  
+		let c = new Date(newtime)/1000 
+	CZ = Number((ts-c)/60).toFixed(0)
+if (CZ<out){
+$.message +='【上次打卡】:'+dktime+', 随机打卡失败,差'+(out-CZ)+'分钟'+'\n';
+}
+}
+     } catch (e) {
+          $.logErr(e, resp);
+        } finally {
+          resolve()
+        }
+      })
+    },timeout)
+  })
+}
+
+//打卡
+function clock(timeout = out*1000) {
+  return new Promise((resolve) => {
+    setTimeout( ()=>{
+      let url = {
+url: xiaoleurlVal.replace(`user.php?mod=index`, `daka.php?mod=clock&act=sign`),
+    headers: JSON.parse(xiaoleheaderVal),		
+      }
+      $.get(url, async(err, resp, data) => {
+        try {
+          if (logs) $.log(`${O}, 打卡🚩: ${data}`);
+$.message +='【打卡成功】:打卡次数+1\n'
+      } catch (e) {
+          $.logErr(e, resp);
+        } finally {
+          resolve()
+        }
+      })
+    },timeout)
+  })
+}
+
+//打卡信息  
+function index(timeout = 0) {
+  return new Promise((resolve) => {
+    setTimeout( ()=>{
+      let url = {
+        url: xiaoleurlVal.replace(`user.php?mod=index`, `daka.php?mod=index&act=today`),
+        headers: JSON.parse(xiaoleheaderVal),		
+      }
+      $.get(url, async(err, resp, data) => {
+        try {
+          if (logs) $.log(`${O}, 打卡信息🚩: ${data}`);
+          $.index = JSON.parse(data);
+$.jrdk=$.index.info.today.clock
+$.jrcurrency=$.index.info.today.currency
+		  $.message +=
+'【今日打卡】：'+$.jrdk+'次'+'\n'+
+ '【今日收益】：'+($.jrcurrency*$.money).toFixed(2)+'元'+'\n'
+         
+        } catch (e) {
+          $.logErr(e, resp);
+        } finally {
+          resolve()
+        }
+      })
+    },timeout)
+  })
+}
+
+
+
+
+//兑换
+function exchange(timeout = 0) {
+  return new Promise((resolve) => {
+    setTimeout( ()=>{
+      let url = {
+url: xiaoleurlVal.replace(`user.php?mod=index`, `daka.php?mod=shop&act=exchange&money=${$.money}&currency=${$.mibi}`),
+    headers: JSON.parse(xiaoleheaderVal),		
+      }
+      $.get(url, async(err, resp, data) => {
+        try {
+          if (logs) $.log(`${O}, 兑换🚩: ${data}`);
+$.message +='【兑换成功】:'+$.money+'元\n'
+        } catch (e) {
+          $.logErr(e, resp);
+        } finally {
+          resolve()
+        }
+      })
+    },timeout)
+  })
+}
+
+
+
 
 
 // prettier-ignore
