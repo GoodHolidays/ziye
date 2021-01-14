@@ -24,13 +24,6 @@
 "desc": "指定任务最多跑几个账号，根据抓取的账号数据个数来设值"
 },
 {
-"id": "qczjIns",
-"name": "获取body",
-"val": "0",
-"type": "number",
-"desc": "0不获取，1获取惊喜福利body，2获取视频body,3获取福利视频body,4获取福利body"
-},
-{
 "id": "qczjCASH",
 "name": "提现标准",
 "val": "0",
