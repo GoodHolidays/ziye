@@ -210,22 +210,22 @@ if (!Length) {
   O = (`${$.name + (i + 1)}🔔`);
   await console.log(`-------------------------\n\n🔔开始运行【${$.name+(i+1)}】`)      
       await coin();//账户信息
-	  if ($.coin.info&&$.coin.info.task_list[0].state==0){
+	  if (nowTimes.getHours() >= 8 &&$.coin.info&&$.coin.info.task_list[0].state==0){
       await Sign();//签到   
       }	  
 
 await integral();//兑换信息
 await clocklog();//打卡记录 
-if($.clocklog.info&&!$.clocklog.info.log.length){
+if(nowTimes.getHours() >= 8 &&$.clocklog.info&&!$.clocklog.info.log.length){
 	  await clock()
 	};//首次打卡
-if($.clocklog.info.log.length&&CZ>=out&&$.clocklog.info.log.length<=9){
+if(nowTimes.getHours() >= 8 &&$.clocklog.info.log.length&&CZ>=out&&$.clocklog.info.log.length<=9){
 console.log('随机延迟'+out+'秒')
 await clock();//打卡
 }  
 
 await index();//打卡信息  
-	  if ($.integral.info && $.mibi*$.money >=0.3){
+	  if (nowTimes.getHours() >= 8 &&$.integral.info && $.mibi*$.money >=0.3){
 	  await exchange();//兑换
 	  }
   }
