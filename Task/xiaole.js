@@ -219,7 +219,7 @@ await clocklog();//打卡记录
 if (CZ>=out){
 console.log('随机延迟'+out+'秒')
 }
-if($.index.info&&!$.clocklog.info.log.length){
+if($.clocklog.info&&!$.clocklog.info.log.length){
 	  await clock()
 	};//首次打卡
 if($.clocklog.info.log.length&&CZ>=out&&$.clocklog.info.log.length<=9){
