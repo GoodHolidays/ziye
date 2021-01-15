@@ -356,7 +356,7 @@ if ($.clocklog.result==true&& $.clocklog.info.log.length)
  {		
 	        let v=$.clocklog.info.log.length-1  
 		let dktime = $.clocklog.info.log[v].created
-$.message +='【上次打卡】:'+dktime+'+'\n';
+$.message +='【上次打卡】:'+dktime+'\n';
 
 }
      } catch (e) {
