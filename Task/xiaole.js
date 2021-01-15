@@ -71,9 +71,7 @@ let middlexiaoleURL = [];
 let middlexiaoleHEADER = [];
 
 
-//随机时间
-do out = Math.floor(Math.random()*15);
-        while( out < 5 )
+
 //时间
 const nowTimes = new Date(
   new Date().getTime() +
@@ -207,6 +205,9 @@ if (!Length) {
   xiaoleurlVal = xiaoleurlArr[i];		
   xiaoleheaderVal = xiaoleheaderArr[i];  
   }
+//随机时间
+do out = Math.floor(Math.random()*15);
+        while( out < 5 )
   O = (`${$.name + (i + 1)}🔔`);
   await console.log(`-------------------------\n\n🔔开始运行【${$.name+(i+1)}】`)      
       await coin();//账户信息
