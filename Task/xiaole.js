@@ -72,8 +72,8 @@ let middlexiaoleHEADER = [];
 
 
 //随机时间
-do out = Math.floor(Math.random()*10);
-        while( out < 3 )
+do out = Math.floor(Math.random()*15);
+        while( out < 5 )
 //时间
 const nowTimes = new Date(
   new Date().getTime() +
@@ -219,7 +219,7 @@ await clocklog();//打卡记录
 if(nowTimes.getHours() >= 8 &&$.clocklog.info&&!$.clocklog.info.log.length){
 	  await clock()
 	};//首次打卡
-if(nowTimes.getHours() >= 8 &&$.clocklog.info.log.length&&CZ>=out&&$.clocklog.info.log.length<=9){
+if(nowTimes.getHours() >= 8 &&$.clocklog.info.log.length&&$.clocklog.info.log.length<=9){
 console.log('随机延迟'+out+'秒')
 await clock();//打卡
 }  
@@ -353,15 +353,11 @@ url: xiaoleurlVal.replace(`user.php?mod=index`, `daka.php?mod=clock&act=log&leve
           if (logs) $.log(`${O}, 签到🚩: ${data}`);
           $.clocklog = JSON.parse(data);
 if ($.clocklog.result==true&& $.clocklog.info.log.length)
- {
-		let v=$.clocklog.info.log.length-1  
+ {		
+	        let v=$.clocklog.info.log.length-1  
 		let dktime = $.clocklog.info.log[v].created
-		let newtime=dktime.replace(dktime[10],'T')  
-		let c = new Date(newtime)/1000 
-	CZ = Number((ts-c)/60).toFixed(0)
-if (CZ<out){
-$.message +='【上次打卡】:'+dktime+', 随机打卡失败,差'+(out-CZ)+'分钟'+'\n';
-}
+$.message +='【上次打卡】:'+dktime+'+'\n';
+
 }
      } catch (e) {
           $.logErr(e, resp);
