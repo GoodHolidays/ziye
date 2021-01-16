@@ -18,7 +18,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 
 第二步 添加header重写 
 
-点击 我的 获取用户名header
+点击 我的 获取header
 iboxpayheaderVal 👉XP_iboxpayHEADER
 
 设置提现变量 可设置 1 15 30 100 
@@ -26,8 +26,7 @@ CASH  👉  XP_CASH
 
 ⚠️主机名以及重写👇
 
-hostname=mobile.app.autohome.com.cn,
-############## 圈x
+hostname=veishop.iboxpay.com
 #笑谱获取header
 https:\/\/https:\/\/veishop\.iboxpay\.com\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/iboxpay.js
 
