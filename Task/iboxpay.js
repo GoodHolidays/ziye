@@ -8,7 +8,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 转载请备注个名字，谢谢
 ⚠️笑谱
 
-1.15 
+1.15 调整金蛋延迟为60秒
 
 
 ⚠️一共1个位置 1个ck  👉 2条 Secrets 
@@ -379,7 +379,7 @@ await $.wait($.index*30000-29000);
   })
 }
 //金蛋视频
-function goldvideo(timeout = 30000) {
+function goldvideo(timeout = 60000) {
   return new Promise((resolve) => {
     setTimeout( ()=>{		
 tts = Math.round(new Date().getTime() +
