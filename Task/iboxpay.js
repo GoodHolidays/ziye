@@ -28,7 +28,7 @@ CASH  👉  XP_CASH
 
 hostname=veishop.iboxpay.com
 #笑谱获取header
-https:\/\/https:\/\/veishop\.iboxpay\.com\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/iboxpay.js
+https:\/\/veishop\.iboxpay\.com\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/iboxpay.js
 
 ############## loon
 #笑谱获取header
