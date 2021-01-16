@@ -53,6 +53,11 @@
 "val": "1",
 "type": "number",
 "desc": "指定任务最多跑几个账号，根据抓取的账号数据个数来设值"
+}
+],
+"repo": "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/xiaole.js",
+"icons": ["https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/xiaole.png", "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/xiaole.png"],
+"script": "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/xiaole.js"
 },
 {
 "id": "iboxpay",
@@ -84,5 +89,6 @@
 "repo": "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/iboxpay.js",
 "icons": ["https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/iboxpay.png", "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/iboxpay.png"],
 "script": "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/iboxpay.js"
-}]
+}
+]
 }
