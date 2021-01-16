@@ -362,7 +362,7 @@ header=iboxpayheaderVal.replace(`${oldtime}`, `${tts}`)
           if (logs) $.log(`${O}, 视频🚩: ${data}`);
           $.video = JSON.parse(data);
 	if ($.video.resultCode==1){	
-      console.log(`开始领取第${i+1}次视频奖励，获得${$.video.data.goldCoinNumber}金币`);
+      console.log(`开始领取第${i+1}次视频奖励，获得${$.video.data.goldCoinNumber}金币\n`);
 ins +=$.video.data.goldCoinNumber;}
 await $.wait($.index*30000-29000);	  
   $.message +=  
