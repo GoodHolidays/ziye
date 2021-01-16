@@ -53,10 +53,36 @@
 "val": "1",
 "type": "number",
 "desc": "指定任务最多跑几个账号，根据抓取的账号数据个数来设值"
+},
+{
+"id": "iboxpay",
+"name": "笑谱",
+"keys": [ "iboxpayheader", "iboxpayheader2","iboxpayheader3", "iboxpayheader4","iboxpayheader5", "iboxpayheader6", "iboxpayheader7",  "iboxpayheader8", "iboxpayheader9",  "iboxpayheader10","iboxpayheader11", "iboxpayheader12", "iboxpayheader13",  "iboxpayheader14", "iboxpayheader15", "iboxpayheader16", "iboxpayheader17",  "iboxpayheader18", "iboxpayheader19", "iboxpayheader20"],
+"author": "@ziye",
+"settings": [{
+"id": "iboxpaySuffix",
+"name": "当前账号",
+"val": "1",
+"type": "number",
+"desc": "当前抓取ck记录的账号序号，如：1、2、4、"
+},
+{
+"id": "iboxpayCount",
+"name": "账号个数",
+"val": "1",
+"type": "number",
+"desc": "指定任务最多跑几个账号，根据抓取的账号数据个数来设值"
+},
+{
+"id": "iboxpayCASH",
+"name": "提现标准",
+"val": "0",
+"type": "number",
+"desc": "0不提现，可设置 0 1 15 30 100  "
 }
 ],
-"repo": "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/xiaole.js",
-"icons": ["https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/xiaole.png", "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/xiaole.png"],
-"script": "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/xiaole.js"
+"repo": "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/iboxpay.js",
+"icons": ["https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/iboxpay.png", "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/iboxpay.png"],
+"script": "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/iboxpay.js"
 }]
 }
