@@ -9,6 +9,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 ⚠️笑谱
 
 1.15 调整金蛋延迟为60秒
+1.17 增加ck失效提醒，以及金币满额停止
 
 
 ⚠️一共1个位置 1个ck  👉 2条 Secrets 
@@ -48,7 +49,7 @@ const notify = $.isNode() ? require("./sendNotify") : ``;
 const COOKIE = $.isNode() ? require("./iboxpayCOOKIE") : ``;
 const logs = 0; // 0为关闭日志，1为开启
 const notifyttt = 1// 0为关闭外部推送，1为12 23 点外部推送
-const notifyInterval = 2;// 0为关闭通知，1为所有通知，2为12 23 点通知  ， 3为 6 12 18 23 点通知 
+const notifyInterval = 1;// 0为关闭通知，1为所有通知，2为12 23 点通知  ， 3为 6 12 18 23 点通知 
 
 const CS=6
 
@@ -180,12 +181,22 @@ ts = Math.round((new Date().getTime() +
 traceid=JSON.parse(iboxpayheaderVal)["traceid"];
 oldtime=traceid.substr(traceid.indexOf("161"),13);
   O = (`${$.name + (i + 1)}🔔`);
-  await console.log(`-------------------------\n\n🔔开始运行【${$.name+(i+1)}】`) 
-      await user();//用户名   
+  await console.log(`-------------------------\n\n🔔开始运行【${$.name+(i+1)}】`)
+
+
+
+let cookie_is_live = await user(i + 1);//用户名
+    if (!cookie_is_live) {
+      continue;
+    }       
       await goldcoin();//金币信息
 	  await coin();//账户信息
+	        
 	  await play();//播放
-      await video();//视频
+	  let video_is_live = await video(i + 1);//视频
+    if (!video_is_live) {
+      continue;
+    } 
       await goldvideo();//金蛋视频
         }
       
@@ -226,8 +237,22 @@ header=iboxpayheaderVal.replace(`${oldtime}`, `${tts}`)
         try {
           if (logs) $.log(`${O}, 用户名🚩: ${data}`);
           $.user = JSON.parse(data);
-$.message +=`\n${O}`;
-$.message += `\n========== 【${$.user.data.customerInfo.nickname}】 ==========\n`;
+		  if($.user.resultCode == 0) {
+let cookie_not_live_message = new Date(
+    new Date().getTime() +
+    new Date().getTimezoneOffset() * 60 * 1000 +
+    8 * 60 * 60 * 1000
+  ).toLocaleString()  + "❌❌❌COOKIE失效";	           
+        $.msg(O, cookie_not_live_message);
+if($.isNode()){      
+        notify.sendNotify(O, cookie_not_live_message);
+	  }	       
+        resolve(false);
+      } else {
+        $.message +=`\n${O}`;
+        $.message += `\n========== 【${$.user.data.customerInfo.nickname}】 ==========\n`;
+        resolve(true);
+      }
         } catch (e) {
           $.logErr(e, resp);
         } finally {
@@ -360,10 +385,15 @@ header=iboxpayheaderVal.replace(`${oldtime}`, `${tts}`)
       $.post(url, async(err, resp, data) => {
         try {
           if (logs) $.log(`${O}, 视频🚩: ${data}`);
-          $.video = JSON.parse(data);
-	if ($.video.resultCode==1){	
-      console.log(`开始领取第${i+1}次视频奖励，获得${$.video.data.goldCoinNumber}金币\n`);
-ins +=$.video.data.goldCoinNumber;}
+          $.video = JSON.parse(data);		  
+		  if($.video.resultCode == 0) {
+        $.message +='⚠️'+$.video.errorDesc+'\n'      
+        resolve(false);
+      } else {
+        console.log(`开始领取第${i+1}次视频奖励，获得${$.video.data.goldCoinNumber}金币\n`);
+ins +=$.video.data.goldCoinNumber;
+        resolve(true);
+      }
 await $.wait($.index*30000-29000);	  
   $.message +=  
 `【视频奖励】：共领取${$.index}次视频奖励，共${ins}金币\n`
