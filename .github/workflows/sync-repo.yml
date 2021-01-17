@@ -25,6 +25,6 @@ jobs:
         if: env.PAT
         with:
           source_repo: "https://github.com/ziye12/JavaScript.git"
-          source_branch: "master"
-          destination_branch: "master"
+          source_branch: "main"
+          destination_branch: "main"
           github_token: ${{ secrets.PAT }}
