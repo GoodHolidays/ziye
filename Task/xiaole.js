@@ -7,6 +7,9 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 
 转载请备注个名字，谢谢
 
+
+1.18 修复兑换错误
+
 ⚠️小乐
 可以签到 10次 共0.3
 打卡  符合规则可以打卡
@@ -60,7 +63,7 @@ const logs = 0; // 0为关闭日志，1为开启
 const notifyttt = 1// 0为关闭外部推送，1为12 23 点外部推送
 const notifyInterval = 1;// 0为关闭通知，1为所有通知，
 
-let CZ;
+let money,CZ;
 $.message = '', $.index = '', $.clocklog = '', COOKIES_SPLIT = '';
 
 const xiaoleurlArr = [];
@@ -226,7 +229,7 @@ await clock();//打卡
 }  
 
 await index();//打卡信息  
-	  if (nowTimes.getHours() >= 8 &&$.integral.info && $.mibi*$.money >=0.3){
+	  if (nowTimes.getHours() >= 8 &&$.integral.info && money >=0.3){
 	  await exchange();//兑换
 	  }
   }
@@ -326,6 +329,7 @@ url: xiaoleurlVal.replace(`user.php?mod=index`, `daka.php?mod=my&act=integral`),
 		  if ($.integral.result == true ){
 		$.mibi = $.integral.info.mibi
 		$.money = $.integral.info.config.currency_money
+money=$.mibi*$.money
 
 		  $.message +=
 '【米币价值】：'+$.money+'元'+'\n'+
@@ -428,13 +432,13 @@ function exchange(timeout = 0) {
   return new Promise((resolve) => {
     setTimeout( ()=>{
       let url = {
-url: xiaoleurlVal.replace(`user.php?mod=index`, `daka.php?mod=shop&act=exchange&money=${$.money}&currency=${$.mibi}`),
+url: xiaoleurlVal.replace(`user.php?mod=index`, `daka.php?mod=shop&act=exchange&money=${money}&currency=${$.mibi}`),
     headers: JSON.parse(xiaoleheaderVal),		
       }
       $.get(url, async(err, resp, data) => {
         try {
           if (logs) $.log(`${O}, 兑换🚩: ${data}`);
-$.message +='【兑换成功】:'+$.money+'元\n'
+$.message +='【兑换成功】:'+money+'元\n'
         } catch (e) {
           $.logErr(e, resp);
         } finally {
