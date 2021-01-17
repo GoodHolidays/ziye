@@ -15,7 +15,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 //请先确定boxjs已经存在ck，想要导出哪个值，就设置为1
 
 //header
-const iboxpay = 1
+const iboxpayheader = 1
 
 
 
