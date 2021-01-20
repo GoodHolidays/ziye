@@ -9,6 +9,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 
 
 1.18 修复兑换错误
+1.20 调整为打卡满10次且大于等于0.3进行兑换
 
 ⚠️小乐
 可以签到 10次 共0.3
@@ -229,7 +230,7 @@ await clock();//打卡
 }  
 
 await index();//打卡信息  
-	  if (nowTimes.getHours() >= 8 &&$.integral.info && money >=0.3){
+	  if (nowTimes.getHours() >= 8 &&$.integral.info &&$.clocklog.info.log.length==10 && money >=0.3){
 	  await exchange();//兑换
 	  }
   }
