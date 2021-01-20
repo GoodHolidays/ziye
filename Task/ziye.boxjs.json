@@ -29,6 +29,13 @@
 "val": "0",
 "type": "number",
 "desc": "0不提现，可设置0 0.5 2 5 10 20 "
+},
+{
+"id": "qczjCASHTIME",
+"name": "提现时间",
+"val": "0",
+"type": "number",
+"desc": "默认0点后提现，可设置 0 ~ 23  "
 }
 ],
 "repo": "https://github.com/ziye12/QCZJSPEED/blob/main/Task/qczjspeed.js",
