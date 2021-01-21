@@ -100,7 +100,7 @@
 {
 "id": "fanli",
 "name": "返利网",
-"keys": [ "fanlidlurl", "fanlihbheader","fanlidlurl2", "fanlihbheader2","fanlidlurl3", "fanlihbheader3","fanlidlurl4", "fanlihbheader4","fanlidlurl5", "fanlihbheader5","fanlidlurl6", "fanlihbheader6","fanlidlurl7", "fanlihbheader7","fanlidlurl8", "fanlihbheader8","fanlidlurl9", "fanlihbheader9","fanlidlurl10", "fanlihbheader10",],
+"keys": [ "fanlidlurl", "fanlihbheader","fanlidlurl2", "fanlihbheader2","fanlidlurl3", "fanlihbheader3","fanlidlurl4", "fanlihbheader4","fanlidlurl5", "fanlihbheader5","fanlidlurl6", "fanlihbheader6","fanlidlurl7", "fanlihbheader7","fanlidlurl8", "fanlihbheader8","fanlidlurl9", "fanlihbheader9","fanlidlurl10", "fanlihbheader10"],
 "author": "@ziye",
 "settings": [{
 "id": "fanliSuffix",
