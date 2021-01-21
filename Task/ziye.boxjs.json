@@ -96,6 +96,37 @@
 "repo": "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/iboxpay.js",
 "icons": ["https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/iboxpay.png", "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/iboxpay.png"],
 "script": "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/iboxpay.js"
+},
+{
+"id": "fanli",
+"name": "返利网",
+"keys": [ "fanlidlurl", "fanlihbheader","fanlidlurl2", "fanlihbheader2","fanlidlurl3", "fanlihbheader3","fanlidlurl4", "fanlihbheader4","fanlidlurl5", "fanlihbheader5","fanlidlurl6", "fanlihbheader6","fanlidlurl7", "fanlihbheader7","fanlidlurl8", "fanlihbheader8","fanlidlurl9", "fanlihbheader9","fanlidlurl10", "fanlihbheader10",],
+"author": "@ziye",
+"settings": [{
+"id": "fanliSuffix",
+"name": "当前账号",
+"val": "1",
+"type": "number",
+"desc": "当前抓取ck记录的账号序号，如：1、2、3、"
+},
+{
+"id": "fanliCount",
+"name": "账号个数",
+"val": "1",
+"type": "number",
+"desc": "指定任务最多跑几个账号，根据抓取的账号数据个数来设值"
+},
+{
+"id": "fanliCASH",
+"name": "提现标准",
+"val": "1",
+"type": "number",
+"desc": "默认1，至少设置0.3以上  "
+}
+],
+"repo": "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/fanli.js",
+"icons": ["https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/fanli.png", "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/fanli.png"],
+"script": "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/fanli.js"
 }
 ]
 }
