@@ -12,6 +12,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 1.23 增加签到任务等
 1.24 修复错误
 1.24 优化显示
+1.24 修复判定错误
 
 ⚠️一共4个位置 4个ck  👉 5条 Secrets 
 多账号换行
@@ -312,9 +313,9 @@ let cookie_is_live = await flwdl(i + 1);//登录
       await flwtask();//任务列表
 if($.flwtask.data&&qw.status==0){
 dd=qw.new_point/2
-}else if($.flwtask.data&&qw.status==0){
+}else if($.flwtask.data&&zp.status==0){
 dd=10
-}else if($.flwtask.data&&qw.status==0){
+}else if($.flwtask.data&&sp.status==0){
 dd=7
 }
 console.log(`📍本次运行等待${dd}秒`)
