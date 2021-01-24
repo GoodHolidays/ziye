@@ -10,6 +10,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 
 1.20 调整为完整版
 1.23 增加签到任务等
+1.24 修复错误
 
 
 ⚠️一共4个位置 4个ck  👉 5条 Secrets 
@@ -173,7 +174,7 @@ if ($.isNode()) {
   });       
    Object.keys(middleflwqwBODY).forEach((item) => {
     if (middleflwqwBODY[item]) {
-      flwqwheaderArr.push(middleflwqwBODY[item]);
+      flwqwbodyArr.push(middleflwqwBODY[item]);
     }
   });     
 } else {	
