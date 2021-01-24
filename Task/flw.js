@@ -308,8 +308,8 @@ let cookie_is_live = await flwdl(i + 1);//登录
     if (!cookie_is_live) {
      continue;
     }       
-	  //await flwhbcoin();//天天领现金账户        
-	  //await flwhb();//天天领现金
+	  await flwhbcoin();//天天领现金账户        
+	  await flwhb();//天天领现金
       await flwtask();//任务列表
 if($.flwtask.data&&qw.status==0){
 dd=qw.new_point/2
