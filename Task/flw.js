@@ -12,7 +12,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 1.23 增加签到任务等
 1.24 修复错误
 1.24 优化显示
-1.24 修复判定错误
+1.24 修复判定错误，调整视频延迟
 
 ⚠️一共4个位置 4个ck  👉 5条 Secrets 
 多账号换行
@@ -313,23 +313,20 @@ let cookie_is_live = await flwdl(i + 1);//登录
       await flwtask();//任务列表
 if($.flwtask.data&&qw.status==0){
 dd=qw.new_point/2
-}else if($.flwtask.data&&zp.status==0){
-dd=10
 }else if($.flwtask.data&&sp.status==0){
-dd=7
+dd=14
 }
 console.log(`📍本次运行等待${dd}秒`)
-
-if ($.flwtask.data&&sp.status==0){
-       await flwsign();//签到
+     
+if ($.flwtask.data&&zp.status==0){
+	  await flwsign();//签到
+      await flwzrw();//做任务
+      await flwlrw();//领任务
+}
+if ($.flwtask.data&&sp.status==0){       
 	   await flwksp();//看视频
       await flwlsp();//领视频
 }
-      
-if ($.flwtask.data&&zp.status==0){
-      await flwzrw();//做任务
-      await flwlrw();//领任务
-}	  
    if ($.flwtask.data&&qw.status==0){
       await flwqw();//趣味视频
 }
@@ -613,7 +610,7 @@ flwspurlVal=`https://gw.fanli.com/app/v1/reward.htm?src=1&v=7.16.6.1&nt=wifi&abt
           resolve()
         }  
       })
-	  }, i * 1000);
+	  }, i * 2000);
       }  
     },timeout)
   })
