@@ -412,9 +412,9 @@ tts = Math.round(new Date().getTime() +
           $.flwhbcoin = JSON.parse(data);
 		  if ($.flwhbcoin.status==1)
  {
- $.message +='【收益总计】:'+$.flwhbcoin.data.user_total_money+'元'+'\n'+
-'【账户余额】:'+$.flwhbcoin.data.user_current_money+'\n'+
-'【今日奖励】:'+$.flwhbcoin.data.get_money_76728+'元'+'\n'
+ $.message +='【活动收益】:'+$.flwhbcoin.data.user_total_money+'元'+'\n'+
+'【活动余额】:'+$.flwhbcoin.data.user_current_money+'\n'+
+'【活动奖励】:'+$.flwhbcoin.data.get_money_76728+'元'+'\n'
 }
         } catch (e) {
           $.logErr(e, resp);
