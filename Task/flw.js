@@ -35,7 +35,7 @@ flwurlVal 👉FL_flwspBODY
 flwurlVal 👉FL_flwqwBODY
 
 
-设置提现变量 可设置 0.3以上 务必关注官方公众号，并且手动领取天天领现金
+设置提现变量 可设置 0.3以上 务必关注官方公众号，并且手动领取红包
 CASH  👉  FL_CASH
 
 ⚠️主机名以及重写👇
