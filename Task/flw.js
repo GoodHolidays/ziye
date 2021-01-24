@@ -12,22 +12,25 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 1.23 增加签到任务等
 
 
-⚠️一共1个位置 2个ck  👉 3条 Secrets 
+⚠️一共4个位置 4个ck  👉 5条 Secrets 
 多账号换行
 
-第一步 添加  hostname=huodong.flw.com,passport.flw.com
+第一步 添加  hostname=huodong.fanli.com,passport.fanli.com,gw.fanli.com,
 
 第二步 添加重写 
 
 点击 我的 获取flwurlVal
-flwurlVal 👉FL_flwdlURL
+flwurlVal 👉FL_flwURL
+
+点击 首页 签到赚钱 获取flwheaderVal
+flwheaderVal 👉FL_flwHEADER
+
+注释header重写 点击 首页 签到赚钱 视频任务 获取flwspbodyVal
+flwurlVal 👉FL_flwspBODY
 
 
-
-点击 首页右上角现金    获取flwhbheaderVal 
-flwhbheaderVal 👉FL_flwhbHEADER
-
-
+注释header重写 点击 首页 签到赚钱 火山热门视频 获取flwqwbodyVal
+flwurlVal 👉FL_flwqwBODY
 
 
 
@@ -40,8 +43,9 @@ CASH  👉  FL_CASH
 hostname=huodong.fanli.com,passport.fanli.com,gw.fanli.com,
 #返利网
 ############## 圈x
-https:\/\/(huodong\.fanli\.com\/*||passport\.fanli\.com\/*||gw\.fanli\.com\/*) url script-request-header flw6.js   
+https:\/\/(huodong\.fanli\.com\/*||passport\.fanli\.com\/*||gw\.fanli\.com\/*) url script-request-header flw.js   
 
+https:\/\/(huodong\.fanli\.com\/*||passport\.fanli\.com\/*||gw\.fanli\.com\/*) url script-request-body flw.js   
 
 #返利网
 ############## loon
@@ -54,7 +58,7 @@ http-request https:\/\/(huodong\.fanli\.com\/*||passport\.fanli\.com\/*||gw\.fan
 
 返利网 = type=http-request,pattern=https:\/\/(huodong\.fanli\.com\/*||passport\.fanli\.com\/*||gw\.fanli\.com\/*),script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/flw.js,
 
-fanli
+
 
 */
 
@@ -63,12 +67,15 @@ const $ = Env("返利网");
 $.idx = ($.idx = ($.getval('flwSuffix') || '1') - 1) > 0 ? ($.idx + 1 + '') : ''; // 账号扩展字符
 const notify = $.isNode() ? require("./sendNotify") : ``;
 const COOKIE = $.isNode() ? require("./flwCOOKIE") : ``;
-const logs = 1; // 0为关闭日志，1为开启
+const logs = 0; // 0为关闭日志，1为开启
 const notifyttt = 1// 0为关闭外部推送，1为12 23 点外部推送
 const notifyInterval = 2;// 0为关闭通知，1为所有通知，2为12 23 点通知  ， 3为 6 12 18 23 点通知 
 
 
 $.message = '', COOKIES_SPLIT = '', CASH = '';
+
+let ksp,zp;
+let dd=0 ;
 id=['319','263','313','207','241','251','249','245','201','297']
 
 const flwurlArr = [];
@@ -79,10 +86,10 @@ let flwurlVal = ``;
 let flwheaderVal = ``;
 let flwspbodyVal = ``;
 let flwqwbodyVal = ``;
-let middleflwdlURL = [];
-let middleflwheadER = [];
-let middleflwspbODY = [];
-let middleflwqwbODY = [];
+let middleflwURL = [];
+let middleflwHEADER = [];
+let middleflwspBODY = [];
+let middleflwqwBODY = [];
 //时间
 const nowTimes = new Date(
   new Date().getTime() +
@@ -93,7 +100,7 @@ const nowTimes = new Date(
 if ($.isNode()) {
  CASH = process.env.FL_CASH || 1;
 } 
-if ($.isNode() && process.env.FL_flwdlURL) {
+if ($.isNode() && process.env.FL_flwURL) {
   COOKIES_SPLIT = process.env.COOKIES_SPLIT || "\n";
   console.log(
     `============ cookies分隔符为：${JSON.stringify(
@@ -101,67 +108,67 @@ if ($.isNode() && process.env.FL_flwdlURL) {
     )} =============\n`
   );
   if (
-    process.env.FL_flwdlURL &&
-    process.env.FL_flwdlURL.indexOf(COOKIES_SPLIT) > -1
+    process.env.FL_flwURL &&
+    process.env.FL_flwURL.indexOf(COOKIES_SPLIT) > -1
   ) {
-    middleflwdlURL = process.env.FL_flwdlURL.split(COOKIES_SPLIT);
+    middleflwURL = process.env.FL_flwURL.split(COOKIES_SPLIT);
   } else {
-    middleflwdlURL = process.env.FL_flwdlURL.split();
+    middleflwURL = process.env.FL_flwURL.split();
   } 
   if (
-    process.env.FL_flwheadER &&
-    process.env.FL_flwheadER.indexOf(COOKIES_SPLIT) > -1
+    process.env.FL_flwHEADER &&
+    process.env.FL_flwHEADER.indexOf(COOKIES_SPLIT) > -1
   ) {
-    middleflwheadER = process.env.FL_flwheadER.split(COOKIES_SPLIT);
+    middleflwHEADER = process.env.FL_flwHEADER.split(COOKIES_SPLIT);
   } else {
-    middleflwheadER = process.env.FL_flwheadER.split();
+    middleflwHEADER = process.env.FL_flwHEADER.split();
   } 
   if (
-    process.env.FL_flwspbODY &&
-    process.env.FL_flwspbODY.indexOf(COOKIES_SPLIT) > -1
+    process.env.FL_flwspBODY &&
+    process.env.FL_flwspBODY.indexOf(COOKIES_SPLIT) > -1
   ) {
-    middleflwspbODY = process.env.FL_flwspbODY.split(COOKIES_SPLIT);
+    middleflwspBODY = process.env.FL_flwspBODY.split(COOKIES_SPLIT);
   } else {
-    middleflwspbODY = process.env.FL_flwspbODY.split();
+    middleflwspBODY = process.env.FL_flwspBODY.split();
   } 
   if (
-    process.env.FL_flwqwbODY &&
-    process.env.FL_flwqwbODY.indexOf(COOKIES_SPLIT) > -1
+    process.env.FL_flwqwBODY &&
+    process.env.FL_flwqwBODY.indexOf(COOKIES_SPLIT) > -1
   ) {
-    middleflwqwbODY = process.env.FL_flwqwbODY.split(COOKIES_SPLIT);
+    middleflwqwBODY = process.env.FL_flwqwBODY.split(COOKIES_SPLIT);
   } else {
-    middleflwqwbODY = process.env.FL_flwqwbODY.split();
+    middleflwqwBODY = process.env.FL_flwqwBODY.split();
   } 
 }
-if (COOKIE.flwdlURL) {
+if (COOKIE.flwURL) {
   FL_COOKIES = {
-"flwdlURL": COOKIE.flwdlURL.split('\n'),
-"flwheadER": COOKIE.flwheadER.split('\n'),
-"flwspbODY": COOKIE.flwspbODY.split('\n'),
-"flwqwbODY": COOKIE.flwqwbODY.split('\n'),
+"flwURL": COOKIE.flwURL.split('\n'),
+"flwHEADER": COOKIE.flwHEADER.split('\n'),
+"flwspBODY": COOKIE.flwspBODY.split('\n'),
+"flwqwBODY": COOKIE.flwqwBODY.split('\n'),
   } 
-  Length = FL_COOKIES.flwdlURL.length;
+  Length = FL_COOKIES.flwURL.length;
 }
-if (!COOKIE.flwdlURL) {
+if (!COOKIE.flwURL) {
 if ($.isNode()) {
-  Object.keys(middleflwdlURL).forEach((item) => {
-    if (middleflwdlURL[item]) {
-      flwurlArr.push(middleflwdlURL[item]);
+  Object.keys(middleflwURL).forEach((item) => {
+    if (middleflwURL[item]) {
+      flwurlArr.push(middleflwURL[item]);
     }
   });    
-  Object.keys(middleflwheadER).forEach((item) => {
-    if (middleflwheadER[item]) {
-      flwheaderArr.push(middleflwheadER[item]);
+  Object.keys(middleflwHEADER).forEach((item) => {
+    if (middleflwHEADER[item]) {
+      flwheaderArr.push(middleflwHEADER[item]);
     }
   });   
-   Object.keys(middleflwspbODY).forEach((item) => {
-    if (middleflwspbODY[item]) {
-      flwspbodyArr.push(middleflwspbODY[item]);
+   Object.keys(middleflwspBODY).forEach((item) => {
+    if (middleflwspBODY[item]) {
+      flwspbodyArr.push(middleflwspBODY[item]);
     }
   });       
-   Object.keys(middleflwqwbODY).forEach((item) => {
-    if (middleflwqwbODY[item]) {
-      flwqwheaderArr.push(middleflwqwbODY[item]);
+   Object.keys(middleflwqwBODY).forEach((item) => {
+    if (middleflwqwBODY[item]) {
+      flwqwheaderArr.push(middleflwqwBODY[item]);
     }
   });     
 } else {	
@@ -277,15 +284,17 @@ if (!Length) {
 //    new Date().getTimezoneOffset() * 60 * 1000 +
 //    8 * 60 * 60 * 1000)/1000).toString();
 
-
  flwurlValsplit=flwurlVal.split('&')
  uid=flwurlValsplit[1].split('=')[1]
  token=flwurlValsplit[2].split('=')[1]
  sn=flwurlValsplit[2].split('=')[1]
  abtest=flwurlValsplit[7].split('=')[1]
+devid=flwurlValsplit[6].split('=')[1]
 
-console.log(flwqwbodyVal)
 
+
+HEADER={"Accept": "*/*","Accept-Encoding": "gzip, deflate, br","Accept-Language": "zh-Hans-CN;q=1","Accept-webp": "1","Connection": "keep-alive","Content-Length": "334","Content-Type": "application/x-www-form-urlencoded","Host": "gw.fanli.com","User-Agent": `Fanli/7.16.6.1 (iPhone10,2; iOS 14.2; zh_CN; ID:1-${uid}-${devid}-17-0; SCR:1242*2208-3.0)`,}
+   dd=0;
   O = (`${$.name + (i + 1)}🔔`);
   await console.log(`-------------------------\n\n🔔开始运行【${$.name+(i+1)}】`)
 let cookie_is_live = await flwdl(i + 1);//登录
@@ -293,16 +302,33 @@ let cookie_is_live = await flwdl(i + 1);//登录
      continue;
     }       
 	  await flwhbcoin();//天天领现金账户        
-	  await flwhb();//天天领现金
-      await flwsign();//签到
+	  //await flwhb();//天天领现金
       await flwzh();//签到账户
       await flwtask();//任务列表
-	  await flwqw();//趣味视频
+if($.flwtask.data&&qw.status==0){
+dd=qw.new_point/2
+}else if($.flwtask.data&&qw.status==0){
+dd=10
+}else if($.flwtask.data&&qw.status==0){
+dd=7
+}
+console.log(`📍本次运行等待${dd}秒`)
+
+if ($.flwtask.data&&sp.status==0){
+       await flwsign();//签到
+	   await flwksp();//看视频
+      await flwlsp();//领视频
+}
+      
+if ($.flwtask.data&&zp.status==0){
       await flwzrw();//做任务
-      await flwlrw();//领任务	  
-      await flwksp();//看视频
-      await flwlsp();//领视频      
-        }
+      await flwlrw();//领任务
+}	  
+   if ($.flwtask.data&&qw.status==0){
+      await flwqw();//趣味视频
+}
+await $.wait(dd*1000);
+     }
   }
 //通知
 function msgShow() {
@@ -351,7 +377,7 @@ if($.isNode()){
         resolve(false);
       } else {
         $.message +=`\n${O}`;
-        $.message += `\n========== 【${$.flwdl.data.username}】 ==========\n【账户总计】${$.flwdl.data.flw_total}元\n【已提现金】${$.flwdl.data.ordertotal}元\n【剩余现金】${($.flwdl.data.flw_total-$.flwdl.data.ordertotal).toFixed(2)}元\n`;
+        $.message += `\n========== 【${$.flwdl.data.username}】 ==========\n【账户总计】${$.flwdl.data.fanli_total}元\n【已提现金】${$.flwdl.data.ordertotal}元\n【剩余现金】${($.flwdl.data.fanli_total-$.flwdl.data.ordertotal).toFixed(2)}元\n`;
         resolve(true);
       }
         } catch (e) {
@@ -569,12 +595,12 @@ flwspurlVal=`https://gw.fanli.com/app/v1/reward.htm?src=1&v=7.16.6.1&nt=wifi&abt
           $.flwksp = JSON.parse(data);		  
 		  if ($.flwksp.status==1) {
         console.log(`已观看第${i+1}次视频\n`);
-      }
-        } catch (e) {
+    }
+      } catch (e) {
           $.logErr(e, resp);
         } finally {
           resolve()
-        }
+        }  
       })
 	  }, i * 1000);
       }  
@@ -608,9 +634,7 @@ tts = Math.round(new Date().getTime() +
         }
       })
 	  }, i * 1000);
-      }
-  $.message +=  
-`【看热门视频有惊喜】：完成\n`	  
+      }	  
     },timeout)
   })
 }
@@ -628,9 +652,9 @@ ts = Math.round((new Date().getTime() +
     new Date().getTimezoneOffset() * 60 * 1000 +
     8 * 60 * 60 * 1000)/1000).toString();
 	flwqwurlVal=`https://gw.fanli.com/app/v1/videofeed/report.htm?uid=${uid}&token=${token}&nonce=&t=${ts}&pageType=0&sn=${sn}&src=1&v=7.16.6.1&abtest=${abtest}`
-console.log(flwqwurlVal)
       let url = {
         url:flwqwurlVal,
+        headers: HEADER,
         body: flwqwbodyVal,
       }
       $.post(url, async(err, resp, data) => {
@@ -638,9 +662,9 @@ console.log(flwqwurlVal)
           if (logs) $.log(`${O}, 趣味视频🚩: ${data}`);
           $.flwqw = JSON.parse(data);		  
 		  if ($.flwqw.status==1) {
-        console.log(`已观看第${i+1}次视频，共领取${(i+1)*2}金币\n`);
+        console.log(`已观看第${i+1}次趣味视频，共领取${(i+1)*2}金币\n`);
       }
-	  await $.wait($.index*1000-900);
+	  
         } catch (e) {
           $.logErr(e, resp);
         } finally {
@@ -649,13 +673,11 @@ console.log(flwqwurlVal)
       })
 	  }, i * 1000);
       }
-	 $.message +=  
-`【趣味视频】：完成\n`	 
     },timeout)
   })
 }
 //做日常任务
-function flwrw(timeout = 0) {
+function flwzrw(timeout = 0) {
   return new Promise((resolve) => {
     setTimeout( ()=>{
 		for (let i = 0; i < id.length; i++) {
@@ -675,8 +697,8 @@ ts = Math.round((new Date().getTime() +
       $.get(url, async(err, resp, data) => {
         try {
           if (logs) $.log(`${O}, 日常任务🚩: ${data}`);
-          $.flwrw = JSON.parse(data);		  
-		  if ($.flwrw.status==1) {
+          $.flwzrw = JSON.parse(data);		  
+		  if ($.flwzrw.status==1) {
         console.log(`已完成第${i+1}次任务\n`);
       }
         } catch (e) {
