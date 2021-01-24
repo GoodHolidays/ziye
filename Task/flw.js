@@ -12,7 +12,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 1.23 增加签到任务等
 1.24 修复错误
 1.24 优化显示
-1.24 修复判定错误，调整视频延迟
+1.24 修复判定错误，调整视频延迟，修复node环境错误
 
 ⚠️一共4个位置 4个ck  👉 5条 Secrets 
 多账号换行
@@ -147,16 +147,16 @@ if ($.isNode() && process.env.FL_flwURL) {
     middleflwqwBODY = process.env.FL_flwqwBODY.split();
   } 
 }
-if (COOKIE.flwURL) {
+if (COOKIE.flwurlVal) {
   FL_COOKIES = {
-"flwURL": COOKIE.flwURL.split('\n'),
-"flwHEADER": COOKIE.flwHEADER.split('\n'),
-"flwspBODY": COOKIE.flwspBODY.split('\n'),
-"flwqwBODY": COOKIE.flwqwBODY.split('\n'),
+"flwurlVal": COOKIE.flwurlVal.split('\n'),
+"flwheaderVal": COOKIE.flwheaderVal.split('\n'),
+"flwspbodyVal": COOKIE.flwspbodyVal.split('\n'),
+"flwqwbodyVal": COOKIE.flwqwbodyVal.split('\n'),
   } 
-  Length = FL_COOKIES.flwURL.length;
+  Length = FL_COOKIES.flwurlVal.length;
 }
-if (!COOKIE.flwURL) {
+if (!COOKIE.flwurlVal) {
 if ($.isNode()) {
   Object.keys(middleflwURL).forEach((item) => {
     if (middleflwURL[item]) {
