@@ -641,7 +641,7 @@ tts = Math.round(new Date().getTime() +
           resolve()
         }
       })
-	  }, i * 1000);
+	  }, i * 2000);
       }	  
     },timeout)
   })
