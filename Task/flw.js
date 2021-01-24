@@ -81,7 +81,7 @@ const notifyInterval = 1;// 0为关闭通知，1为所有通知，2为12 23 点�
 
 $.message = '', COOKIES_SPLIT = '', CASH = '';
 
-let ksp,zp,qw,sp;
+let ksp,zp,qw,sp,ms;
 let dd=0 ;
 id=['319','263','313','207','241','251','249','245','201','297']
 
@@ -318,7 +318,7 @@ dd=14
 }
 console.log(`📍本次运行等待${dd}秒`)
      
-if ($.flwtask.data&&zp.status==0){
+if ($.flwtask.data&&ms.status==0){
 	  await flwsign();//签到
       await flwzrw();//做任务
       await flwlrw();//领任务
@@ -641,7 +641,7 @@ tts = Math.round(new Date().getTime() +
           resolve()
         }
       })
-	  }, i * 2000);
+	  }, i * 2010);
       }	  
     },timeout)
   })
@@ -751,7 +751,7 @@ ts = Math.round((new Date().getTime() +
           resolve()
         }
       })
-	  }, i * 1000);
+	  }, i * 1010);
       }  
     },timeout)
   })
