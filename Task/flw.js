@@ -11,7 +11,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 1.20 调整为完整版
 1.23 增加签到任务等
 1.24 修复错误
-
+1.24 优化显示
 
 ⚠️一共4个位置 4个ck  👉 5条 Secrets 
 多账号换行
@@ -309,7 +309,6 @@ let cookie_is_live = await flwdl(i + 1);//登录
     }       
 	  await flwhbcoin();//天天领现金账户        
 	  //await flwhb();//天天领现金
-      await flwzh();//签到账户
       await flwtask();//任务列表
 if($.flwtask.data&&qw.status==0){
 dd=qw.new_point/2
@@ -333,6 +332,7 @@ if ($.flwtask.data&&zp.status==0){
    if ($.flwtask.data&&qw.status==0){
       await flwqw();//趣味视频
 }
+await flwzh();//签到账户
 await $.wait(dd*1000);
      }
   }
@@ -550,7 +550,8 @@ sp = $.flwtask.data.tasks.find(item => item.id === '17');
 ms = $.flwtask.data.tasks.find(item => item.id === '201');
 yd = $.flwtask.data.tasks.find(item => item.id === '111');
 zp = $.flwtask.data.tasks.find(item => item.id === '297');
-
+	 
+/*
 if (jd.status==1){$.message +=`【${jd.title}】:${jd.point}金币，已完成\n`}
 if (xyx.status==1){$.message +=`【${xyx.title}】:${xyx.point}金币，已完成\n`}
 if (ksp.status==1){$.message +=`【${ksp.title}】:${ksp.point}金币，已完成\n`}
@@ -568,6 +569,9 @@ if (sp.status==1){$.message +=`【${sp.title}】:${sp.point}金币，已完成\n
 if (ms.status==1){$.message +=`【${ms.title}】:${ms.point}金币，已完成\n`}
 if (yd.status==1){$.message +=`【${yd.title}】:${yd.point}金币，已完成\n`}
 if (zp.status==1){$.message +=`【${zp.title}】:${zp.point}金币，已完成\n`}
+
+*/
+	 
 }
 else
 $.message +='【任务列表】✖️:'+$.flwtask.info+'\n'
