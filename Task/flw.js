@@ -33,30 +33,35 @@ flwurlVal 👉FL_flwspBODY
 flwurlVal 👉FL_flwqwBODY
 
 
-
-
 设置提现变量 可设置 0.3以上 务必关注官方公众号，并且手动领取天天领现金
 CASH  👉  FL_CASH
 
 ⚠️主机名以及重写👇
 
 hostname=huodong.fanli.com,passport.fanli.com,gw.fanli.com,
-#返利网
+
 ############## 圈x
-https:\/\/(huodong\.fanli\.com\/*||passport\.fanli\.com\/*||gw\.fanli\.com\/*) url script-request-header flw.js   
+#返利网获取header
+https:\/\/(huodong\.fanli\.com\/*||passport\.fanli\.com\/*||gw\.fanli\.com\/*) url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/flw.js   
 
-https:\/\/(huodong\.fanli\.com\/*||passport\.fanli\.com\/*||gw\.fanli\.com\/*) url script-request-body flw.js   
+#返利网获取body
+https:\/\/(huodong\.fanli\.com\/*||passport\.fanli\.com\/*||gw\.fanli\.com\/*) url script-request-body https://raw.githubusercontent.com/ziye12/JavaScript/master/flw.js   
 
-#返利网
 ############## loon
 
-http-request https:\/\/(huodong\.fanli\.com\/*||passport\.fanli\.com\/*||gw\.fanli\.com\/*) script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/flw.js,requires-header=true, tag=返利网天天领现金获取cookie 
+#返利网获取header
+http-request https:\/\/(huodong\.fanli\.com\/*||passport\.fanli\.com\/*||gw\.fanli\.com\/*) script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/flw.js, requires-header=true, tag=返利网获取header
+
+http-request https:\/\/(huodong\.fanli\.com\/*||passport\.fanli\.com\/*||gw\.fanli\.com\/*) script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/flw.js,requires-body=true, tag=返利网获取body
 
 
-#返利网
 ############## surge
 
-返利网 = type=http-request,pattern=https:\/\/(huodong\.fanli\.com\/*||passport\.fanli\.com\/*||gw\.fanli\.com\/*),script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/flw.js,
+#返利网获取header
+返利网获取header = type=http-request,pattern=https:\/\/(huodong\.fanli\.com\/*||passport\.fanli\.com\/*||gw\.fanli\.com\/*),script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/flw.js,
+
+#返利网获取body
+返利网获取body = type=http-request,pattern=https:\/\/(huodong\.fanli\.com\/*||passport\.fanli\.com\/*||gw\.fanli\.com\/*),script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/flw.js, 
 
 
 
