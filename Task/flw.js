@@ -330,8 +330,8 @@ if ($.flwtask.data&&sp.status==0){
    if ($.flwtask.data&&qw.status==0){
       await flwqw();//趣味视频
 }
-await flwzh();//签到账户
 await $.wait(dd*1000);
+await flwzh();//签到账户
      }
   }
 //通知
