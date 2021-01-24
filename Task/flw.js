@@ -81,7 +81,7 @@ const notifyInterval = 1;// 0为关闭通知，1为所有通知，2为12 23 点�
 
 $.message = '', COOKIES_SPLIT = '', CASH = '';
 
-let ksp,zp;
+let ksp,zp,qw,sp;
 let dd=0 ;
 id=['319','263','313','207','241','251','249','245','201','297']
 
