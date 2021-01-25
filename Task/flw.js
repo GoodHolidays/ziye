@@ -13,6 +13,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 1.24 修复错误
 1.24 优化显示
 1.24 修复判定错误，调整视频延迟，修复node环境错误
+1.25 修复各种判定
 
 ⚠️一共4个位置 4个ck  👉 5条 Secrets 
 多账号换行
@@ -368,7 +369,7 @@ tts = Math.round(new Date().getTime() +
         try {
           if (logs) $.log(`${O}, 登录🚩: ${data}`);
           $.flwdl = JSON.parse(data);
-		  if ($.flwdl.status==0) {
+		  if ($.flwdl.status&&$.flwdl.status==0) {
  let cookie_not_live_message = new Date(
     new Date().getTime() +
     new Date().getTimezoneOffset() * 60 * 1000 +
@@ -408,7 +409,7 @@ tts = Math.round(new Date().getTime() +
         try {
           if (logs) $.log(`${O}, 天天领现金账户信息🚩: ${data}`);
           $.flwhbcoin = JSON.parse(data);
-		  if ($.flwhbcoin.status==1)
+		  if ($.flwhbcoin.status&&$.flwhbcoin.status==1)
  {
  $.message +='【活动收益】:'+$.flwhbcoin.data.user_total_money+'元'+'\n'+
 '【活动余额】:'+$.flwhbcoin.data.user_current_money+'\n'+
@@ -439,7 +440,7 @@ tts = Math.round(new Date().getTime() +
         try {
           if (logs) $.log(`${O}, 天天领现金🚩: ${data}`);
           $.flwhb = JSON.parse(data);
-		  if ($.flwhb.data.remain_num_76728>0)
+		  if ($.flwhb.data&&$.flwhb.data.remain_num_76728>0)
  {
 $.message +='【开启礼盒】🎉:'+$.flwhb.data.amount+'元'+'\n'+
 '【剩余礼盒】🎉:'+$.flwhb.data.remain_num_76728+'个'+'\n'
@@ -471,7 +472,7 @@ tts = Math.round(new Date().getTime() +
         try {
           if (logs) $.log(`${O}, 签到🚩: ${data}`);
           $.flwsign = JSON.parse(data);
-		  if ($.flwsign.status==1)
+		  if ($.flwsign.status&&$.flwsign.status==1)
  {
  $.message +='【签到成功】🎉:获得'+$.flwsign.data.point+'金币\n'
 }
@@ -499,7 +500,7 @@ tts = Math.round(new Date().getTime() +
         try {
           if (logs) $.log(`${O}, 账户🚩: ${data}`);
           $.flwzh = JSON.parse(data);
-		  if ($.flwzh.status==1)
+		  if ($.flwzh.status&&$.flwzh.status==1)
  {
 $.message +=`【账户金币】:${$.flwzh.data.point}金币\n【预估现金】:${$.flwzh.data.ex_to_cash}元\n【今日已得】:${($.flwzh.data.get_point/900).toFixed(2)}元\n【今日未得】:${$.flwzh.data.no_cash}元\n【下个任务】:${$.flwzh.data.next_task.title}\n`
 }
@@ -528,8 +529,8 @@ tts = Math.round(new Date().getTime() +
       $.get(url, async(err, resp, data) => {
         try {
           if (logs) $.log(`${O}, 任务列表🚩: ${data}`);
-          $.flwtask = JSON.parse(data);		  
-		  if ($.flwtask.status==1)
+          $.flwtask = JSON.parse(data);		  		
+		  if ($.flwtask.status&&$.flwtask.status==1)
  {
 jd = $.flwtask.data.tasks.find(item => item.id === '319');	 
 xyx = $.flwtask.data.tasks.find(item => item.id === '3');	 
@@ -601,7 +602,7 @@ flwspurlVal=`https://gw.fanli.com/app/v1/reward.htm?src=1&v=7.16.6.1&nt=wifi&abt
         try {
           if (logs) $.log(`${O}, 视频🚩: ${data}`);
           $.flwksp = JSON.parse(data);		  
-		  if ($.flwksp.status==1) {
+		  if ($.flwksp.status&&$.flwksp.status==1) {
         console.log(`已观看第${i+1}次视频\n`);
     }
       } catch (e) {
@@ -632,7 +633,7 @@ tts = Math.round(new Date().getTime() +
         try {
           if (logs) $.log(`${O}, 领视频🚩: ${data}`);
           $.flwlsp = JSON.parse(data);		  
-		  if ($.flwlsp.status==1) {
+		  if ($.flwlsp.status&&$.flwlsp.status==1) {
         console.log(`已领取第${i+1}次视频奖励，${$.flwlsp.data.point}金币\n`);
       }
         } catch (e) {
@@ -669,7 +670,7 @@ ts = Math.round((new Date().getTime() +
         try {
           if (logs) $.log(`${O}, 趣味视频🚩: ${data}`);
           $.flwqw = JSON.parse(data);		  
-		  if ($.flwqw.status==1) {
+		  if ($.flwqw.status&&$.flwqw.status==1) {
         console.log(`已观看第${i+1}次趣味视频，共领取${(i+1)*2}金币\n`);
       }
 	  
@@ -706,7 +707,7 @@ ts = Math.round((new Date().getTime() +
         try {
           if (logs) $.log(`${O}, 日常任务🚩: ${data}`);
           $.flwzrw = JSON.parse(data);		  
-		  if ($.flwzrw.status==1) {
+		  if ($.flwzrw.status&&$.flwzrw.status==1) {
         console.log(`已完成第${i+1}次任务\n`);
       }
         } catch (e) {
@@ -742,7 +743,7 @@ ts = Math.round((new Date().getTime() +
         try {
           if (logs) $.log(`${O}, 领日常任务🚩: ${data}`);
           $.flwlrw = JSON.parse(data);		  
-		  if ($.flwlrw.status==1) {
+		  if ($.flwlrw.status&&$.flwlrw.status==1) {
         console.log(`已领取第${i+1}次任务奖励，领取${$.flwlrw.data.point}金币\n`);
       }
         } catch (e) {
