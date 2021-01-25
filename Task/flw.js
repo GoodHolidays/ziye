@@ -13,7 +13,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 1.24 修复错误
 1.24 优化显示
 1.24 修复判定错误，调整视频延迟，修复node环境错误
-1.25 修复各种判定
+1.25 修复各种判定，设置CASH变量>=0.3，启动天天领现金模块
 
 ⚠️一共4个位置 4个ck  👉 5条 Secrets 
 多账号换行
@@ -104,9 +104,9 @@ const nowTimes = new Date(
   new Date().getTimezoneOffset() * 60 * 1000 +
   8 * 60 * 60 * 1000
 );
-// 没有设置 FL_CASH 则默认为 1 提现
+// 没有设置 FL_CASH 则默认为 0 不提现
 if ($.isNode()) {
- CASH = process.env.FL_CASH || 1;
+ CASH = process.env.FL_CASH || 0;
 } 
 if ($.isNode() && process.env.FL_flwURL) {
   COOKIES_SPLIT = process.env.COOKIES_SPLIT || "\n";
@@ -186,7 +186,7 @@ if ($.isNode()) {
   flwqwbodyArr.push($.getdata("flwqwbody"));           
   // 根据boxjs中设置的额外账号数，添加存在的账号数据进行任务处理
   if ("flwCASH") {
-      CASH = $.getval("flwCASH")||'1';
+      CASH = $.getval("flwCASH")||'0';
     }
   let flwCount = ($.getval('flwCount') || '1') - 0;
   for (let i = 2; i <= flwCount; i++) {
@@ -291,16 +291,12 @@ if (!Length) {
 //  ts = Math.round((new Date().getTime() +
 //    new Date().getTimezoneOffset() * 60 * 1000 +
 //    8 * 60 * 60 * 1000)/1000).toString();
-
  flwurlValsplit=flwurlVal.split('&')
  uid=flwurlValsplit[1].split('=')[1]
  token=flwurlValsplit[2].split('=')[1]
  sn=flwurlValsplit[2].split('=')[1]
  abtest=flwurlValsplit[7].split('=')[1]
 devid=flwurlValsplit[6].split('=')[1]
-
-
-
 HEADER={"Accept": "*/*","Accept-Encoding": "gzip, deflate, br","Accept-Language": "zh-Hans-CN;q=1","Accept-webp": "1","Connection": "keep-alive","Content-Length": "334","Content-Type": "application/x-www-form-urlencoded","Host": "gw.fanli.com","User-Agent": `Fanli/7.16.6.1 (iPhone10,2; iOS 14.2; zh_CN; ID:1-${uid}-${devid}-17-0; SCR:1242*2208-3.0)`,}
    dd=0;
   O = (`${$.name + (i + 1)}🔔`);
@@ -308,17 +304,23 @@ HEADER={"Accept": "*/*","Accept-Encoding": "gzip, deflate, br","Accept-Language"
 let cookie_is_live = await flwdl(i + 1);//登录
     if (!cookie_is_live) {
      continue;
-    }       
+    } 
+	  if (CASH>=0.3){		  
 	  await flwhbcoin();//天天领现金账户        
 	  await flwhb();//天天领现金
-      await flwtask();//任务列表
+	  
+	  if ($.flwhbcoin.data && $.flwhbcoin.data.user_current_money>=CASH){
+	  await flwhbtx();//天天领现金提现
+	  }
+	  
+	  }
+      await flwtask();//任务列表	  
 if($.flwtask.data&&qw.status==0){
 dd=qw.new_point/2
 }else if($.flwtask.data&&sp.status==0){
 dd=14
 }
 console.log(`📍本次运行等待${dd}秒`)
-     
 if ($.flwtask.data&&ms.status==0){
 	  await flwsign();//签到
       await flwzrw();//做任务
@@ -431,7 +433,6 @@ function flwhb(timeout = 0) {
 tts = Math.round(new Date().getTime() +
     new Date().getTimezoneOffset() * 60 * 1000 +
     8 * 60 * 60 * 1000).toString();
-
 	  let url = {
         url:`https://huodong.fanli.com/h5/fanlishare20201212/ajaxDoTask76728`,        
         headers: JSON.parse(flwheaderVal),
@@ -456,7 +457,36 @@ $.message +='【开启完毕】✖️:'+'礼盒已全部开启'+'\n'
     },timeout)
   })
 }
-
+//天天领现金提现  
+function flwhbtx(timeout = 0) {
+  return new Promise((resolve) => {
+    setTimeout( ()=>{
+tts = Math.round(new Date().getTime() +
+    new Date().getTimezoneOffset() * 60 * 1000 +
+    8 * 60 * 60 * 1000).toString();
+	  let url = {
+        url:`https://huodong.fanli.com/h5/fanlishare20201212/ajaxExchangeCash`,        
+        headers: JSON.parse(flwheaderVal),
+      }
+      $.get(url, async(err, resp, data) => {
+        try {
+          if (logs) $.log(`${O}, 天天领现金提现🚩: ${data}`);
+          $.flwhbtx = JSON.parse(data);
+		  if ($.flwhbtx.status&&$.flwhbtx.status==1)
+ {
+$.message +='【活动提现】🎉:提现成功,请到公众号领取'+'\n'
+}
+else
+$.message +='【活动提现】✖️:'+$.flwhbtx.info+'\n'
+        } catch (e) {
+          $.logErr(e, resp);
+        } finally {
+          resolve()
+        }
+      })
+    },timeout)
+  })
+}
 //签到
 function flwsign(timeout = 0) {
   return new Promise((resolve) => {
@@ -549,7 +579,6 @@ sp = $.flwtask.data.tasks.find(item => item.id === '17');
 ms = $.flwtask.data.tasks.find(item => item.id === '201');
 yd = $.flwtask.data.tasks.find(item => item.id === '111');
 zp = $.flwtask.data.tasks.find(item => item.id === '297');
-	 
 /*
 if (jd.status==1){$.message +=`【${jd.title}】:${jd.point}金币，已完成\n`}
 if (xyx.status==1){$.message +=`【${xyx.title}】:${xyx.point}金币，已完成\n`}
@@ -568,9 +597,7 @@ if (sp.status==1){$.message +=`【${sp.title}】:${sp.point}金币，已完成\n
 if (ms.status==1){$.message +=`【${ms.title}】:${ms.point}金币，已完成\n`}
 if (yd.status==1){$.message +=`【${yd.title}】:${yd.point}金币，已完成\n`}
 if (zp.status==1){$.message +=`【${zp.title}】:${zp.point}金币，已完成\n`}
-
 */
-	 
 }
 else
 $.message +='【任务列表】✖️:'+$.flwtask.info+'\n'
@@ -673,7 +700,6 @@ ts = Math.round((new Date().getTime() +
 		  if ($.flwqw.status&&$.flwqw.status==1) {
         console.log(`已观看第${i+1}次趣味视频，共领取${(i+1)*2}金币\n`);
       }
-	  
         } catch (e) {
           $.logErr(e, resp);
         } finally {
@@ -757,7 +783,5 @@ ts = Math.round((new Date().getTime() +
     },timeout)
   })
 }
-
-
 // prettier-ignore
 function Env(t,e){class s{constructor(t){this.env=t}send(t,e="GET"){t="string"==typeof t?{url:t}:t;let s=this.get;return"POST"===e&&(s=this.post),new Promise((e,i)=>{s.call(this,t,(t,s,r)=>{t?i(t):e(s)})})}get(t){return this.send.call(this.env,t)}post(t){return this.send.call(this.env,t,"POST")}}return new class{constructor(t,e){this.name=t,this.http=new s(this),this.data=null,this.dataFile="box.dat",this.logs=[],this.isMute=!1,this.isNeedRewrite=!1,this.logSeparator="\n",this.startTime=(new Date).getTime(),Object.assign(this,e),this.log(``,`\ud83d\udd14${this.name}, \u5f00\u59cb!`)}isNode(){return"undefined"!=typeof module&&!!module.exports}isQuanX(){return"undefined"!=typeof $task}isSurge(){return"undefined"!=typeof $httpClient&&"undefined"==typeof $loon}isLoon(){return"undefined"!=typeof $loon}toObj(t,e=null){try{return JSON.parse(t)}catch{return e}}toStr(t,e=null){try{return JSON.stringify(t)}catch{return e}}getjson(t,e){let s=e;const i=this.getdata(t);if(i)try{s=JSON.parse(this.getdata(t))}catch{}return s}setjson(t,e){try{return this.setdata(JSON.stringify(t),e)}catch{return!1}}getScript(t){return new Promise(e=>{this.get({url:t},(t,s,i)=>e(i))})}runScript(t,e){return new Promise(s=>{let i=this.getdata("@chavy_boxjs_userCfgs.httpapi");i=i?i.replace(/\n/g,``).trim():i;let r=this.getdata("@chavy_boxjs_userCfgs.httpapi_timeout");r=r?1*r:20,r=e&&e.timeout?e.timeout:r;const[o,h]=i.split("@"),a={url:`http://${h}/v1/scripting/evaluate`,body:{script_text:t,mock_type:"cron",timeout:r},headers:{"X-Key":o,Accept:"*/*"}};this.post(a,(t,e,i)=>s(i))}).catch(t=>this.logErr(t))}loaddata(){if(!this.isNode())return{};{this.fs=this.fs?this.fs:require("fs"),this.path=this.path?this.path:require("path");const t=this.path.resolve(this.dataFile),e=this.path.resolve(process.cwd(),this.dataFile),s=this.fs.existsSync(t),i=!s&&this.fs.existsSync(e);if(!s&&!i)return{};{const i=s?t:e;try{return JSON.parse(this.fs.readFileSync(i))}catch(t){return{}}}}}writedata(){if(this.isNode()){this.fs=this.fs?this.fs:require("fs"),this.path=this.path?this.path:require("path");const t=this.path.resolve(this.dataFile),e=this.path.resolve(process.cwd(),this.dataFile),s=this.fs.existsSync(t),i=!s&&this.fs.existsSync(e),r=JSON.stringify(this.data);s?this.fs.writeFileSync(t,r):i?this.fs.writeFileSync(e,r):this.fs.writeFileSync(t,r)}}lodash_get(t,e,s){const i=e.replace(/\[(\d+)\]/g,".$1").split(".");let r=t;for(const t of i)if(r=Object(r)[t],void 0===r)return s;return r}lodash_set(t,e,s){return Object(t)!==t?t:(Array.isArray(e)||(e=e.toString().match(/[^.[\]]+/g)||[]),e.slice(0,-1).reduce((t,s,i)=>Object(t[s])===t[s]?t[s]:t[s]=Math.abs(e[i+1])>>0==+e[i+1]?[]:{},t)[e[e.length-1]]=s,t)}getdata(t){let e=this.getval(t);if(/^@/.test(t)){const[,s,i]=/^@(.*?)\.(.*?)$/.exec(t),r=s?this.getval(s):``;if(r)try{const t=JSON.parse(r);e=t?this.lodash_get(t,i,``):e}catch(t){e=``}}return e}setdata(t,e){let s=!1;if(/^@/.test(e)){const[,i,r]=/^@(.*?)\.(.*?)$/.exec(e),o=this.getval(i),h=i?"null"===o?null:o||"{}":"{}";try{const e=JSON.parse(h);this.lodash_set(e,r,t),s=this.setval(JSON.stringify(e),i)}catch(e){const o={};this.lodash_set(o,r,t),s=this.setval(JSON.stringify(o),i)}}else s=this.setval(t,e);return s}getval(t){return this.isSurge()||this.isLoon()?$persistentStore.read(t):this.isQuanX()?$prefs.valueForKey(t):this.isNode()?(this.data=this.loaddata(),this.data[t]):this.data&&this.data[t]||null}setval(t,e){return this.isSurge()||this.isLoon()?$persistentStore.write(t,e):this.isQuanX()?$prefs.setValueForKey(t,e):this.isNode()?(this.data=this.loaddata(),this.data[e]=t,this.writedata(),!0):this.data&&this.data[e]||null}initGotEnv(t){this.got=this.got?this.got:require("got"),this.cktough=this.cktough?this.cktough:require("tough-cookie"),this.ckjar=this.ckjar?this.ckjar:new this.cktough.CookieJar,t&&(t.headers=t.headers?t.headers:{},void 0===t.headers.Cookie&&void 0===t.cookieJar&&(t.cookieJar=this.ckjar))}get(t,e=(()=>{})){t.headers&&(delete t.headers["Content-Type"],delete t.headers["Content-Length"]),this.isSurge()||this.isLoon()?(this.isSurge()&&this.isNeedRewrite&&(t.headers=t.headers||{},Object.assign(t.headers,{"X-Surge-Skip-Scripting":!1})),$httpClient.get(t,(t,s,i)=>{!t&&s&&(s.body=i,s.statusCode=s.status),e(t,s,i)})):this.isQuanX()?(this.isNeedRewrite&&(t.opts=t.opts||{},Object.assign(t.opts,{hints:!1})),$task.fetch(t).then(t=>{const{statusCode:s,statusCode:i,headers:r,body:o}=t;e(null,{status:s,statusCode:i,headers:r,body:o},o)},t=>e(t))):this.isNode()&&(this.initGotEnv(t),this.got(t).on("redirect",(t,e)=>{try{if(t.headers["set-cookie"]){const s=t.headers["set-cookie"].map(this.cktough.Cookie.parse).toString();this.ckjar.setCookieSync(s,null),e.cookieJar=this.ckjar}}catch(t){this.logErr(t)}}).then(t=>{const{statusCode:s,statusCode:i,headers:r,body:o}=t;e(null,{status:s,statusCode:i,headers:r,body:o},o)},t=>{const{message:s,response:i}=t;e(s,i,i&&i.body)}))}post(t,e=(()=>{})){if(t.body&&t.headers&&!t.headers["Content-Type"]&&(t.headers["Content-Type"]="application/x-www-form-urlencoded"),t.headers&&delete t.headers["Content-Length"],this.isSurge()||this.isLoon())this.isSurge()&&this.isNeedRewrite&&(t.headers=t.headers||{},Object.assign(t.headers,{"X-Surge-Skip-Scripting":!1})),$httpClient.post(t,(t,s,i)=>{!t&&s&&(s.body=i,s.statusCode=s.status),e(t,s,i)});else if(this.isQuanX())t.method="POST",this.isNeedRewrite&&(t.opts=t.opts||{},Object.assign(t.opts,{hints:!1})),$task.fetch(t).then(t=>{const{statusCode:s,statusCode:i,headers:r,body:o}=t;e(null,{status:s,statusCode:i,headers:r,body:o},o)},t=>e(t));else if(this.isNode()){this.initGotEnv(t);const{url:s,...i}=t;this.got.post(s,i).then(t=>{const{statusCode:s,statusCode:i,headers:r,body:o}=t;e(null,{status:s,statusCode:i,headers:r,body:o},o)},t=>{const{message:s,response:i}=t;e(s,i,i&&i.body)})}}time(t){let e={"M+":(new Date).getMonth()+1,"d+":(new Date).getDate(),"H+":(new Date).getHours(),"m+":(new Date).getMinutes(),"s+":(new Date).getSeconds(),"q+":Math.floor(((new Date).getMonth()+3)/3),S:(new Date).getMilliseconds()};/(y+)/.test(t)&&(t=t.replace(RegExp.$1,((new Date).getFullYear()+``).substr(4-RegExp.$1.length)));for(let s in e)new RegExp("("+s+")").test(t)&&(t=t.replace(RegExp.$1,1==RegExp.$1.length?e[s]:("00"+e[s]).substr((``+e[s]).length)));return t}msg(e=t,s=``,i=``,r){const o=t=>{if(!t)return t;if("string"==typeof t)return this.isLoon()?t:this.isQuanX()?{"open-url":t}:this.isSurge()?{url:t}:void 0;if("object"==typeof t){if(this.isLoon()){let e=t.openUrl||t.url||t["open-url"],s=t.mediaUrl||t["media-url"];return{openUrl:e,mediaUrl:s}}if(this.isQuanX()){let e=t["open-url"]||t.url||t.openUrl,s=t["media-url"]||t.mediaUrl;return{"open-url":e,"media-url":s}}if(this.isSurge()){let e=t.url||t.openUrl||t["open-url"];return{url:e}}}};this.isMute||(this.isSurge()||this.isLoon()?$notification.post(e,s,i,o(r)):this.isQuanX()&&$notify(e,s,i,o(r)));let h=[``,"==============\ud83d\udce3\u7cfb\u7edf\u901a\u77e5\ud83d\udce3=============="];h.push(e),s&&h.push(s),i&&h.push(i),console.log(h.join("\n")),this.logs=this.logs.concat(h)}log(...t){t.length>0&&(this.logs=[...this.logs,...t]),console.log(t.join(this.logSeparator))}logErr(t,e){const s=!this.isSurge()&&!this.isQuanX()&&!this.isLoon();s?this.log(``,`\u2757\ufe0f${this.name}, \u9519\u8bef!`,t.stack):this.log(``,`\u2757\ufe0f${this.name}, \u9519\u8bef!`,t)}wait(t){return new Promise(e=>setTimeout(e,t))}done(t={}){const e=(new Date).getTime(),s=(e-this.startTime)/1e3;this.log(``,`\ud83d\udd14${this.name}, \u7ed3\u675f! \ud83d\udd5b ${s} \u79d2`),this.log(),(this.isSurge()||this.isQuanX()||this.isLoon())&&$done(t)}}(t,e)}
