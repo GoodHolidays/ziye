@@ -215,7 +215,7 @@ do out = Math.floor(Math.random()*30);
   O = (`${$.name + (i + 1)}🔔`);
   await console.log(`-------------------------\n\n🔔开始运行【${$.name+(i+1)}】`)      
       await coin();//账户信息
-	  if (nowTimes.getHours() >= 8 &&$.coin.info&&$.coin.info.task_list[0].state==0){
+	  if (nowTimes.getHours() >= 12 &&nowTimes.getHours() <= 13 &&$.coin.info&&$.coin.info.task_list[0].state==0){
       await Sign();//签到   
       }	  
 
