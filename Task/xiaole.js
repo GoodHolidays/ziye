@@ -10,6 +10,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 
 1.18 修复兑换错误
 1.20 调整为打卡满10次且大于等于0.3进行兑换
+1.25 调整签到时间为12到13点之间
 
 ⚠️小乐
 可以签到 10次 共0.3
