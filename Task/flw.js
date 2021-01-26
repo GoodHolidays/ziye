@@ -14,6 +14,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 1.24 优化显示
 1.24 修复判定错误，调整视频延迟，修复node环境错误
 1.25 修复各种判定，设置CASH变量>=0.3，启动天天领现金模块
+1.26 修复延迟判定问题
 
 ⚠️一共4个位置 4个ck  👉 5条 Secrets 
 多账号换行
@@ -317,8 +318,8 @@ let cookie_is_live = await flwdl(i + 1);//登录
       await flwtask();//任务列表	  
 if($.flwtask.data&&qw.status==0){
 dd=qw.new_point/2
-}else if($.flwtask.data&&sp.status==0){
-dd=14
+}else if($.flwtask.data&&$.flwtask.data&&sp.complete_count!=7){
+dd=(7-sp.complete_count)*2
 }
 console.log(`📍本次运行等待${dd}秒`)
 if ($.flwtask.data&&ms.status==0){
@@ -326,7 +327,7 @@ if ($.flwtask.data&&ms.status==0){
       await flwzrw();//做任务
       await flwlrw();//领任务
 }
-if ($.flwtask.data&&sp.status==0){       
+if ($.flwtask.data&&sp.complete_count!=7){       
 	   await flwksp();//看视频
       await flwlsp();//领视频
 }
