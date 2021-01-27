@@ -86,6 +86,13 @@
 "desc": "指定任务最多跑几个账号，根据抓取的账号数据个数来设值"
 },
 {
+"id": "iboxpayLIVE",
+"name": "直播次数",
+"val": "0",
+"type": "number",
+"desc": "0不看直播，可设置 0~50  "
+},
+{
 "id": "iboxpayCASH",
 "name": "提现标准",
 "val": "0",
