@@ -220,7 +220,7 @@ let cookie_is_live = await user(i + 1);//用户名
    continue;
  }
       await goldvideo();//金蛋视频
-if (LIVE >=1 && nowTimes.getHours() >= 8 && nowTimes.getHours() <= 23) {
+if (LIVE >=1 && nowTimes.getHours() >= 8 && nowTimes.getHours() <= 22) {
 	  await sylist();//收益列表
 if ($.sylist.resultCode && livecs<LIVE) {
 	  await lives();//看直播
