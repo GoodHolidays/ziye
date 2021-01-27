@@ -63,7 +63,7 @@ const notifyInterval = 2;// 0为关闭通知，1为所有通知，2为12 23 点�
 const CS=6
 
 $.message = '', COOKIES_SPLIT = '', CASH = '', LIVE = '';
-let ins=0
+let ins=0,livecs=0;
 const iboxpayheaderArr = [];
 let iboxpayheaderVal = ``;
 let middleiboxpayHEADER = [];
@@ -216,9 +216,11 @@ let cookie_is_live = await user(i + 1);//用户名
 	  await play();//播放
 	  let video_is_live = await video(i + 1);//视频
     if (!video_is_live) {
+if (LIVE >=1 && nowTimes.getHours() >= 8 && nowTimes.getHours() <= 23) {
 	  await sylist();//收益列表
-		if (LIVE >=1 && livecs<LIVE && nowTimes.getHours() >= 8 && nowTimes.getHours() <= 23) {
-	  await lives();//看直播		
+if ($.sylist.resultCode && livecs<LIVE) {
+	  await lives();//看直播
+           }		
 		}
    continue;
  } 
@@ -558,7 +560,7 @@ livecs = live.length;
       console.log('已获得直播奖励 '+livecs+' 次，共'+livecs*500+'金币\n')
 	  $.message +=  
   '【直播收益】：已获得直播奖励 '+livecs+' 次，共'+livecs*500+'金币\n'
-	   }    
+	   }else livecs = 0    
        if ($.sylist.resultCode==0){	
 console.log($.sylist.errorDesc+'\n');
 $.message +=  
