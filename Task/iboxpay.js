@@ -10,6 +10,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 
 1.15 调整金蛋延迟为60秒
 1.17 增加ck失效提醒，以及金币满额停止
+1.27 笑谱恢复，活动id282
 
 
 ⚠️一共1个位置 1个ck  👉 2条 Secrets 
