@@ -376,7 +376,7 @@ tts = Math.round(new Date().getTime() +
     new Date().getTimezoneOffset() * 60 * 1000 +
     8 * 60 * 60 * 1000).toString();
 header=iboxpayheaderVal.replace(`${oldtime}`, `${tts}`)
-		videobodyVal=`{"type":1,"videoList":[{"videoId":"${videoPublishId}","type":1,"isFinishWatch":false}],"actId":"259"}`
+		videobodyVal=`{"type":1,"videoList":[{"videoId":"${videoPublishId}","type":1,"isFinishWatch":false}],"actId":"282"}`
       let url = {
         url: `https://veishop.iboxpay.com/nf_gateway/nf_customer_activity/day_cash/v1/give_gold_coin_by_video.json`,
         headers: JSON.parse(header),
