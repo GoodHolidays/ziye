@@ -547,8 +547,7 @@ new Date().getTimezoneOffset() * 60 * 1000 +8 * 60 * 60 * 1000).toString();
         try {
           if (logs) $.log(`${O}, 收益列表🚩: ${data}`);
           $.sylist = JSON.parse(data);
-	if ($.sylist.resultCode==1 && data.match(/500/g)){
-		ddd=data.split('obtainDate')
+	if ($.sylist.resultCode==1 && data.split('obtainDate')[1].match(/500/g)){
 live = data.split('obtainDate')[1].match(/500/g);	
 livecs = live.length;	
       console.log('已获得直播奖励 '+livecs+' 次，共'+livecs*500+'金币\n')
