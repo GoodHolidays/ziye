@@ -19,6 +19,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 1.27-2 增加看直播功能，默认关闭，设置LIVE来开启  如 设置LIVE 为 60 则开启直播，并且次数达到60次停止
 1.27-3 调整直播运行次数，运行一次脚本，执行6次直播
 1.27-4 调整策略，6次视频1次金蛋1次直播
+1.28 修复收益列表问题
 
 
 ⚠️一共1个位置 1个ck  👉 2条 Secrets 
@@ -546,8 +547,9 @@ new Date().getTimezoneOffset() * 60 * 1000 +8 * 60 * 60 * 1000).toString();
         try {
           if (logs) $.log(`${O}, 收益列表🚩: ${data}`);
           $.sylist = JSON.parse(data);
-	if ($.sylist.resultCode==1 && data.match(/500/g)){		
-live = data.match(/500/g);	
+	if ($.sylist.resultCode==1 && data.match(/500/g)){
+		ddd=data.split('obtainDate')
+live = data.split('obtainDate')[1].match(/500/g);	
 livecs = live.length;	
       console.log('已获得直播奖励 '+livecs+' 次，共'+livecs*500+'金币\n')
 	  $.message +=  
