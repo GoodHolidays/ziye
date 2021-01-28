@@ -20,6 +20,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 1.27-3 调整直播运行次数，运行一次脚本，执行6次直播
 1.27-4 调整策略，6次视频1次金蛋1次直播
 1.28 修复收益列表问题
+1.29 活动id302
 
 
 ⚠️一共1个位置 1个ck  👉 2条 Secrets 
@@ -417,7 +418,7 @@ new Date().getTimezoneOffset() * 60 * 1000 ).toString();
 }else tts = Math.round(new Date().getTime() +
 new Date().getTimezoneOffset() * 60 * 1000 +8 * 60 * 60 * 1000).toString();
 header=iboxpayheaderVal.replace(`${oldtime}`, `${tts}`)
-		videobodyVal=`{"type":1,"videoList":[{"videoId":"${videoPublishId}","type":1,"isFinishWatch":false}],"actId":"284"}`
+		videobodyVal=`{"type":1,"videoList":[{"videoId":"${videoPublishId}","type":1,"isFinishWatch":false}],"actId":"302"}`
       let url = {
         url: `https://veishop.iboxpay.com/nf_gateway/nf_customer_activity/day_cash/v1/give_gold_coin_by_video.json`,
         headers: JSON.parse(header),
@@ -459,7 +460,7 @@ new Date().getTimezoneOffset() * 60 * 1000 ).toString();
 }else tts = Math.round(new Date().getTime() +
 new Date().getTimezoneOffset() * 60 * 1000 +8 * 60 * 60 * 1000).toString();
 header=iboxpayheaderVal.replace(`${oldtime}`, `${tts}`)
-		goldvideobodyVal=`{"type":2,"videoList":[{"videoId":"${videoPublishId3}","type":1,"isFinishWatch":false},{"videoId":"${videoPublishId4}","type":1,"isFinishWatch":false},{"videoId":"${videoPublishId5}","type":1,"isFinishWatch":false},{"videoId":"${videoPublishId6}","type":1,"isFinishWatch":false}],"actId":"284"}`
+		goldvideobodyVal=`{"type":2,"videoList":[{"videoId":"${videoPublishId3}","type":1,"isFinishWatch":false},{"videoId":"${videoPublishId4}","type":1,"isFinishWatch":false},{"videoId":"${videoPublishId5}","type":1,"isFinishWatch":false},{"videoId":"${videoPublishId6}","type":1,"isFinishWatch":false}],"actId":"302"}`
       let url = {
         url: `https://veishop.iboxpay.com/nf_gateway/nf_customer_activity/day_cash/v1/give_gold_coin_by_video.json`,
         headers: JSON.parse(header),
