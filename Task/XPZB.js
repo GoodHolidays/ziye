@@ -507,9 +507,6 @@ $.message +=
 function lives(timeout = 0) {
   return new Promise((resolve) => {
     setTimeout( ()=>{
-
-
-
 for (let i = 0; i < CS; i++) {
 $.index = i+1	
 do RT = Math.floor(Math.random()*45000);
@@ -564,8 +561,6 @@ $.message +='【直播奖励】：'+$.lives.errorDesc+'\n';
 function sylist(timeout = 0) {
   return new Promise((resolve) => {
     setTimeout( ()=>{
-
-
 if ($.isNode()) {
 	tts = Math.round(new Date().getTime() +
 new Date().getTimezoneOffset() * 60 * 1000 ).toString();
