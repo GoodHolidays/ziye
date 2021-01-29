@@ -139,7 +139,8 @@ if ($.isNode()) {
 
 function GetCookie() {
 //用户名
-if ($request && $request.url.indexOf("get_context_info") >= 0) {
+
+if ($request && $request.url.indexOf("nf_user_center_web") >= 0&&$request.url.indexOf("get_context_info") >= 0) {
     const iboxpayheaderVal = JSON.stringify($request.headers);
     if (iboxpayheaderVal) $.setdata(iboxpayheaderVal, "iboxpayheader" + $.idx);
     $.log(
@@ -148,6 +149,7 @@ if ($request && $request.url.indexOf("get_context_info") >= 0) {
     $.msg($.name + $.idx, `获取header: 成功🎉`, ``);
     } 
 }
+
 
 console.log(
   `================== 脚本执行 - 北京时间(UTC+8)：${new Date(
