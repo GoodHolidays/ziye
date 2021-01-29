@@ -72,24 +72,27 @@ let iboxpayheaderVal = ``;
 let middleiboxpayHEADER = [];
 
 //时间
-const nowTimes = new Date(
+ nowTimes = new Date(
   new Date().getTime() +
   new Date().getTimezoneOffset() * 60 * 1000 +
   8 * 60 * 60 * 1000
 );
 
-//今日0点时间戳
+//时间戳
 if ($.isNode()) {
-  daytime =
+tts = Math.round(new Date().getTime() +
+new Date().getTimezoneOffset() * 60 * 1000 ).toString();
+daytime =
     new Date(new Date().toLocaleDateString()).getTime() - 8 * 60 * 60 * 1000;
-} else {
-  daytime = new Date(new Date().toLocaleDateString()).getTime();
+}else { 
+tts = Math.round(new Date().getTime() +
+new Date().getTimezoneOffset() * 60 * 1000 +8 * 60 * 60 * 1000).toString();
+daytime = new Date(new Date().toLocaleDateString()).getTime();
 }
 
-date = new Date(daytime);
-Y = date.getFullYear() + '-';
-M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
-D = date.getDate();
+Y = nowTimes.getFullYear() + '-';
+M = (nowTimes.getMonth()+1 < 10 ? '0'+(nowTimes.getMonth()+1) : nowTimes.getMonth()+1) + '-';
+D = nowTimes.getDate();
 ddtime=Y+M+D;
 console.log(ddtime)
 
