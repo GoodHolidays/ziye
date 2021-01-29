@@ -65,7 +65,7 @@ const notifyInterval = 2;// 0为关闭通知，1为所有通知，2为12 23 点�
 
 const CS=6
 
-$.message = '', COOKIES_SPLIT = '', CASH = '', LIVE = '';
+$.message = '', COOKIES_SPLIT = '', CASH = '', LIVE = '',ddtime = '';
 let ins=0,livecs=0;
 const iboxpayheaderArr = [];
 let iboxpayheaderVal = ``;
@@ -77,6 +77,21 @@ const nowTimes = new Date(
   new Date().getTimezoneOffset() * 60 * 1000 +
   8 * 60 * 60 * 1000
 );
+
+//今日0点时间戳
+if ($.isNode()) {
+  daytime =
+    new Date(new Date().toLocaleDateString()).getTime() - 8 * 60 * 60 * 1000;
+} else {
+  daytime = new Date(new Date().toLocaleDateString()).getTime();
+}
+
+date = new Date(daytime);
+Y = date.getFullYear() + '-';
+M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+D = date.getDate();
+ddtime=Y+M+D;
+console.log(ddtime)
 
 if ($.isNode()) {
  // 没有设置 XP_CASH 则默认为 0 不提现
@@ -536,22 +551,22 @@ $.message +='【直播奖励】：'+$.lives.errorDesc+'\n';
 //收益列表
 function sylist(timeout = 0) {
   return new Promise((resolve) => {
-    setTimeout( ()=>{		
+    setTimeout( ()=>{
 if ($.isNode()) {
 	tts = Math.round(new Date().getTime() +
 new Date().getTimezoneOffset() * 60 * 1000 ).toString();
 }else tts = Math.round(new Date().getTime() +
 new Date().getTimezoneOffset() * 60 * 1000 +8 * 60 * 60 * 1000).toString();		
       let url = {
-        url: `https://veishop.iboxpay.com/nf_gateway/nf_customer_activity/day_cash/v1/list_gold_coin.json?source=WX_APP_KA_HTZP&date=&actTypeId=0&size=1000`,
+        url: `https://veishop.iboxpay.com/nf_gateway/nf_customer_activity/day_cash/v1/list_gold_coin.json?source=WX_APP_KA_HTZP&date=${ddtime}&actTypeId=0&size=800`,
         headers: JSON.parse(header),
       }
       $.get(url, async(err, resp, data) => {
         try {
           if (logs) $.log(`${O}, 收益列表🚩: ${data}`);
           $.sylist = JSON.parse(data);
-	if ($.sylist.resultCode==1 && data.split('obtainDate')[1].match(/500/g)){
-live = data.split('obtainDate')[1].match(/500/g);	
+	if ($.sylist.resultCode==1 && data.match(/500/g)){
+live = data.match(/500/g);	
 livecs = live.length;	
       console.log('已获得直播奖励 '+livecs+' 次，共'+livecs*500+'金币\n')
 	  $.message +=  
