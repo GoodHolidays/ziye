@@ -16,7 +16,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 
 //header
 const iboxpayheader = 1
-
+const refreshtoken = 1
 
 
 const GG=''//默认为换行，也可以将需要隔开的符号填写在''内
@@ -36,18 +36,21 @@ let R=K
 const iboxpayheaderArr = [];
 let iboxpayheaderVal = "";
 
+const refreshtokenArr = [];
+let refreshtokenVal = "";
+
 
 
 
 
   iboxpayheaderArr.push($.getdata("iboxpayheader"));  
-    
+   refreshtokenArr.push($.getdata("refreshtoken"));     
   // 根据boxjs中设置的额外账号数，添加存在的账号数据进行任务处理
   let iboxpayCount = ($.getval('iboxpayCount') || '1') - 0;
   for (let i = 2; i <= iboxpayCount; i++) {
     if ($.getdata(`iboxpayheader${i}`)) {	
   iboxpayheaderArr.push($.getdata(`iboxpayheader${i}`));  
-  
+  refreshtokenArr.push($.getdata(`refreshtoken${i}`));   
     }
   }
 
@@ -87,9 +90,9 @@ if (Z==R)
 
 
   iboxpayheaderVal = iboxpayheaderArr[K-1];  
-  
+  refreshtokenVal = refreshtokenArr[K-1];   
 if(iboxpayheader==1)console.log(iboxpayheaderVal+GG)
-
+if(refreshtoken==1)console.log(refreshtokenVal+GG)
 
 
   for (let i = 0; i < 1; i++) {
