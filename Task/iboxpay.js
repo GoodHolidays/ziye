@@ -33,7 +33,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 第二步 添加笑谱获取更新TOKEN重写  
 
 
-微信登录  获取更新TOKEN重写 
+登录  获取更新TOKEN重写 
 
 
 第三步 添加笑谱获取header重写
