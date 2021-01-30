@@ -14,7 +14,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 此版本为单直播版
 
 1.29修复次数问题
-
+1.30 修复活动id频繁变动问题
 
 
 ⚠️一共1个位置 1个ck  👉 2条 Secrets 
@@ -59,7 +59,7 @@ const notifyInterval = 2;// 0为关闭通知，1为所有通知，2为12 23 点�
 
 const CS=4
 
-$.message = '', COOKIES_SPLIT = '', CASH = '', LIVE = '',ddtime = '';
+$.message = '', COOKIES_SPLIT = '', CASH = '', LIVE = '',ddtime = '',spid = '',zbid = '';
 let ins=0,livecs=0,RT=35000;
 const iboxpayheaderArr = [];
 let iboxpayheaderVal = ``;
@@ -228,7 +228,8 @@ let cookie_is_live = await user(i + 1);//用户名
       continue;
     }       
       await goldcoin();//金币信息
-	  await coin();//账户信息	  
+	  await coin();//账户信息	
+       await hdid();//活动id	  
 	  //await play();//播放
 	  //let video_is_live = await video(i + 1);//视频
     //if (!video_is_live) {
@@ -329,6 +330,40 @@ header=iboxpayheaderVal.replace(`${oldtime}`, `${tts}`)
           if (logs) $.log(`${O}, 金币信息🚩: ${data}`);
           $.goldcoin = JSON.parse(data);
  $.message +='【金币信息】：今日金币'+$.goldcoin.data.coinSum+',预估金额'+$.goldcoin.data.balanceSum/100+'元'+'\n';
+        } catch (e) {
+          $.logErr(e, resp);
+        } finally {
+          resolve()
+        }
+      })
+    },timeout)
+  })
+}
+//活动id 
+function hdid(timeout = 0) {
+  return new Promise((resolve) => {
+    setTimeout( ()=>{
+if ($.isNode()) {
+	tts = Math.round(new Date().getTime() +
+new Date().getTimezoneOffset() * 60 * 1000 ).toString();
+}else tts = Math.round(new Date().getTime() +
+new Date().getTimezoneOffset() * 60 * 1000 +8 * 60 * 60 * 1000).toString();
+header=iboxpayheaderVal.replace(`${oldtime}`, `${tts}`)
+	  let url = {
+        url:`https://veishop.iboxpay.com/nf_gateway/nf_customer_activity/day_cash/ignore_tk/v1/query_act_list.json?source=WX_APP_KA_HTZP`,        
+        headers: JSON.parse(header),
+      }
+      $.get(url, async(err, resp, data) => {
+        try {
+          if (logs) $.log(`${O}, 活动id🚩: ${data}`);
+          $.hdid = JSON.parse(data);
+if ($.hdid.resultCode==1){
+spid = $.hdid.data.everyDayActivityList.find(item => item.actTypeId === 9)
+zbid = $.hdid.data.everyDayActivityList.find(item => item.actTypeId === 10)
+
+ $.message +='【'+spid.actName+'ID】：'+spid.actId+'\n'+
+  '【'+zbid.actName+'ID】：'+zbid.actId+'\n';
+}
         } catch (e) {
           $.logErr(e, resp);
         } finally {
