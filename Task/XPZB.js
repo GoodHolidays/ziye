@@ -48,7 +48,7 @@ hostname=veishop.iboxpay.com
 https:\/\/veishop\.iboxpay\.com\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/iboxpay.js
 
 #笑谱获取更新TOKEN
-https:\/\/veishop\.iboxpay\.com\/nf_gateway\/nf-user-auth-web\/ignore_tk\/veishop\/v1\/login_by_wx.json? url script-response-body https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/iboxpay.js
+https:\/\/veishop\.iboxpay\.com\/nf_gateway\/nf-user-auth-web\/ignore_tk\/veishop\/v1\/* url script-response-body https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/iboxpay.js
 
 
 ############## loon
@@ -56,14 +56,14 @@ https:\/\/veishop\.iboxpay\.com\/nf_gateway\/nf-user-auth-web\/ignore_tk\/veisho
 http-request https:\/\/veishop\.iboxpay\.com\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/iboxpay.js, requires-header=true, tag=笑谱获取header
 
 #笑谱获取更新TOKEN
-http-request https:\/\/veishop\.iboxpay\.com\/nf_gateway\/nf-user-auth-web\/ignore_tk\/veishop\/v1\/login_by_wx.json? script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/iboxpay.js, response-body=true, tag=笑谱获取更新TOKEN
+http-request https:\/\/veishop\.iboxpay\.com\/nf_gateway\/nf-user-auth-web\/ignore_tk\/veishop\/v1\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/iboxpay.js, response-body=true, tag=笑谱获取更新TOKEN
 
 ############## surge
 #笑谱获取header
 笑谱获取header = type=http-request,pattern=https:\/\/veishop\.iboxpay\.com\/*,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/iboxpay.js, script-update-interval=0
 
 #笑谱获取更新TOKEN
-笑谱获取更新TOKEN = type=http-request,pattern=https:\/\/veishop\.iboxpay\.com\/nf_gateway\/nf-user-auth-web\/ignore_tk\/veishop\/v1\/login_by_wx.json?,response-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/iboxpay.js, script-update-interval=0
+笑谱获取更新TOKEN = type=http-request,pattern=https:\/\/veishop\.iboxpay\.com\/nf_gateway\/nf-user-auth-web\/ignore_tk\/veishop\/v1\/*,response-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/iboxpay.js, script-update-interval=0
 
 
 */
@@ -191,7 +191,7 @@ if ($.isNode()) {
 
 function GetCookie() {
 	
-if ($request && $request.url.indexOf("login_by_wx") >= 0) {  
+if ($request && $request.url.indexOf("nf-user-auth-web") >= 0) {  
 const refreshtokenVal = JSON.parse($response.body).data.refreshToken
 $.setdata(refreshtokenVal, "refreshtoken" + $.idx);
     $.log(
