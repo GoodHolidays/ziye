@@ -69,7 +69,7 @@
 {
 "id": "iboxpay",
 "name": "笑谱",
-"keys": [ "iboxpayheader", "iboxpayheader2","iboxpayheader3", "iboxpayheader4","iboxpayheader5", "iboxpayheader6", "iboxpayheader7",  "iboxpayheader8", "iboxpayheader9",  "iboxpayheader10","iboxpayheader11", "iboxpayheader12", "iboxpayheader13",  "iboxpayheader14", "iboxpayheader15", "iboxpayheader16", "iboxpayheader17",  "iboxpayheader18", "iboxpayheader19", "iboxpayheader20"],
+"keys": [ "iboxpayheader","refreshtoken", "iboxpayheader2","refreshtoken2","iboxpayheader3","refreshtoken3", "iboxpayheader4","refreshtoken4","iboxpayheader5","refreshtoken5", "iboxpayheader6","refreshtoken6", "iboxpayheader7","refreshtoken7",  "iboxpayheader8","refreshtoken8", "iboxpayheader9","refreshtoken9",  "iboxpayheader10","refreshtoken10","iboxpayheader11","refreshtoken11", "iboxpayheader12","refreshtoken12", "iboxpayheader13","refreshtoken13",  "iboxpayheader14","refreshtoken14", "iboxpayheader15","refreshtoken15", "iboxpayheader16","refreshtoken16", "iboxpayheader17","refreshtoken17",  "iboxpayheader18","refreshtoken18", "iboxpayheader19","refreshtoken19", "iboxpayheader20", "refreshtoken20"],
 "author": "@ziye",
 "settings": [{
 "id": "iboxpaySuffix",
