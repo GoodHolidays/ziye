@@ -79,7 +79,8 @@ const notifyInterval = 2;// 0为关闭通知，1为所有通知，2为12 23 点�
 
 const CS=4
 
-$.message = '', COOKIES_SPLIT = '', CASH = '', LIVE = '',ddtime = '',spid = '',zbid = '';
+$.message = '', COOKIES_SPLIT = '', CASH = '', LIVE = '',ddtime = '',spid = '',TOKEN = '',zbid = '';
+let ins=0,livecs=0;
 let ins=0,livecs=0,RT=35000;
 const iboxpayheaderArr = [];
 let iboxpayheaderVal = ``;
