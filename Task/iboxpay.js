@@ -24,7 +24,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 1.30 修复活动id频繁变动问题，修复金蛋视频id
 1.30 解决ck失效问题
 1.30-3 增加提现
-
+1.31 增加180秒任务
 
 ⚠️一共2个位置 2个ck  👉 3条 Secrets 
 多账号换行
@@ -88,7 +88,7 @@ const notifyInterval = 2;// 0为关闭通知，1为所有通知，2为12 23 点�
 
 const CS=6
 
-$.message = '', COOKIES_SPLIT = '', CASH = '', LIVE = '',ddtime = '',spid = '',TOKEN = '',zbid = '',cashcs = '';
+$.message = '', COOKIES_SPLIT = '', CASH = '', LIVE = '',ddtime = '',spid = '',TOKEN = '',zbid = '',cashcs = '',newcashcs = '';
 let ins=0,livecs=0;
 const iboxpayheaderArr = [];
 let iboxpayheaderVal = ``;
@@ -292,7 +292,8 @@ let cookie_is_live = await user(i + 1);//用户名
       await goldcoin();//金币信息
 	  await coin();//账户信息
 	  await hdid();//活动id
-	  await cashlist();//提现查询
+	  await newcashlist();//提现查询
+	  await cashlist();//今日提现查询
 	  if (!cashcs.amount && CASH>=1 && $.coin.data.balance/100>=CASH) {
 	  await withdraw();//提现
  }	  
@@ -300,7 +301,10 @@ let cookie_is_live = await user(i + 1);//用户名
 	  let video_is_live = await video(i + 1);//视频
     if (!video_is_live) {
    continue;
- }
+ }    
+       if (!newcashcs.amount) {
+	  await newvideo();//新人福利
+ }	  
       await goldvideo();//金蛋视频
 if (LIVE >=1 && nowTimes.getHours() >= 8 && nowTimes.getHours() <= 23) {
 	  await sylist();//收益列表
@@ -638,6 +642,45 @@ $.message +=
     },timeout)
   })
 }
+//新人福利
+function newvideo(timeout = 60000) {
+  return new Promise((resolve) => {
+    setTimeout( ()=>{		
+if ($.isNode()) {
+	tts = Math.round(new Date().getTime() +
+new Date().getTimezoneOffset() * 60 * 1000 ).toString();
+}else tts = Math.round(new Date().getTime() +
+new Date().getTimezoneOffset() * 60 * 1000 +8 * 60 * 60 * 1000).toString();
+header=iboxpayheaderVal.replace(`${token}`, `${TOKEN}`).replace(`${oldtime}`, `${tts}`)
+		newvideobodyVal=`{"videoList":[{"videoId":"${videoPublishId3}","type":1,"isFinishWatch":false},{"videoId":"${videoPublishId4}","type":1,"isFinishWatch":false},{"videoId":"${videoPublishId5}","type":1,"isFinishWatch":false},{"videoId":"${videoPublishId6}","type":1,"isFinishWatch":false}]}`
+      let url = {
+        url: `https://veishop.iboxpay.com/nf_gateway/nf_customer_activity/day_cash/v1/give_cash_by_video.json`,
+        headers: JSON.parse(header),
+        body: newvideobodyVal,
+      }
+      $.post(url, async(err, resp, data) => {
+        try {
+          if (logs) $.log(`${O}, 新人福利🚩: ${data}`);
+          $.newvideo = JSON.parse(data);
+	if ($.newvideo.resultCode==1){	
+      console.log('新人福利奖励，获得'+$.newvideo.data/100+'元\n')
+	  $.message +=  
+  '【新人福利奖励】：获得'+$.newvideo.data/100+'元\n'
+	   }    
+       if ($.newvideo.resultCode==0){	
+console.log($.newvideo.errorDesc+'\n');
+$.message +=  
+  '【新人福利奖励】：'+$.newvideo.errorDesc+'\n';
+	    }
+        } catch (e) {
+          $.logErr(e, resp);
+        } finally {
+          resolve()
+        }
+      })
+    },timeout)
+  })
+}
 //直播
 function lives(timeout = 30000) {
   return new Promise((resolve) => {
@@ -720,6 +763,41 @@ $.message +=
   })
 }
 //提现记录
+function newcashlist(timeout = 0) {
+  return new Promise((resolve) => {
+    setTimeout( ()=>{
+if ($.isNode()) {
+	tts = Math.round(new Date().getTime() +
+new Date().getTimezoneOffset() * 60 * 1000 ).toString();
+}else tts = Math.round(new Date().getTime() +
+new Date().getTimezoneOffset() * 60 * 1000 +8 * 60 * 60 * 1000).toString();
+header=iboxpayheaderVal.replace(`${token}`, `${TOKEN}`).replace(`${oldtime}`, `${tts}`)
+      let url = {
+        url: `https://veishop.iboxpay.com/nf_gateway/nf_customer_activity/day_cash/v1/in_out.json?source=WX_APP_KA_HTZP&date=&tradeType=0&current=1&size=40`,
+        headers: JSON.parse(header),
+      }
+      $.get(url, async(err, resp, data) => {
+        try {
+          if (logs) $.log(`${O}, 提现记录🚩: ${data}`);
+          $.newcashlist = JSON.parse(data);
+	if ($.newcashlist.resultCode==1 && data.match(/新人福利/g)){	
+newcashcs = $.newcashlist.data.records.find(item => item.tradeTypeName === "新人福利")
+	   }
+       if ($.newcashlist.resultCode==0){	
+console.log($.newcashlist.errorDesc+'\n');
+$.message +=  
+  '【新人福利】：'+$.newcashlist.errorDesc+'\n';
+	    }
+        } catch (e) {
+          $.logErr(e, resp);
+        } finally {
+          resolve()
+        }
+      })
+    },timeout)
+  })
+}
+//今日提现记录
 function cashlist(timeout = 0) {
   return new Promise((resolve) => {
     setTimeout( ()=>{
@@ -735,7 +813,7 @@ header=iboxpayheaderVal.replace(`${token}`, `${TOKEN}`).replace(`${oldtime}`, `$
       }
       $.get(url, async(err, resp, data) => {
         try {
-          if (logs) $.log(`${O}, 提现记录🚩: ${data}`);
+          if (logs) $.log(`${O}, 今日提现记录🚩: ${data}`);
           $.cashlist = JSON.parse(data);
 	if ($.cashlist.resultCode==1 && data.match(/提现/g)){	
 cashcs = $.cashlist.data.records.find(item => item.tradeTypeName === "提现")
