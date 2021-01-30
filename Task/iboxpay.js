@@ -22,7 +22,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 1.28 修复收益列表问题
 1.29 活动id302
 1.30 修复活动id频繁变动问题，修复金蛋视频id
-1.30 解决ck失效问题
+1.30 解决ck失效问题，优化ck获取
 
 
 ⚠️一共2个位置 2个ck  👉 2条 Secrets 
@@ -205,13 +205,13 @@ $.setdata(refreshtokenVal, "refreshtoken" + $.idx);
     }
 //用户名
 
-if ($request && $request.url.indexOf("nf_user_center_web") >= 0&&$request.url.indexOf("get_context_info") >= 0) {
+if ($request && $request.url.indexOf("nf_user_center_web") >= 0&&$request.url.indexOf("get_context_info") >= 0&&JSON.stringify($request.headers).indexOf("traceid") >= 0) {
     const iboxpayheaderVal = JSON.stringify($request.headers);
     if (iboxpayheaderVal) $.setdata(iboxpayheaderVal, "iboxpayheader" + $.idx);
     $.log(
       `[${$.name + $.idx}] 获取header✅: 成功,iboxpayheaderVal: ${iboxpayheaderVal}`
     );
-    $.msg($.name + $.idx, `获取header: 成功🎉`, ``);
+    $.msg($.name + $.idx, `获取header: 成功`, ``);
     } 
 }
 
