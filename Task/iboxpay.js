@@ -24,7 +24,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 1.30 修复活动id频繁变动问题，修复金蛋视频id
 1.30 解决ck失效问题
 1.30-3 增加提现
-1.31 增加180秒任务,优先直播
+1.31 增加180秒任务,优先直播，修改直播金币显示
 
 ⚠️一共2个位置 2个ck  👉 3条 Secrets 
 多账号换行
@@ -708,8 +708,8 @@ header=iboxpayheaderVal.replace(`${token}`, `${TOKEN}`).replace(`${oldtime}`, `$
           if (logs) $.log(`${O}, 直播🚩: ${data}`);
           $.lives = JSON.parse(data);
 	if ($.lives.resultCode==1){	
-      console.log(`直播奖励，获得${$.lives.data.goldCoinAmt}金币\n`);	 	  
-  $.message +=`【直播奖励】：获得${$.lives.data.goldCoinAmt}金币\n`
+      console.log(`直播奖励，获得500金币\n`);	 	  
+  $.message +=`【直播奖励】：获得500金币\n`
 	   }    
        if ($.lives.resultCode==0){	
 console.log($.lives.errorDesc+'\n');
