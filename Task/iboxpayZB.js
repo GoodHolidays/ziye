@@ -17,6 +17,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 1.30 修复活动id频繁变动问题
 1.30 解决ck失效问题
 1.30-3 增加提现功能
+1.31 调整判定
 
 
 ⚠️一共2个位置 2个ck  👉 3条 Secrets 
@@ -379,7 +380,12 @@ header=iboxpayheaderVal.replace(`${token}`, `${TOKEN}`).replace(`${oldtime}`, `$
         try {
           if (logs) $.log(`${O}, 用户名🚩: ${data}`);
           $.user = JSON.parse(data);
-		  if($.user.resultCode == 0) {
+		  if($.user.resultCode == 1) {
+		  $.message +=`\n${O}`;
+        $.message += `\n========== 【${$.user.data.customerInfo.nickname}】 ==========\n`;
+        resolve(true);
+      }	  
+	  if ($.user.resultCode == 0){
 let cookie_not_live_message = new Date(
     new Date().getTime() +
     new Date().getTimezoneOffset() * 60 * 1000 +
@@ -390,11 +396,7 @@ if($.isNode()){
         notify.sendNotify(O, cookie_not_live_message);
 	  }	       
         resolve(false);
-      } else {
-        $.message +=`\n${O}`;
-        $.message += `\n========== 【${$.user.data.customerInfo.nickname}】 ==========\n`;
-        resolve(true);
-      }
+      }  
         } catch (e) {
           $.logErr(e, resp);
         } finally {
