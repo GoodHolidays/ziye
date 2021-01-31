@@ -125,10 +125,17 @@
 },
 {
 "id": "flwCASH",
-"name": "提现标准",
+"name": "天天领现金提现标准",
 "val": "0",
 "type": "number",
 "desc": "默认0，设置0.3及以上时启动天天领现金模块，且大于等于此值时自动提现"
+},
+{
+"id": "flwDHCASH",
+"name": "兑换标准",
+"val": "0",
+"type": "number",
+"desc": "默认0，可设置设置 0 5 50 100"
 }
 ],
 "repo": "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/flw.js",
