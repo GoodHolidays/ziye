@@ -24,7 +24,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 1.30 修复活动id频繁变动问题，修复金蛋视频id
 1.30 解决ck失效问题
 1.30-3 增加提现
-1.31 增加180秒任务
+1.31 增加180秒任务,优先直播
 
 ⚠️一共2个位置 2个ck  👉 3条 Secrets 
 多账号换行
@@ -297,6 +297,12 @@ let cookie_is_live = await user(i + 1);//用户名
 	  if (!cashcs.amount && CASH>=1 && $.coin.data.balance/100>=CASH) {
 	  await withdraw();//提现
  }	  
+      if (LIVE >=1 && nowTimes.getHours() >= 8 && nowTimes.getHours() <= 23) {
+	  await sylist();//收益列表
+if ($.sylist.resultCode && livecs<LIVE) {
+	  await lives();//看直播
+           }		
+		}
 	  await play();//播放	  
 	  let video_is_live = await video(i + 1);//视频
     if (!video_is_live) {
@@ -306,12 +312,7 @@ let cookie_is_live = await user(i + 1);//用户名
 	  await newvideo();//新人福利
  }	  
       await goldvideo();//金蛋视频
-if (LIVE >=1 && nowTimes.getHours() >= 8 && nowTimes.getHours() <= 23) {
-	  await sylist();//收益列表
-if ($.sylist.resultCode && livecs<LIVE) {
-	  await lives();//看直播
-           }		
-		}	  
+	  
 	  	  
      }
       
