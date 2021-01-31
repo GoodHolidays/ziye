@@ -215,7 +215,7 @@ if ($request && $request.url.indexOf("nf_user_center_web") >= 0&&$request.url.in
     $.log(
       `[${$.name + $.idx}] 获取header✅: 成功,iboxpayheaderVal: ${iboxpayheaderVal}`
     );
-    $.msg($.name + $.idx, `获取header: 成功`, ``);
+    $.msg($.name + $.idx, `获取header: 成功🎉`, ``);
     } 
 }
 
