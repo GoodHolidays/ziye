@@ -15,6 +15,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 1.24 修复判定错误，调整视频延迟，修复node环境错误
 1.25 修复各种判定，设置CASH变量>=0.3，启动天天领现金模块
 1.26 修复延迟判定问题，修复node环境问题
+1.31 增加兑换，默认关闭
 
 ⚠️一共4个位置 4个ck  👉 5条 Secrets 
 多账号换行
@@ -39,6 +40,9 @@ flwurlVal 👉FL_flwqwBODY
 
 设置提现变量 可设置 0.3以上 务必关注官方公众号，并且手动领取红包
 CASH  👉  FL_CASH
+
+设置兑换变量 可设置0 5 50 100   默认0  不兑换
+DHCASH  👉  FL_DHCASH
 
 ⚠️主机名以及重写👇
 
@@ -75,13 +79,13 @@ http-request https:\/\/(huodong\.fanli\.com\/*||passport\.fanli\.com\/*||gw\.fan
 const $ = Env("返利网");
 $.idx = ($.idx = ($.getval('flwSuffix') || '1') - 1) > 0 ? ($.idx + 1 + '') : ''; // 账号扩展字符
 const notify = $.isNode() ? require("./sendNotify") : ``;
-const COOKIE = $.isNode() ? require("./flwCOOKIE") : ``;
+const COOKIE = $.isNode() ? require("./flwACOOKIE") : ``;
 const logs = 0; // 0为关闭日志，1为开启
 const notifyttt = 1// 0为关闭外部推送，1为12 23 点外部推送
 const notifyInterval = 1;// 0为关闭通知，1为所有通知，2为12 23 点通知  ， 3为 6 12 18 23 点通知 
 
 
-$.message = '', COOKIES_SPLIT = '', CASH = '';
+$.message = '', COOKIES_SPLIT = '', CASH = '', DHCASH = '';
 
 let ksp,zp,qw,sp,ms;
 let dd=0 ;
@@ -108,6 +112,8 @@ const nowTimes = new Date(
 // 没有设置 FL_CASH 则默认为 0 不提现
 if ($.isNode()) {
  CASH = process.env.FL_CASH || 0;
+ // 没有设置 FL_DHCASH 则默认为 0 不兑换
+ DHCASH = process.env.FL_DHCASH || 0;
 } 
 if ($.isNode() && process.env.FL_flwURL) {
   COOKIES_SPLIT = process.env.COOKIES_SPLIT || "\n";
@@ -189,6 +195,9 @@ if ($.isNode()) {
   if ("flwCASH") {
       CASH = $.getval("flwCASH")||'0';
     }
+    if ("flwDHCASH") {
+      DHCASH = $.getval("flwDHCASH")||'0';
+    }
   let flwCount = ($.getval('flwCount') || '1') - 0;
   for (let i = 2; i <= flwCount; i++) {
     if ($.getdata(`flwurl${i}`)) {	
@@ -250,6 +259,7 @@ console.log(
   `============ 共 ${Length} 个${$.name}账号=============\n`
 );
 console.log(`============ 提现标准为：${CASH} =============\n`);
+console.log(`============ 兑换标准为：${DHCASH} =============\n`);
 let isGetCookie = typeof $request !== 'undefined'
 if (isGetCookie) {
   GetCookie()
@@ -309,12 +319,21 @@ if (!Length) {
 devid=flwurlValsplit[6].split('=')[1]
 HEADER={"Accept": "*/*","Accept-Encoding": "gzip, deflate, br","Accept-Language": "zh-Hans-CN;q=1","Accept-webp": "1","Connection": "keep-alive","Content-Length": "334","Content-Type": "application/x-www-form-urlencoded","Host": "gw.fanli.com","User-Agent": `Fanli/7.16.6.1 (iPhone10,2; iOS 14.2; zh_CN; ID:1-${uid}-${devid}-17-0; SCR:1242*2208-3.0)`,}
    dd=0;
+   if (DHCASH==5){
+      dhdh=3491
+    }else if(DHCASH==50){
+      dhdh=3549
+    }else if(DHCASH==100){
+      dhdh=3607
+    }
+
   O = (`${$.name + (i + 1)}🔔`);
   await console.log(`-------------------------\n\n🔔开始运行【${$.name+(i+1)}】`)
 let cookie_is_live = await flwdl(i + 1);//登录
     if (!cookie_is_live) {
      continue;
     } 
+    
 	  if (CASH>=0.3){		  
 	  await flwhbcoin();//天天领现金账户        
 	  await flwhb();//天天领现金
@@ -345,6 +364,12 @@ if ($.flwtask.data&&sp.complete_count!=7){
 }
 await $.wait(dd*1000);
 await flwzh();//签到账户
+if (DHCASH>=5){	
+      await DHlist();//兑换目录
+      if ($.flwzh.data && $.flwzh.data.ex_to_cash >= DHCASH){	
+      await DH();//兑换
+       }
+    }
      }
   }
 //通知
@@ -403,6 +428,75 @@ if($.isNode()){
     },timeout)
   })
 }
+//兑换目录
+function DHlist(timeout = 0) {
+  return new Promise((resolve) => {
+    setTimeout( ()=>{
+if ($.isNode()) {
+	tts = Math.round(new Date().getTime() +
+new Date().getTimezoneOffset() * 60 * 1000 ).toString();
+}else tts = Math.round(new Date().getTime() +
+new Date().getTimezoneOffset() * 60 * 1000 +8 * 60 * 60 * 1000).toString();
+	  let url = {
+        url:`https://huodong.fanli.com/sign53023/ajaxInit`,        
+        headers: JSON.parse(flwheaderVal),
+      }
+      $.get(url, async(err, resp, data) => {
+        try {
+          if (logs) $.log(`${O}, 兑换目录🚩: ${data}`);
+          $.DHlist = JSON.parse(data);
+		  if ($.DHlist.status&&$.DHlist.status==1)
+ {
+  wu = $.DHlist.data.rewards.find(item => item.id === "3491");	 
+  wushi = $.DHlist.data.rewards.find(item => item.id === "3549");	 
+  yibai = $.DHlist.data.rewards.find(item => item.id === "3607");
+
+ $.message +='【'+wu.title+'】:库存'+wu.stock+'份\n'
+ $.message +='【'+wushi.title+'】:库存'+wushi.stock+'份\n'
+ $.message +='【'+yibai.title+'】:库存'+yibai.stock+'份\n'
+ 
+}
+        } catch (e) {
+          $.logErr(e, resp);
+        } finally {
+          resolve()
+        }
+      })
+    },timeout)
+  })
+}
+
+//兑换
+function DH(timeout = 0) {
+  return new Promise((resolve) => {
+    setTimeout( ()=>{
+if ($.isNode()) {
+	tts = Math.round(new Date().getTime() +
+new Date().getTimezoneOffset() * 60 * 1000 ).toString();
+}else tts = Math.round(new Date().getTime() +
+new Date().getTimezoneOffset() * 60 * 1000 +8 * 60 * 60 * 1000).toString();
+	  let url = {
+        url:`https://huodong.fanli.com/sign53023/ajaxConsumePointByExchangeRewards?id=${dhdh}&t=${tts}`,        
+        headers: JSON.parse(flwheaderVal),
+      }
+      $.get(url, async(err, resp, data) => {
+        try {
+          if (logs) $.log(`${O}, 兑换🚩: ${data}`);
+          $.DH = JSON.parse(data);
+		  if ($.DH.status&&$.DH.status==1)
+ {
+ $.message +='【兑换成功】:'+DHCASH+'元，剩余'+$.DH.data.point+'金币，预估'+$.DH.data.ex_to_cash+'元\n'
+}
+        } catch (e) {
+          $.logErr(e, resp);
+        } finally {
+          resolve()
+        }
+      })
+    },timeout)
+  })
+}
+
 //天天领现金账户信息  
 function flwhbcoin(timeout = 0) {
   return new Promise((resolve) => {
