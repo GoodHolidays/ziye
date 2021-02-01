@@ -16,7 +16,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 1.25 修复各种判定，设置CASH变量>=0.3，启动天天领现金模块
 1.26 修复延迟判定问题，修复node环境问题
 1.31 增加兑换，默认关闭
-2.1 修复判定
+2.1 修复判定,修复
 
 ⚠️一共4个位置 4个ck  👉 5条 Secrets 
 多账号换行
@@ -334,7 +334,7 @@ let cookie_is_live = await flwdl(i + 1);//登录
     if (!cookie_is_live) {
      continue;
     } 
-    
+     //await flwsy();//余额
 	  if (CASH>=0.3){		  
 	  await flwhbcoin();//天天领现金账户        
 	  await flwhb();//天天领现金
@@ -367,7 +367,7 @@ await $.wait(dd*1000);
 await flwzh();//签到账户
 if (DHCASH>=5){	
       await DHlist();//兑换目录
-      if ($.flwzh.data && $.flwzh.data.ex_to_cash >= DHCASH){	
+      if ($.flwzh.data && $.flwzh.data.ex_to_cash >= DHCASH && wu&& wu.stock>=5){	
       await DH();//兑换
        }
     }
@@ -417,7 +417,7 @@ if($.isNode()){
         resolve(false);
       } else {
         $.message +=`\n${O}`;
-        $.message += `\n========== 【${$.flwdl.data.username}】 ==========\n【账户总计】${$.flwdl.data.fanli_total}元\n【已提现金】${$.flwdl.data.ordertotal}元\n【剩余现金】${($.flwdl.data.fanli_total-$.flwdl.data.ordertotal).toFixed(2)}元\n`;
+        $.message += `\n========== 【${$.flwdl.data.username}】 ==========\n【账户总计】${$.flwdl.data.fanli_total}元\n`;
         resolve(true);
       }
         } catch (e) {
@@ -429,6 +429,41 @@ if($.isNode()){
     },timeout)
   })
 }
+
+//可提余额
+function flwsy(timeout = 0) {
+  return new Promise((resolve) => {
+    setTimeout( ()=>{
+if ($.isNode()) {
+	tts = Math.round(new Date().getTime() +
+new Date().getTimezoneOffset() * 60 * 1000 ).toString();
+}else tts = Math.round(new Date().getTime() +
+new Date().getTimezoneOffset() * 60 * 1000 +8 * 60 * 60 * 1000).toString();
+	  let url = {
+        url:`https://m.fanli.com/center/ajaxGetUserAccountLog?month_str=all&type_str=all&p=1`,        
+        headers: JSON.parse(flwheaderVal),
+      }
+      $.get(url, async(err, resp, data) => {
+        try {
+          if (logs) $.log(`${O}, 可提余额🚩: ${data}`);
+          $.flwsy = JSON.parse(data);
+		  if ($.flwsy.status&&$.flwsy.status==1)
+ {
+  
+ $.message +=`【已提现金】${$.flwdl.data.total}元\n【剩余现金】${$.flwdl.data.fanli_total-$.flwsy.data.total}元\n`
+
+}
+        } catch (e) {
+          $.logErr(e, resp);
+        } finally {
+          resolve()
+        }
+      })
+    },timeout)
+  })
+}
+
+
 //兑换目录
 function DHlist(timeout = 0) {
   return new Promise((resolve) => {
@@ -448,11 +483,11 @@ new Date().getTimezoneOffset() * 60 * 1000 +8 * 60 * 60 * 1000).toString();
           $.DHlist = JSON.parse(data);
 		  if ($.DHlist.status&&$.DHlist.status==1)
  {
-  wu = $.DHlist.data.rewards.find(item => item.id === "3491");	 
-  wushi = $.DHlist.data.rewards.find(item => item.id === "3549");	 
-  yibai = $.DHlist.data.rewards.find(item => item.id === "3607");
+  wu = $.DHlist.data.rewards.find(item => item.sort === "31");	 
+  wushi = $.DHlist.data.rewards.find(item => item.sort === "30");	 
+  yibai = $.DHlist.data.rewards.find(item => item.sort === "29");
 
-if (wu){
+if (wu &&wu.stock>=5){
  $.message +='【'+wu.title+'】:库存'+wu.stock+'份\n'
 }
 if (wushi){
