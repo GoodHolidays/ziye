@@ -16,6 +16,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 1.25 修复各种判定，设置CASH变量>=0.3，启动天天领现金模块
 1.26 修复延迟判定问题，修复node环境问题
 1.31 增加兑换，默认关闭
+2.1 修复判定
 
 ⚠️一共4个位置 4个ck  👉 5条 Secrets 
 多账号换行
@@ -451,10 +452,16 @@ new Date().getTimezoneOffset() * 60 * 1000 +8 * 60 * 60 * 1000).toString();
   wushi = $.DHlist.data.rewards.find(item => item.id === "3549");	 
   yibai = $.DHlist.data.rewards.find(item => item.id === "3607");
 
+if (wu){
  $.message +='【'+wu.title+'】:库存'+wu.stock+'份\n'
+}
+if (wushi){
  $.message +='【'+wushi.title+'】:库存'+wushi.stock+'份\n'
+}
+if (yibai){
  $.message +='【'+yibai.title+'】:库存'+yibai.stock+'份\n'
- 
+}
+
 }
         } catch (e) {
           $.logErr(e, resp);
