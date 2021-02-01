@@ -17,6 +17,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 1.26 修复延迟判定问题，修复node环境问题
 1.31 增加兑换，默认关闭
 2.1 修复判定,修复2
+2.2 防止黑号，兑换时间限制在10点到11点之间
 
 ⚠️一共4个位置 4个ck  👉 5条 Secrets 
 多账号换行
@@ -362,10 +363,7 @@ await flwzh();//签到账户
 if (DHCASH>=5){	
       await DHlist();//兑换目录
 
-
-
-
-      if ($.flwzh.data && $.flwzh.data.ex_to_cash >= DHCASH && wu&& wu.stock>=5){
+      if (nowTimes.getHours() === 10 && $.flwzh.data && $.flwzh.data.ex_to_cash >= DHCASH && wu&& wu.stock>=5){
 
 if (DHCASH==5){
       dhdh=wu.id
