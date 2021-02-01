@@ -16,7 +16,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 1.25 修复各种判定，设置CASH变量>=0.3，启动天天领现金模块
 1.26 修复延迟判定问题，修复node环境问题
 1.31 增加兑换，默认关闭
-2.1 修复判定,修复
+2.1 修复判定,修复2
 
 ⚠️一共4个位置 4个ck  👉 5条 Secrets 
 多账号换行
@@ -320,13 +320,7 @@ if (!Length) {
 devid=flwurlValsplit[6].split('=')[1]
 HEADER={"Accept": "*/*","Accept-Encoding": "gzip, deflate, br","Accept-Language": "zh-Hans-CN;q=1","Accept-webp": "1","Connection": "keep-alive","Content-Length": "334","Content-Type": "application/x-www-form-urlencoded","Host": "gw.fanli.com","User-Agent": `Fanli/7.16.6.1 (iPhone10,2; iOS 14.2; zh_CN; ID:1-${uid}-${devid}-17-0; SCR:1242*2208-3.0)`,}
    dd=0;
-   if (DHCASH==5){
-      dhdh=3491
-    }else if(DHCASH==50){
-      dhdh=3549
-    }else if(DHCASH==100){
-      dhdh=3607
-    }
+   
 
   O = (`${$.name + (i + 1)}🔔`);
   await console.log(`-------------------------\n\n🔔开始运行【${$.name+(i+1)}】`)
@@ -367,7 +361,20 @@ await $.wait(dd*1000);
 await flwzh();//签到账户
 if (DHCASH>=5){	
       await DHlist();//兑换目录
-      if ($.flwzh.data && $.flwzh.data.ex_to_cash >= DHCASH && wu&& wu.stock>=5){	
+
+
+
+
+      if ($.flwzh.data && $.flwzh.data.ex_to_cash >= DHCASH && wu&& wu.stock>=5){
+
+if (DHCASH==5){
+      dhdh=wu.id
+    }else if(DHCASH==50){
+      dhdh=wushi.id
+    }else if(DHCASH==100){
+      dhdh=yibai.id
+    }
+
       await DH();//兑换
        }
     }
@@ -528,7 +535,7 @@ new Date().getTimezoneOffset() * 60 * 1000 +8 * 60 * 60 * 1000).toString();
 		  if ($.DH.status&&$.DH.status==1)
  {
  $.message +='【兑换成功】:'+DHCASH+'元，剩余'+$.DH.data.point+'金币，预估'+$.DH.data.ex_to_cash+'元\n'
-}
+}else $.message +='【兑换失败】:'+$.DH.info+'\n'
         } catch (e) {
           $.logErr(e, resp);
         } finally {
