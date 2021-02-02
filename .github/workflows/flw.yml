@@ -18,7 +18,8 @@ jobs:
         FL_flwHEADER: ${{ secrets.FL_flwHEADER }}		
         FL_flwspBODY: ${{ secrets.FL_flwspBODY }}	
         FL_flwqwBODY: ${{ secrets.FL_flwqwBODY }}        
-        FL_CASH: ${{ secrets.FL_CASH }}
+        FL_CASH: ${{ secrets.FL_CASH }}//天天领现金提现
+        FL_DHCASH: ${{ secrets.FL_DHCASH }}//签到活动兑换
     steps:
       - name: Checkout
         run: |
