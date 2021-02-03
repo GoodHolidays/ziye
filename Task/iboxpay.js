@@ -556,11 +556,7 @@ function video(timeout = 0) {
                         try {
                             if (logs) $.log(`${O}, 视频🚩: ${data}`);
                             $.video = JSON.parse(data);
-                            if ($.video.resultCode == 0) {
-                                $.message += '⚠️' + $.video.errorDesc + '\n'
-
-                            }
-
+                            
                             if ($.video.data.goldCoinNumber != 0) {
                                 console.log(`开始领取第${i+1}次视频奖励，获得${$.video.data.goldCoinNumber}金币\n`);
                                 inss += $.video.data.goldCoinNumber;
@@ -574,8 +570,12 @@ function video(timeout = 0) {
                 }, i * 30000);
             }
             setTimeout(() => {
+                if ($.video.resultCode == 0) {
+                    console.log('视频奖励：⚠️' + $.video.errorDesc + '\n');
+                                $.message += '【视频奖励】：⚠️' + $.video.errorDesc + '\n'
+                            }
                 if ($.video.data.goldCoinNumber == 0) {
-                    console.log(`恭喜您的账号已灰，已无法获取视频奖励\n`);
+                    console.log(`视频奖励：恭喜您的账号已灰，已无法获取视频奖励\n`);
                     $.message += `【视频奖励】：恭喜您的账号已灰，已无法获取视频奖励\n`
                 }
                 if ($.video.data.goldCoinNumber != 0) {
