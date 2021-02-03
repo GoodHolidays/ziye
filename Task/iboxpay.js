@@ -26,6 +26,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 2.2 优化
 2.3 修复直播问题，采用真实直播id
 2.3 设置LIVE 为61 时  单跑直播
+2.3 修复错误
 
 ⚠️一共2个位置 2个ck  👉 3条 Secrets 
 多账号换行
@@ -79,9 +80,7 @@ const notifyttt = 1 // 0为关闭外部推送，1为12 23 点外部推送
 const notifyInterval = 2; // 0为关闭通知，1为所有通知，2为12 23 点通知  ， 3为 6 12 18 23 点通知 
 const CS = 6
 $.message = '', COOKIES_SPLIT = '', CASH = '', LIVE = '', ddtime = '', spid = '', TOKEN = '', zbid = '', cashcs = '', newcashcs = '', liveId = '';
-let ins = 0,
-    inss = 0,
-    livecs = 0,
+let livecs = 0,
     liveIdcd = 0;
 RT = 30000;
 const iboxpayheaderArr = [];
@@ -312,8 +311,8 @@ async function all() {
         }
 
         if (liveIdcd < CS && LIVE != 61) {
-            dd = CS * 40
-        } else dd = liveIdcd * 40
+            dd = CS * 35
+        } else dd = liveIdcd * 35
 
         console.log(`📍本次运行等待${dd}秒` + '\n')
         if (LIVE != 61) {
@@ -322,7 +321,7 @@ async function all() {
             if (!newcashcs.amount) {
                 await newvideo(); //新人福利
             }
-            if ($.video.data.goldCoinNumber != 0) {
+            if ($.video.data && $.video.data.goldCoinNumber != 0) {
                 await goldvideo(); //金蛋视频
             }
         }
@@ -499,7 +498,7 @@ function play(timeout = 0) {
                     header = iboxpayheaderVal.replace(`${token}`, `${TOKEN}`).replace(`${oldtime}`, `${tts()}`)
                     do playTime = Math.floor(Math.random() * 31);
                     while (playTime < 20)
-                    do playTimess = Math.floor(Math.random() * 41);
+                    do playTimess = Math.floor(Math.random() * 36);
                     while (playTimess < 30)
                     do playid = Math.floor(Math.random() * 49600000000000000);
                     while (playid < 10000000000000000)
@@ -542,6 +541,9 @@ function play(timeout = 0) {
 function video(timeout = 0) {
     return new Promise((resolve) => {
         setTimeout(() => {
+            var inss = 0;
+
+
             for (let i = 0; i < CS; i++) {
                 $.index = i + 1
                 setTimeout(() => {
@@ -556,8 +558,8 @@ function video(timeout = 0) {
                         try {
                             if (logs) $.log(`${O}, 视频🚩: ${data}`);
                             $.video = JSON.parse(data);
-                            
-                            if ($.video.data.goldCoinNumber != 0) {
+
+                            if ($.video.data && $.video.data.goldCoinNumber != 0) {
                                 console.log(`开始领取第${i+1}次视频奖励，获得${$.video.data.goldCoinNumber}金币\n`);
                                 inss += $.video.data.goldCoinNumber;
                             }
@@ -572,13 +574,13 @@ function video(timeout = 0) {
             setTimeout(() => {
                 if ($.video.resultCode == 0) {
                     console.log('视频奖励：⚠️' + $.video.errorDesc + '\n');
-                                $.message += '【视频奖励】：⚠️' + $.video.errorDesc + '\n'
-                            }
-                if ($.video.data.goldCoinNumber == 0) {
+                    $.message += '【视频奖励】：⚠️' + $.video.errorDesc + '\n'
+                }
+                if ($.video.data && $.video.data.goldCoinNumber == 0) {
                     console.log(`视频奖励：恭喜您的账号已灰，已无法获取视频奖励\n`);
                     $.message += `【视频奖励】：恭喜您的账号已灰，已无法获取视频奖励\n`
                 }
-                if ($.video.data.goldCoinNumber != 0) {
+                if ($.video.data && $.video.data.goldCoinNumber != 0) {
                     console.log(`视频奖励：共领取${CS}次视频奖励，共${inss}金币\n`);
                     $.message += `【视频奖励】：共领取${CS}次视频奖励，共${inss}金币\n`
                 }
@@ -694,9 +696,10 @@ function liveslist(timeout = 0) {
 function lives(timeout = 0) {
     return new Promise((resolve) => {
         setTimeout(() => {
+            var ins = 0;
             for (let i = 0; i < liveIdcd; i++) {
                 $.index = i + 1
-                do RT = Math.floor(Math.random() * 40000);
+                do RT = Math.floor(Math.random() * 35000);
                 while (RT < 30000)
                 setTimeout(() => {
                     header = iboxpayheaderVal.replace(`${token}`, `${TOKEN}`).replace(`${oldtime}`, `${tts()}`)
@@ -735,7 +738,7 @@ function lives(timeout = 0) {
             setTimeout(() => {
                 console.log(`直播奖励：共领取${ins/500}次直播奖励，共${ins}金币\n`);
                 $.message += `【直播奖励】：共领取${ins/500}次直播奖励，共${ins}金币\n`
-            }, liveIdcd * 40000 - 39000)
+            }, liveIdcd * 35000 - 34000)
         }, timeout)
     })
 }
