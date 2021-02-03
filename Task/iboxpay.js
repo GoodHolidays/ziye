@@ -26,7 +26,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 2.2 优化
 2.3 修复直播问题，采用真实直播id
 2.3 设置LIVE 为61 时  单跑直播
-2.3 修复错误
+2.3 修复错误，修复直播收益显示
 
 ⚠️一共2个位置 2个ck  👉 3条 Secrets 
 多账号换行
@@ -203,7 +203,7 @@ nowTimes = new Date(
 //今天
 Y = nowTimes.getFullYear() + '-';
 M = (nowTimes.getMonth() + 1 < 10 ? '0' + (nowTimes.getMonth() + 1) : nowTimes.getMonth() + 1) + '-';
-D = nowTimes.getDate();
+D = (nowTimes.getDate() + 1 < 10 ? '0' + (nowTimes.getDate()) : nowTimes.getMonth());
 ddtime = Y + M + D;
 console.log(ddtime)
 //当前时间戳
