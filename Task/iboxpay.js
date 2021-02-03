@@ -25,6 +25,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 2.1 增加CK获取时间
 2.2 优化
 2.3 修复直播问题，采用真实直播id
+2.3 设置LIVE 为61 时  单跑直播
 
 ⚠️一共2个位置 2个ck  👉 3条 Secrets 
 多账号换行
@@ -79,7 +80,9 @@ const notifyInterval = 2; // 0为关闭通知，1为所有通知，2为12 23 点
 const CS = 6
 $.message = '', COOKIES_SPLIT = '', CASH = '', LIVE = '', ddtime = '', spid = '', TOKEN = '', zbid = '', cashcs = '', newcashcs = '', liveId = '';
 let ins = 0,
-    livecs = 0;
+    inss = 0,
+    livecs = 0,
+    liveIdcd = 0;
 RT = 30000;
 const iboxpayheaderArr = [];
 let iboxpayheaderVal = ``;
@@ -278,6 +281,8 @@ async function all() {
             iboxpayheaderVal = iboxpayheaderArr[i];
             refreshtokenVal = refreshtokenArr[i];
         }
+
+
         traceid = JSON.parse(iboxpayheaderVal)["traceid"];
         token = JSON.parse(iboxpayheaderVal)["token"];
         oldtime = traceid.substr(traceid.indexOf("161"), 13);
@@ -305,19 +310,23 @@ async function all() {
                 await lives(); //看直播
             }
         }
-        await $.wait(liveIdcd * 40000 - 39000);
-        await play(); //播放       
-        let video_is_live = await video(i + 1); //视频
-        if (!video_is_live) {
-            continue;
-        }
-        if (!newcashcs.amount) {
-            await newvideo(); //新人福利
-        }
-        if ($.video.data.goldCoinNumber != 0) {
-            await goldvideo(); //金蛋视频
-        }
 
+        if (liveIdcd < CS && LIVE != 61) {
+            dd = CS * 40
+        } else dd = liveIdcd * 40
+
+        console.log(`📍本次运行等待${dd}秒` + '\n')
+        if (LIVE != 61) {
+            await play(); //播放       
+            await video(); //视频
+            if (!newcashcs.amount) {
+                await newvideo(); //新人福利
+            }
+            if ($.video.data.goldCoinNumber != 0) {
+                await goldvideo(); //金蛋视频
+            }
+        }
+        await $.wait(dd * 1000)
     }
 }
 //通知
@@ -549,19 +558,12 @@ function video(timeout = 0) {
                             $.video = JSON.parse(data);
                             if ($.video.resultCode == 0) {
                                 $.message += '⚠️' + $.video.errorDesc + '\n'
-                                resolve(false);
-                            } else if ($.video.data.goldCoinNumber == 0) {
-                                console.log(`恭喜您的账号已灰，已无法获取视频奖励\n`);
-                                $.message +=
-                                    `【视频奖励】：恭喜您的账号已灰，已无法获取视频奖励\n`
-                                resolve(false);
-                            } else {
+
+                            }
+
+                            if ($.video.data.goldCoinNumber != 0) {
                                 console.log(`开始领取第${i+1}次视频奖励，获得${$.video.data.goldCoinNumber}金币\n`);
-                                ins += $.video.data.goldCoinNumber;
-                                await $.wait($.index * 30000 - 29000);
-                                $.message +=
-                                    `【视频奖励】：共领取${$.index}次视频奖励，共${ins}金币\n`
-                                resolve(true);
+                                inss += $.video.data.goldCoinNumber;
                             }
                         } catch (e) {
                             $.logErr(e, resp);
@@ -571,6 +573,17 @@ function video(timeout = 0) {
                     })
                 }, i * 30000);
             }
+            setTimeout(() => {
+                if ($.video.data.goldCoinNumber == 0) {
+                    console.log(`恭喜您的账号已灰，已无法获取视频奖励\n`);
+                    $.message += `【视频奖励】：恭喜您的账号已灰，已无法获取视频奖励\n`
+                }
+                if ($.video.data.goldCoinNumber != 0) {
+                    console.log(`视频奖励：共领取${CS}次视频奖励，共${inss}金币\n`);
+                    $.message += `【视频奖励】：共领取${CS}次视频奖励，共${inss}金币\n`
+                }
+            }, CS * 30000 - 29000)
+
         }, timeout)
     })
 }
