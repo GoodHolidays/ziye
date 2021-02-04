@@ -295,8 +295,8 @@ async function all() {
         if (!cookie_is_live) {
             continue;
         }
-        await hdid(); //活动id
         await cktime(); //CK获取时间
+        await hdid(); //活动id
         await goldcoin(); //金币信息
         await coin(); //账户信息
         await sylist(); //收益列表
