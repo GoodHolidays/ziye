@@ -27,7 +27,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 2.3 修复直播问题，采用真实直播id
 2.3 设置LIVE 为61 时  单跑直播
 2.3 修复错误，修复直播收益显示
-2.4 修复金蛋问题，增加视频收益统计，增加上限判定，达到上限不执行视频
+5.4 修复金蛋问题，增加视频收益统计
 
 ⚠️一共2个位置 2个ck  👉 3条 Secrets 
 多账号换行
@@ -286,7 +286,7 @@ async function all() {
 
         traceid = JSON.parse(iboxpayheaderVal)["traceid"];
         token = JSON.parse(iboxpayheaderVal)["token"];
-        oldtime = traceid.substr(traceid.indexOf("161"), 13);
+        oldtime = traceid.substring(20, 33);
         O = (`${$.name + (i + 1)}🔔`);
         await console.log(`-------------------------\n\n🔔开始运行【${$.name+(i+1)}】`)
         console.log('CK获取时间:' + time(Number(oldtime)))
@@ -315,7 +315,7 @@ async function all() {
 
         }
 
-        if (LIVE != 61 && $.splimit.data.isUperLimit == false || tts() <= (Number(oldtime) + 48 * 60 * 60 * 1000)) {
+        if (LIVE != 61) {
             tt = CS * 30 - 29
             console.log(`📍本次视频运行需要${tt}秒` + '\n')
             await play(); //播放       
@@ -770,15 +770,13 @@ function sylist(timeout = 0) {
 
                         videos = data.match(/"actTypeId":9,/g);
                         videoscs = videos.length;
-                    } else videoscs = 0;
-
-                    spsy = $.goldcoin.data.coinSum - livecs * 500
+                    } else videoscs = 0
                     console.log('已获得直播奖励 ' + livecs + ' 次，共' + livecs * 500 + '金币\n')
                     $.message +=
                         '【直播收益】：已获得直播奖励 ' + livecs + ' 次，共' + livecs * 500 + '金币\n'
-                    console.log('已获得视频奖励 ' + videoscs + ' 次，共' + spsy + '金币\n')
+                    console.log('已获得视频奖励 ' + videoscs + ' 次，共' + ($.goldcoin.data.coinSum - livecs * 500) + '金币\n')
                     $.message +=
-                        '【视频收益】：已获得视频奖励 ' + videoscs + ' 次，共' + spsy + '金币\n'
+                        '【视频收益】：已获得视频奖励 ' + videoscs + ' 次，共' + ($.goldcoin.data.coinSum - livecs * 500) + '金币\n'
 
                     if ($.sylist.resultCode == 0) {
                         console.log($.sylist.errorDesc + '\n');
@@ -808,12 +806,8 @@ function splimit(timeout = 0) {
                     if (logs) $.log(`${O}, 视频上限🚩: ${data}`);
                     $.splimit = JSON.parse(data);
                     if ($.splimit.resultCode == 1) {
-                        console.log('视频上限：今日上限' + $.splimit.data.goldCoinDayLimit + '金币,今日未得' + ($.splimit.data.goldCoinDayLimit - spsy) + '金币\n');
-                        $.message += '【视频上限】：今日上限' + $.splimit.data.goldCoinDayLimit + '金币,今日未得' + ($.splimit.data.goldCoinDayLimit - spsy) + '金币\n';
-                    }
-                    if ($.splimit.data.isUperLimit == true) {
-                        console.log('视频上限：今日达到上限\n');
-                        $.message += '【视频上限】：今日达到上限\n';
+                        console.log('视频上限：今日上限' + $.splimit.data.goldCoinDayLimit + '金币,今日未得' + ($.splimit.data.goldCoinDayLimit - ($.goldcoin.data.coinSum - livecs * 500)) + '金币\n');
+                        $.message += '【视频上限】：今日上限' + $.splimit.data.goldCoinDayLimit + '金币,今日未得' + ($.splimit.data.goldCoinDayLimit - ($.goldcoin.data.coinSum - livecs * 500)) + '金币\n';
                     }
                 } catch (e) {
                     $.logErr(e, resp);
