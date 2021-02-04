@@ -27,7 +27,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 2.3 修复直播问题，采用真实直播id
 2.3 设置LIVE 为61 时  单跑直播
 2.3 修复错误，修复直播收益显示
-2.4 修复金蛋报错问题，增加视频收益统计
+5.4 修复金蛋问题，增加视频收益统计
 
 ⚠️一共2个位置 2个ck  👉 3条 Secrets 
 多账号换行
@@ -593,7 +593,7 @@ function video(timeout = 0) {
     })
 }
 //金蛋视频
-function goldvideo(timeout = 60000) {
+function goldvideo(timeout = 40000) {
     return new Promise((resolve) => {
         setTimeout(() => {
             header = iboxpayheaderVal.replace(`${token}`, `${TOKEN}`).replace(`${oldtime}`, `${tts()}`)
@@ -627,7 +627,7 @@ function goldvideo(timeout = 60000) {
     })
 }
 //新人福利
-function newvideo(timeout = 60000) {
+function newvideo(timeout = 40000) {
     return new Promise((resolve) => {
         setTimeout(() => {
             header = iboxpayheaderVal.replace(`${token}`, `${TOKEN}`).replace(`${oldtime}`, `${tts()}`)
