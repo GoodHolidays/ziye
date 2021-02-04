@@ -87,10 +87,10 @@
 },
 {
 "id": "iboxpayLIVE",
-"name": "直播次数",
+"name": "直播控制",
 "val": "0",
 "type": "number",
-"desc": "0不看直播，可设置 0~60  "
+"desc": "0不看直播，1开启直播，2开启直播，关闭视频 "
 },
 {
 "id": "iboxpayCASH",
