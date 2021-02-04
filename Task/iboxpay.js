@@ -295,12 +295,12 @@ async function all() {
         if (!cookie_is_live) {
             continue;
         }
+        await hdid(); //活动id
         await cktime(); //CK获取时间
         await goldcoin(); //金币信息
         await coin(); //账户信息
         await sylist(); //收益列表
         await splimit(); //视频上限
-        await hdid(); //活动id
         await newcashlist(); //提现查询
         await cashlist(); //今日提现查询
         if (!cashcs.amount && CASH >= 1 && $.coin.data.balance / 100 >= CASH) {
@@ -457,6 +457,8 @@ function hdid(timeout = 0) {
                     if ($.hdid.resultCode == 1) {
                         spid = $.hdid.data.everyDayActivityList.find(item => item.actTypeId === 9)
                         zbid = $.hdid.data.everyDayActivityList.find(item => item.actTypeId === 10)
+                        console.log(spid.actName + 'ID：' + spid.actId + '\n' +
+                            zbid.actName + 'ID：' + zbid.actId + '\n');
                         $.message += '【' + spid.actName + 'ID】：' + spid.actId + '\n' +
                             '【' + zbid.actName + 'ID】：' + zbid.actId + '\n';
                     }
