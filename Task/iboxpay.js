@@ -557,6 +557,7 @@ function videoo(timeout = 0) {
                     if (logs) $.log(`${O}, 视频🚩: ${data}`);
                     $.videoo = JSON.parse(data);
                     if ($.videoo.resultCode == 0) {
+                        LIVE = 2
                         console.log('视频奖励：⚠️' + $.videoo.errorDesc + '\n');
                         $.message += '【视频奖励】：⚠️' + $.videoo.errorDesc + '\n'
                     }
