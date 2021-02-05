@@ -29,6 +29,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 2.3 修复错误，修复直播收益显示
 2.4 修复金蛋问题，增加视频收益统计，增加上限判定，达到上限以及19点后不执行视频，
 2.4 直播限制为30  设置LIVE为0 不跑直播，1跑直播和视频，2单跑直播
+2.5 增加首次视频验证，灰号直接停止视频
 
 ⚠️一共2个位置 2个ck  👉 3条 Secrets 
 多账号换行
@@ -80,7 +81,7 @@ const COOKIE = $.isNode() ? require("./iboxpayCOOKIE") : ``;
 const logs = 0; // 0为关闭日志，1为开启
 const notifyttt = 1 // 0为关闭外部推送，1为12 23 点外部推送
 const notifyInterval = 2; // 0为关闭通知，1为所有通知，2为12 23 点通知  ， 3为 6 12 18 23 点通知 
-const CS = 6
+const CS = 5
 $.message = '', COOKIES_SPLIT = '', CASH = '', LIVE = '', ddtime = '', spid = '', TOKEN = '', zbid = '', cashcs = '', newcashcs = '', liveId = '';
 let livecs = 0,
     videoscs = 0,
@@ -317,17 +318,27 @@ async function all() {
         }
 
         if (LIVE != 2 && nowTimes.getHours() <= 18 && $.splimit.data.isUperLimit == false || tts() <= (Number(oldtime) + 48 * 60 * 60 * 1000)) {
-            tt = CS * 30 - 29
-            console.log(`📍本次视频运行需要${tt}秒` + '\n')
-            await play(); //播放       
-            await video(); //视频
-            await $.wait(tt * 1000)
-            if (!newcashcs.amount) {
-                await newvideo(); //新人福利
+
+            await playo(); //播放o       
+            await videoo(); //视频o
+
+            if (LIVE != 2) {
+                await $.wait(30000)
+                tt = CS * 30 - 29
+                console.log(`📍本次视频运行需要${tt}秒` + '\n')
+                await play(); //播放       
+                await video(); //视频
+                await $.wait(tt * 1000)
+                if (!newcashcs.amount) {
+                    await newvideo(); //新人福利
+                }
+                if ($.video.data && $.video.data.goldCoinNumber != 0 && videoPublishId6) {
+                    await goldvideo(); //金蛋视频
+                }
+
+
             }
-            if ($.video.data && $.video.data.goldCoinNumber != 0 && videoPublishId6) {
-                await goldvideo(); //金蛋视频
-            }
+
         }
 
     }
@@ -495,6 +506,84 @@ function coin(timeout = 0) {
         }, timeout)
     })
 }
+//播放o
+function playo(timeout = 0) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+
+            header = iboxpayheaderVal.replace(`${token}`, `${TOKEN}`).replace(`${oldtime}`, `${tts()}`)
+            do playTime = Math.floor(Math.random() * 31);
+            while (playTime < 20)
+            do playTimess = Math.floor(Math.random() * 36);
+            while (playTimess < 30)
+            do playid = Math.floor(Math.random() * 49600000000000000);
+            while (playid < 10000000000000000)
+            playbodyVal = `{"videoPublishId":"13${playid}","playTimeLenght":${playTime},"type":1,"videoTime":${playTimess}}`;
+            videoPublishId = playbodyVal.substring(playbodyVal.indexOf("videoPublishId") + 17, playbodyVal.indexOf(`","pl`))
+            console.log(`视频ID1📍${videoPublishId}`)
+            let url = {
+                url: `https://veishop.iboxpay.com/nf_gateway/nf_content_service/video/ignore_tk/v1/video_channel/uplaod_play_video_recode.json`,
+                headers: JSON.parse(header),
+                body: playbodyVal,
+            }
+            $.post(url, async (err, resp, data) => {
+                try {
+                    if (logs) $.log(`${O}, 播放ID1🚩: ${data}`);
+                    $.playo = JSON.parse(data);
+                } catch (e) {
+                    $.logErr(e, resp);
+                } finally {
+                    resolve()
+                }
+            })
+
+        }, timeout)
+    })
+}
+//视频o
+function videoo(timeout = 0) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            var inss = 0;
+            header = iboxpayheaderVal.replace(`${token}`, `${TOKEN}`).replace(`${oldtime}`, `${tts()}`)
+            videobodyVal = `{"type":1,"videoList":[{"videoId":"${videoPublishId}","type":1,"isFinishWatch":false}],"actId":"${spid.actId}"}`
+            let url = {
+                url: `https://veishop.iboxpay.com/nf_gateway/nf_customer_activity/day_cash/v1/give_gold_coin_by_video.json`,
+                headers: JSON.parse(header),
+                body: videobodyVal,
+            }
+            $.post(url, async (err, resp, data) => {
+                try {
+                    if (logs) $.log(`${O}, 视频🚩: ${data}`);
+                    $.videoo = JSON.parse(data);
+                    if ($.videoo.resultCode == 0) {
+                        console.log('视频奖励：⚠️' + $.videoo.errorDesc + '\n');
+                        $.message += '【视频奖励】：⚠️' + $.videoo.errorDesc + '\n'
+                    }
+                    if ($.videoo.data && $.videoo.data.goldCoinNumber == 0) {
+                        LIVE = 2
+                        console.log(`视频奖励：恭喜您的账号已灰，已无法获取视频奖励\n`);
+                        $.message += `【视频奖励】：恭喜您的账号已灰，已无法获取视频奖励\n`
+                    }
+                    if ($.videoo.data && $.videoo.data.goldCoinNumber != 0) {
+                        console.log(`开始领取第1次视频奖励，获得${$.videoo.data.goldCoinNumber}金币\n`);
+                        console.log(`视频奖励：共领取1次视频奖励，共${$.videoo.data.goldCoinNumber}金币\n`);
+                        $.message += `【视频奖励】：共领取1次视频奖励，共${$.videoo.data.goldCoinNumber}金币\n`
+                    }
+
+                } catch (e) {
+                    $.logErr(e, resp);
+                } finally {
+                    resolve()
+                }
+            })
+
+
+
+
+        }, timeout)
+    })
+}
 //播放
 function play(timeout = 0) {
     return new Promise((resolve) => {
@@ -510,19 +599,19 @@ function play(timeout = 0) {
                     while (playid < 10000000000000000)
                     playbodyVal = `{"videoPublishId":"13${playid}","playTimeLenght":${playTime},"type":1,"videoTime":${playTimess}}`;
                     videoPublishId = playbodyVal.substring(playbodyVal.indexOf("videoPublishId") + 17, playbodyVal.indexOf(`","pl`))
-                    if (i == 2) {
+                    if (i == 1) {
                         videoPublishId3 = playbodyVal.substring(playbodyVal.indexOf("videoPublishId") + 17, playbodyVal.indexOf(`","pl`))
                     }
-                    if (i == 3) {
+                    if (i == 2) {
                         videoPublishId4 = playbodyVal.substring(playbodyVal.indexOf("videoPublishId") + 17, playbodyVal.indexOf(`","pl`))
                     }
-                    if (i == 4) {
+                    if (i == 3) {
                         videoPublishId5 = playbodyVal.substring(playbodyVal.indexOf("videoPublishId") + 17, playbodyVal.indexOf(`","pl`))
                     }
-                    if (i == 5) {
+                    if (i == 4) {
                         videoPublishId6 = playbodyVal.substring(playbodyVal.indexOf("videoPublishId") + 17, playbodyVal.indexOf(`","pl`))
                     }
-                    console.log(`视频ID${i+1}📍${videoPublishId}`)
+                    console.log(`视频ID${i+2}📍${videoPublishId}`)
                     let url = {
                         url: `https://veishop.iboxpay.com/nf_gateway/nf_content_service/video/ignore_tk/v1/video_channel/uplaod_play_video_recode.json`,
                         headers: JSON.parse(header),
@@ -530,7 +619,7 @@ function play(timeout = 0) {
                     }
                     $.post(url, async (err, resp, data) => {
                         try {
-                            if (logs) $.log(`${O}, 播放ID${i+1}🚩: ${data}`);
+                            if (logs) $.log(`${O}, 播放ID${i+2}🚩: ${data}`);
                             $.play = JSON.parse(data);
                         } catch (e) {
                             $.logErr(e, resp);
@@ -551,7 +640,7 @@ function video(timeout = 0) {
 
 
             for (let i = 0; i < CS; i++) {
-                $.index = i + 1
+
                 setTimeout(() => {
                     header = iboxpayheaderVal.replace(`${token}`, `${TOKEN}`).replace(`${oldtime}`, `${tts()}`)
                     videobodyVal = `{"type":1,"videoList":[{"videoId":"${videoPublishId}","type":1,"isFinishWatch":false}],"actId":"${spid.actId}"}`
@@ -566,7 +655,7 @@ function video(timeout = 0) {
                             $.video = JSON.parse(data);
 
                             if ($.video.data && $.video.data.goldCoinNumber != 0) {
-                                console.log(`开始领取第${i+1}次视频奖励，获得${$.video.data.goldCoinNumber}金币\n`);
+                                console.log(`开始领取第${i+2}次视频奖励，获得${$.video.data.goldCoinNumber}金币\n`);
                                 inss += $.video.data.goldCoinNumber;
                             }
                         } catch (e) {
