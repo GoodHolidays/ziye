@@ -30,7 +30,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 2.4 修复金蛋问题，增加视频收益统计，增加上限判定，达到上限以及19点后不执行视频，
 2.4 直播限制为30  设置LIVE为0 不跑直播，1跑直播和视频，2单跑直播
 2.5 增加首次视频验证，灰号直接停止视频
-2.6 修复判定错误
+2.6 修复判定错误,增加surge获取token重写
 
 ⚠️一共2个位置 2个ck  👉 3条 Secrets 
 多账号换行
@@ -56,7 +56,7 @@ CASH  👉  XP_CASH
 
 ⚠️主机名以及重写👇
 
-（圈x可以获取refreshTOKEN     其他开启抓包，然后登录笑谱，找到 https://veishop.iboxpay.com/nf_gateway/nf-user-auth-web/ignore_tk/veishop/v1/ 里的响应体 refreshTOKEN）
+（圈x  surge可以获取refreshTOKEN     其他开启抓包，然后登录笑谱，找到 https://veishop.iboxpay.com/nf_gateway/nf-user-auth-web/ignore_tk/veishop/v1/ 里的响应体 refreshTOKEN）
 
 hostname=veishop.iboxpay.com
 
@@ -73,6 +73,12 @@ http-request https:\/\/veishop\.iboxpay\.com\/* script-path=https://raw.githubus
 ############## surge
 #笑谱获取header
 笑谱获取header = type=http-request,pattern=https:\/\/veishop\.iboxpay\.com\/*,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/iboxpay.js, script-update-interval=0
+
+
+#笑谱获取更新TOKEN
+笑谱获取更新TOKEN = type=http-response,pattern=https:\/\/veishop\.iboxpay\.com\/nf_gateway\/nf-user-auth-web\/ignore_tk\/veishop\/v1\/*,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/iboxpay.js
+
+
 
 */
 const $ = Env("笑谱");
