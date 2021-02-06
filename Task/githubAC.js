@@ -327,7 +327,7 @@ async function all() {
 
 
         O = (`${$.name + (i + 1)}🔔`);
-        await console.log(`-------------------------\n\n🔔开始运行【${$.name+(i+1)}】`)
+        await console.log(`-------------------------\n\n🔔开始运行${$.name + (i + 1)}【${githubACnameVal}】`)
         
         await githubAC(); //运行
         
