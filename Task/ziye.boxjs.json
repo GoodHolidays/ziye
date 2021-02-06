@@ -141,6 +141,30 @@
 "repo": "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/flw.js",
 "icons": ["https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/flw.png", "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/flw.png"],
 "script": "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/flw.js"
+},
+{
+"id": "githubAC",
+"name": "githubAC",
+"keys": [ "githubACname","githubACurl","githubACheader","githubACspbody","githubACqwbody","githubACname2","githubACurl2","githubACheader2","githubACspbody2","githubACqwbody2","githubACname3","githubACurl3","githubACheader3","githubACspbody3","githubACqwbody3","githubACname4","githubACurl4","githubACheader4","githubACspbody4","githubACqwbody4","githubACname5","githubACurl5","githubACheader5","githubACspbody5","githubACqwbody5","githubACname6","githubACurl6","githubACheader6","githubACspbody6","githubACqwbody6","githubACname7","githubACurl7","githubACheader7","githubACspbody7","githubACqwbody7","githubACname8","githubACurl8","githubACheader8","githubACspbody8","githubACqwbody8","githubACname9","githubACurl9","githubACheader9","githubACspbody9","githubACqwbody9","githubACname10","githubACurl10","githubACheader10","githubACspbody10","githubACqwbody10","githubACname11","githubACurl11","githubACheader11","githubACspbody11","githubACqwbody11","githubACname12","githubACurl12","githubACheader12","githubACspbody12","githubACqwbody12","githubACname13","githubACurl13","githubACheader13","githubACspbody13","githubACqwbody13","githubACname14","githubACurl14","githubACheader14","githubACspbody14","githubACqwbody14","githubACname15","githubACurl15","githubACheader15","githubACspbody15","githubACqwbody15","githubACname16","githubACurl16","githubACheader16","githubACspbody16","githubACqwbody16","githubACname17","githubACurl17","githubACheader17","githubACspbody17","githubACqwbody17","githubACname18","githubACurl18","githubACheader18","githubACspbody18","githubACqwbody18","githubACname19","githubACurl19","githubACheader19","githubACspbody19","githubACqwbody19","githubACname20","githubACurl20","githubACheader20","githubACspbody20","githubACqwbody20"],
+"author": "@ziye",
+"settings": [{
+"id": "githubACSuffix",
+"name": "当前js",
+"val": "1",
+"type": "number",
+"desc": "当前抓取js  ck的账号序号，如：1、2、3、"
+},
+{
+"id": "githubACCount",
+"name": "js个数",
+"val": "1",
+"type": "number",
+"desc": "指定任务最多跑几个js，根据抓取的js数据个数来设值"
+}
+],
+"repo": "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/githubAC.js",
+"icons": ["https://github.githubassets.com/images/modules/site/home/astro-mona.jpg", "https://github.githubassets.com/images/modules/site/home/astro-mona.jpg"],
+"script": "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/githubAC.js"
 }
 ]
 }
