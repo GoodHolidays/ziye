@@ -32,6 +32,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 2.5 增加首次视频验证，灰号直接停止视频
 2.6 修复判定错误,增加surge获取token重写
 2.7 增加红包雨，设置LIVE等于3 开启
+2.7-2 调整红包雨运行机制
 
 ⚠️一共2个位置 2个ck  👉 3条 Secrets 
 多账号换行
@@ -272,6 +273,9 @@ if (isGetCookie) {
 } else {
     !(async () => {
         await all();
+        if (HBY == 1) {
+            await $.wait(500)
+        }
         await msgShow();
     })()
     .catch((e) => {
@@ -311,27 +315,29 @@ async function all() {
         await console.log(`-------------------------\n\n🔔开始运行【${$.name+(i+1)}】`)
         console.log('CK获取时间:' + time(Number(oldtime)))
         await refreshtoken(); //更新TOKEN
-        let cookie_is_live = await user(i + 1); //用户名
-        if (!cookie_is_live) {
-            continue;
-        }
-        await cktime(); //CK获取时间
-        await hdid(); //活动id
         if (LIVE == 3 && (nowTimes.getHours() === 12 || nowTimes.getHours() === 19 || nowTimes.getHours() === 21) && (nowTimes.getMinutes() >= 0 && nowTimes.getMinutes() <= 10)) {
             HBY = 1
-            await hbyqq(); //红包雨请求
             await hbylq(); //红包雨领取
         }
-        await goldcoin(); //金币信息
-        await coin(); //账户信息
-        await sylist(); //收益列表
-        await splimit(); //视频上限
-        await newcashlist(); //提现查询
-        await cashlist(); //今日提现查询
-        if (!cashcs.amount && CASH >= 1 && $.coin.data.balance / 100 >= CASH) {
-            await withdraw(); //提现
-        }
+
         if (HBY == 0) {
+            let cookie_is_live = await user(i + 1); //用户名
+            if (!cookie_is_live) {
+                continue;
+            }
+
+            await cktime(); //CK获取时间
+            await hdid(); //活动id
+            await goldcoin(); //金币信息
+            await coin(); //账户信息
+            await sylist(); //收益列表
+            await splimit(); //视频上限
+            await newcashlist(); //提现查询
+            await cashlist(); //今日提现查询
+            if (!cashcs.amount && CASH >= 1 && $.coin.data.balance / 100 >= CASH) {
+                await withdraw(); //提现
+            }
+
             if (LIVE >= 1 && nowTimes.getHours() >= 8 && nowTimes.getHours() <= 23 && $.sylist.resultCode && livecs < 30) {
                 await liveslist(); //直播节目表
                 dd = liveIdcd * 35 - 34
@@ -495,45 +501,10 @@ function hdid(timeout = 0) {
                         spid = $.hdid.data.everyDayActivityList.find(item => item.actTypeId === 9)
                         zbid = $.hdid.data.everyDayActivityList.find(item => item.actTypeId === 10)
                         hbyid = $.hdid.data.everyDayActivityList.find(item => item.actTypeId === 11)
-                        console.log(hbyid.actName + 'ID：' + hbyid.actId + '\n' + spid.actName + 'ID：' + spid.actId + '\n' +
-                            zbid.actName + 'ID：' + zbid.actId + '\n');
-                        $.message += '【' + hbyid.actName + 'ID】：' + hbyid.actId + '\n' + '【' + spid.actName + 'ID】：' + spid.actId + '\n' +
-                            '【' + zbid.actName + 'ID】：' + zbid.actId + '\n';
-                    }
-                } catch (e) {
-                    $.logErr(e, resp);
-                } finally {
-                    resolve()
-                }
-            })
-        }, timeout)
-    })
-}
-//红包雨请求  
-function hbyqq(timeout = 0) {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            header = iboxpayheaderVal.replace(`${token}`, `${TOKEN}`).replace(`${oldtime}`, `${tts()}`)
-            do playTime = Math.floor(Math.random() * 31);
-            while (playTime < 20)
-            do playTimess = Math.floor(Math.random() * 36);
-            while (playTimess < 30)
-            do playid = Math.floor(Math.random() * 4960000000000000);
-            while (playid < 1000000000000000)
-            hbyqqbodyVal = `{"videoPublishId":"135${playid}","playTimeLenght":${playTime},"type":1,"videoTime":${playTimess}}`;
-            let url = {
-                url: `https://veishop.iboxpay.com/nf_gateway/nf_content_service/video/ignore_tk/v1/video_channel/uplaod_play_video_recode.json`,
-                headers: JSON.parse(header),
-                body: hbyqqbodyVal,
-
-            }
-            $.post(url, async (err, resp, data) => {
-                try {
-                    if (logs) $.log(`${O}, 红包雨请求🚩: ${data}`);
-                    $.hbyqq = JSON.parse(data);
-                    if ($.hbyqq.resultCode == 1) {
-                        console.log('红包雨请求：成功\n')
-                        $.message += '【红包雨请求】：成功\n';
+                        console.log(spid.actName + 'ID：' + spid.actId + '\n' +
+                            zbid.actName + 'ID：' + zbid.actId + '\n' + hbyid.actName + 'ID：' + hbyid.actId + '\n');
+                        $.message += '【' + spid.actName + 'ID】：' + spid.actId + '\n' +
+                            '【' + zbid.actName + 'ID】：' + zbid.actId + '\n' + '【' + hbyid.actName + 'ID】：' + hbyid.actId + '\n';
                     }
                 } catch (e) {
                     $.logErr(e, resp);
@@ -550,7 +521,7 @@ function hbylq(timeout = 0) {
         setTimeout(() => {
             header = iboxpayheaderVal.replace(`${token}`, `${TOKEN}`).replace(`${oldtime}`, `${tts()}`)
             hbylqbodyVal = `{
- "actId": "${hbyid.actId}"
+ "actId": "309"
 }`
             let url = {
                 url: `https://veishop.iboxpay.com/nf_gateway/nf_customer_activity/day_cash/v1/give_redbag_by_redbag_rain.json`,
@@ -562,17 +533,17 @@ function hbylq(timeout = 0) {
                     if (logs) $.log(`${O}, 红包雨领取🚩: ${data}`);
                     $.hbylq = JSON.parse(data);
                     if ($.hbylq.resultCode == 1 && $.hbylq.data.goldCoinAmt != 0) {
-                        console.log('红包雨领取：本次领取' + $.hbylq.data.goldCoinAmt + '金币,预估金额' + $.hbylq.data.goldCoinAmt / 10000 + '元\n')
-                        $.message += '【红包雨领取】：本次领取' + $.hbylq.data.goldCoinAmt + '金币,预估金额' + $.hbylq.data.goldCoinAmt / 10000 + '元\n';
+                        console.log(`${O} 红包雨领取：本次领取 ${$.hbylq.data.goldCoinAmt}金币,预估金额${$.hbylq.data.goldCoinAmt / 10000} 元\n`)
+                        $.message += `【${O} 红包雨领取】：本次领取 ${$.hbylq.data.goldCoinAmt}金币,预估金额${$.hbylq.data.goldCoinAmt / 10000} 元\n`
+
                     }
                     if ($.hbylq.resultCode == 1 && $.hbylq.data.goldCoinAmt == 0) {
-                        console.log('红包雨领取：' + $.hbylq.data.redbagDesc + '\n')
-                        $.message += '【红包雨领取】：' + $.hbylq.data.redbagDesc + '\n';
+                        console.log(`${O} 红包雨领取：${$.hbylq.data.redbagDesc}\n`)
+                        $.message += `【${O} 红包雨领取】：${$.hbylq.data.redbagDesc}\n`;
                     }
                     if ($.hbylq.resultCode == 0) {
-                        console.log('红包雨领取：' + $.hbylq.errorDesc + '\n');
-                        $.message +=
-                            '【红包雨领取】：' + $.hbylq.errorDesc + '\n';
+                        console.log(`${O} 红包雨领取：${$.hbylq.errorDesc}\n`);
+                        $.message += `【${O} 红包雨领取】：${$.hbylq.errorDesc}\n`;
                     }
                 } catch (e) {
                     $.logErr(e, resp);
@@ -953,6 +924,11 @@ function sylist(timeout = 0) {
                     if (logs) $.log(`${O}, 收益列表🚩: ${data}`);
                     $.sylist = JSON.parse(data);
 
+                    if ($.sylist.resultCode == 1 && data.match(/"actTypeId":11,/g)) {
+                        hby = data.match(/"actTypeId":11,/g);
+                        hbycs = hby.length;
+                    } else hbycs = 0
+
                     if ($.sylist.resultCode == 1 && data.match(/"actTypeId":10,/g)) {
                         live = data.match(/"actTypeId":10,/g);
                         livecs = live.length;
@@ -965,6 +941,9 @@ function sylist(timeout = 0) {
                     } else videoscs = 0;
 
                     spsy = $.goldcoin.data.coinSum - livecs * 500
+                    console.log('已获得红包雨奖励 ' + livecs + ' 次\n')
+                    $.message +=
+                        '【红包雨收益】：已获得红包雨奖励 ' + hbycs + ' 次\n'
                     console.log('已获得直播奖励 ' + livecs + ' 次，共' + livecs * 500 + '金币\n')
                     $.message +=
                         '【直播收益】：已获得直播奖励 ' + livecs + ' 次，共' + livecs * 500 + '金币\n'
