@@ -571,7 +571,7 @@ async function all() {
         O = (`${$.name + (i + 1)}🔔`);
         await console.log(`-------------------------\n\n🔔开始运行${$.name+(i+1)}【${githubACnameVal}】`)
 
-        $.message += `【${githubACnameVal}】设置的时间是从${HHAVal}点到${HHBVal}点的 ${MMAVal} ${MMBVal} ${MMCVal} ${MMDVal} ${MMEVal} ${MMFVal} 分运行\n`
+        $.message += `【${githubACnameVal}】从${HHAVal}点到${HHBVal}点的 ${MMAVal} ${MMBVal} ${MMCVal} ${MMDVal} ${MMEVal} ${MMFVal} 分运行\n`
         if ((nowTimes.getHours() >= HHAVal && nowTimes.getHours() <= HHBVal) && (nowTimes.getMinutes() == MMAVal || nowTimes.getMinutes() == MMBVal || nowTimes.getMinutes() == MMCVal || nowTimes.getMinutes() == MMDVal || nowTimes.getMinutes() == MMEVal || nowTimes.getMinutes() == MMFVal)) {
 
             await githubAC(); //运行
