@@ -9,9 +9,9 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 
 
 2.6 制作
+2.7 增加时间控制，多js换行，boxjs手动保存会话，填写，再应用，其他填写环境变量或者githubACCOOKIE.js
 
-
-⚠️一共1个位置 2个ck  👉 2条 Secrets 
+⚠️一共1个位置 3个ck  👉 12条 Secrets(8个时间变量) 
 多账号换行
 
 第一步 添加  hostname=github.com,
@@ -27,7 +27,14 @@ githubACnameVal 👉GIT_githubACNAME
 githubACurlVal 👉GIT_githubACURL
 githubACheaderVal 👉GIT_githubACHEADER
 githubACbodyVal 👉GIT_githubACBODY
-
+HHA 👉GIT_HHA   
+HHB 👉GIT_HHB    
+MMA 👉GIT_MMA
+MMB 👉GIT_MMB
+MMC 👉GIT_MMC
+MMD 👉GIT_MMD
+MME 👉GIT_MME
+MMF 👉GIT_MMF
 
 
 
@@ -80,6 +87,35 @@ const githubACbodyArr = [];
 let githubACbodyVal = ``;
 let middlegithubACBODY = [];
 
+const HHAArr = [];
+let HHAVal = ``;
+let middleHHA = [];
+const HHBArr = [];
+let HHBVal = ``;
+let middleHHB = [];
+const MMAArr = [];
+let MMAVal = ``;
+let middleMMA = [];
+const MMBArr = [];
+let MMBVal = ``;
+let middleMMB = [];
+const MMCArr = [];
+let MMCVal = ``;
+let middleMMC = [];
+const MMDArr = [];
+let MMDVal = ``;
+let middleMMD = [];
+const MMEArr = [];
+let MMEVal = ``;
+let middleMME = [];
+const MMFArr = [];
+let MMFVal = ``;
+let middleMMF = [];
+
+
+
+
+
 
 
 if ($.isNode() && process.env.GIT_githubACHEADER) {
@@ -89,7 +125,7 @@ if ($.isNode() && process.env.GIT_githubACHEADER) {
       COOKIES_SPLIT
     )} =============\n`
     );
-	    if (
+    if (
         process.env.GIT_githubACNAME &&
         process.env.GIT_githubACNAME.indexOf(COOKIES_SPLIT) > -1
     ) {
@@ -121,24 +157,134 @@ if ($.isNode() && process.env.GIT_githubACHEADER) {
     } else {
         middlegithubACBODY = process.env.GIT_githubACBODY.split();
     }
+
+
+
+
+
+    if (
+        process.env.GIT_HHA &&
+        process.env.GIT_HHA.indexOf(COOKIES_SPLIT) > -1
+    ) {
+        middleHHA = process.env.GIT_HHA.split(COOKIES_SPLIT);
+    } else {
+        middleHHA = process.env.GIT_HHA.split();
+    }
+
+
+    if (
+        process.env.GIT_HHB &&
+        process.env.GIT_HHB.indexOf(COOKIES_SPLIT) > -1
+    ) {
+        middleHHB = process.env.GIT_HHB.split(COOKIES_SPLIT);
+    } else {
+        middleHHB = process.env.GIT_HHB.split();
+    }
+
+
+
+    if (
+        process.env.GIT_MMA &&
+        process.env.GIT_MMA.indexOf(COOKIES_SPLIT) > -1
+    ) {
+        middleMMA = process.env.GIT_MMA.split(COOKIES_SPLIT);
+    } else {
+        middleMMA = process.env.GIT_MMA.split();
+    }
+
+
+
+    if (
+        process.env.GIT_MMB &&
+        process.env.GIT_MMB.indexOf(COOKIES_SPLIT) > -1
+    ) {
+        middleMMB = process.env.GIT_MMB.split(COOKIES_SPLIT);
+    } else {
+        middleMMB = process.env.GIT_MMB.split();
+    }
+
+
+
+    if (
+        process.env.GIT_MMC &&
+        process.env.GIT_MMC.indexOf(COOKIES_SPLIT) > -1
+    ) {
+        middleMMC = process.env.GIT_MMC.split(COOKIES_SPLIT);
+    } else {
+        middleMMC = process.env.GIT_MMC.split();
+    }
+
+
+
+
+
+    if (
+        process.env.GIT_MMD &&
+        process.env.GIT_MMD.indexOf(COOKIES_SPLIT) > -1
+    ) {
+        middleMMD = process.env.GIT_MMD.split(COOKIES_SPLIT);
+    } else {
+        middleMMD = process.env.GIT_MMD.split();
+    }
+
+
+
+    if (
+        process.env.GIT_MME &&
+        process.env.GIT_MME.indexOf(COOKIES_SPLIT) > -1
+    ) {
+        middleMME = process.env.GIT_MME.split(COOKIES_SPLIT);
+    } else {
+        middleMME = process.env.GIT_MME.split();
+    }
+
+
+
+    if (
+        process.env.GIT_MMF &&
+        process.env.GIT_MMF.indexOf(COOKIES_SPLIT) > -1
+    ) {
+        middleMMF = process.env.GIT_MMF.split(COOKIES_SPLIT);
+    } else {
+        middleMMF = process.env.GIT_MMF.split();
+    }
+
+
+
+
+
 }
-if (COOKIE.githubACheaderVal) {
+if (COOKIE.githubACurlVal) {
     GIT_COOKIES = {
-		"githubACnameVal": COOKIE.githubACnameVal.split('\n'),
-        "githubACurlVal": COOKIE.githubACurlVal.split('\n'),		
+        "githubACnameVal": COOKIE.githubACnameVal.split('\n'),
+        "githubACurlVal": COOKIE.githubACurlVal.split('\n'),
         "githubACheaderVal": COOKIE.githubACheaderVal.split('\n'),
         "githubACbodyVal": COOKIE.githubACbodyVal.split('\n'),
+
+        "HHAVal": COOKIE.HHAVal.split('\n'),
+        "HHBVal": COOKIE.HHBVal.split('\n'),
+        "MMAVal": COOKIE.MMAVal.split('\n'),
+        "MMBVal": COOKIE.MMBVal.split('\n'),
+        "MMCVal": COOKIE.MMCVal.split('\n'),
+        "MMDVal": COOKIE.MMDVal.split('\n'),
+        "MMEVal": COOKIE.MMEVal.split('\n'),
+        "MMFVal": COOKIE.MMFVal.split('\n'),
+
+
+
+
+
     }
     Length = GIT_COOKIES.githubACheaderVal.length;
 }
 if (!COOKIE.githubACheaderVal) {
     if ($.isNode()) {
-		Object.keys(middlegithubACNAME).forEach((item) => {
+        Object.keys(middlegithubACNAME).forEach((item) => {
             if (middlegithubACNAME[item]) {
                 githubACheaderArr.push(middlegithubACNAME[item]);
             }
         });
-		Object.keys(middlegithubACURL).forEach((item) => {
+        Object.keys(middlegithubACURL).forEach((item) => {
             if (middlegithubACURL[item]) {
                 githubACheaderArr.push(middlegithubACURL[item]);
             }
@@ -153,20 +299,82 @@ if (!COOKIE.githubACheaderVal) {
                 githubACbodyArr.push(middlegithubACBODY[item]);
             }
         });
+
+        Object.keys(middleHHA).forEach((item) => {
+            if (middleHHA[item]) {
+                githubACArr.push(middleHHA[item]);
+            }
+        });
+        Object.keys(middleHHB).forEach((item) => {
+            if (middleHHB[item]) {
+                HHBArr.push(middleHHB[item]);
+            }
+        });
+        Object.keys(middleMMA).forEach((item) => {
+            if (middleMMA[item]) {
+                MMAArr.push(middleMMA[item]);
+            }
+        });
+
+        Object.keys(middleMMB).forEach((item) => {
+            if (middleMMB[item]) {
+                MMBArr.push(middleMMB[item]);
+            }
+        });
+        Object.keys(middleMMC).forEach((item) => {
+            if (middleMMC[item]) {
+                MMCArr.push(middleMMC[item]);
+            }
+        });
+        Object.keys(middleMMD).forEach((item) => {
+            if (middleMMD[item]) {
+                MMDArr.push(middleMMD[item]);
+            }
+        });
+
+        Object.keys(middleMME).forEach((item) => {
+            if (middleMME[item]) {
+                MMEArr.push(middleMME[item]);
+            }
+        });
+        Object.keys(middleMMF).forEach((item) => {
+            if (middleMMF[item]) {
+                MMFArr.push(middleMMF[item]);
+            }
+        });
     } else {
-		githubACnameArr.push($.getdata("githubACname"));	
-        githubACurlArr.push($.getdata("githubACurl"));		
+        githubACnameArr.push($.getdata("githubACname"));
+        githubACurlArr.push($.getdata("githubACurl"));
         githubACheaderArr.push($.getdata("githubACheader"));
         githubACbodyArr.push($.getdata("githubACbody"));
+        HHAArr.push($.getdata("HHA"));
+        HHBArr.push($.getdata("HHB"));
+        MMAArr.push($.getdata("MMA"));
+        MMBArr.push($.getdata("MMB"));
+        MMCArr.push($.getdata("MMC"));
+        MMDArr.push($.getdata("MMD"));
+        MMEArr.push($.getdata("MME"));
+        MMFArr.push($.getdata("MMF"));
         // 根据boxjs中设置的额外账号数，添加存在的账号数据进行任务处理
 
         let githubACCount = ($.getval('githubACCount') || '1') - 0;
         for (let i = 2; i <= githubACCount; i++) {
             if ($.getdata(`githubACheader${i}`)) {
-				githubACnameArr.push($.getdata(`githubACname${i}`));	
-                githubACurlArr.push($.getdata(`githubACurl${i}`));				
+                githubACnameArr.push($.getdata(`githubACname${i}`));
+                githubACurlArr.push($.getdata(`githubACurl${i}`));
                 githubACheaderArr.push($.getdata(`githubACheader${i}`));
                 githubACbodyArr.push($.getdata(`githubACbody${i}`));
+                HHAArr.push($.getdata(`HHA${i}`));
+                HHBArr.push($.getdata(`HHB${i}`));
+                MMAArr.push($.getdata(`MMA${i}`));
+                MMBArr.push($.getdata(`MMB${i}`));
+                MMCArr.push($.getdata(`MMC${i}`));
+                MMDArr.push($.getdata(`MMD${i}`));
+                MMEArr.push($.getdata(`MME${i}`));
+                MMFArr.push($.getdata(`MMF${i}`));
+
+
+
             }
         }
     }
@@ -177,11 +385,11 @@ if (!COOKIE.githubACheaderVal) {
 
 
 function GetCookie() {
-    if ($request && $request.url.indexOf("actions") >= 0&& $request.url.indexOf("manual") >= 0) {
-		
-		
-		
-		
+    if ($request && $request.url.indexOf("actions") >= 0 && $request.url.indexOf("manual") >= 0) {
+
+
+
+
         const githubACurlVal = $request.url
         $.setdata(githubACurlVal, "githubACurl" + $.idx);
         $.log(
@@ -189,36 +397,37 @@ function GetCookie() {
         );
         $.msg($.name + $.idx, `获取githubACurl: 成功🎉`, ``);
 
-   
 
-const githubACheaderVal = JSON.stringify($request.headers);
-    if (githubACheaderVal) {$.setdata(githubACheaderVal, "githubACheader" + $.idx);
-    $.log(
-      `[${$.name + $.idx}] 获取githubACheaderVal✅: 成功,githubACheaderVal: ${githubACheaderVal}`
-    );
-    $.msg($.name + $.idx, `获取githubACheaderVal: 成功🎉`, ``);
-	
-	
-	const githubACnameVal = decodeURIComponent($request.headers.Referer).split('workflow:')[1];
-       
-        $.setdata(githubACnameVal, "githubACname" + $.idx);
-        $.log(
-            `[${$.name + $.idx}] 获取githubACname✅: 成功,githubACnameVal: ${githubACnameVal}`
-        );
-        $.msg($.name + $.idx, `获取githubACname: 成功🎉`, ``);
 
-}
+        const githubACheaderVal = JSON.stringify($request.headers);
+        if (githubACheaderVal) {
+            $.setdata(githubACheaderVal, "githubACheader" + $.idx);
+            $.log(
+                `[${$.name + $.idx}] 获取githubACheaderVal✅: 成功,githubACheaderVal: ${githubACheaderVal}`
+            );
+            $.msg($.name + $.idx, `获取githubACheaderVal: 成功🎉`, ``);
+
+
+            const githubACnameVal = decodeURIComponent($request.headers.Referer).split('workflow:')[1];
+
+            $.setdata(githubACnameVal, "githubACname" + $.idx);
+            $.log(
+                `[${$.name + $.idx}] 获取githubACname✅: 成功,githubACnameVal: ${githubACnameVal}`
+            );
+            $.msg($.name + $.idx, `获取githubACname: 成功🎉`, ``);
+
+        }
         const githubACbodyVal = $request.body;
-    if (githubACbodyVal) $.setdata(githubACbodyVal, "githubACbody" + $.idx);
-    $.log(
-      `[${$.name + $.idx}] 获取githubACbodyVal✅: 成功,githubACbodyVal: ${githubACbodyVal}`
-    );
-    $.msg($.name + $.idx, `获取githubACbodyVal: 成功🎉`, ``);
-  
-   
-	
+        if (githubACbodyVal) $.setdata(githubACbodyVal, "githubACbody" + $.idx);
+        $.log(
+            `[${$.name + $.idx}] 获取githubACbodyVal✅: 成功,githubACbodyVal: ${githubACbodyVal}`
+        );
+        $.msg($.name + $.idx, `获取githubACbodyVal: 成功🎉`, ``);
 
-}
+
+
+
+    }
 
 }
 console.log(
@@ -290,6 +499,7 @@ if (isGetCookie) {
 } else {
     !(async () => {
         await all();
+        await $.wait(1000);
         await msgShow();
     })()
     .catch((e) => {
@@ -313,28 +523,63 @@ async function all() {
     for (let i = 0; i < Length; i++) {
 
         if (COOKIE.githubACheaderVal) {
-			githubACnameVal = GIT_COOKIES.githubACnameVal[i];	
-            githubACurlVal = GIT_COOKIES.githubACurlVal[i];			
+            githubACnameVal = GIT_COOKIES.githubACnameVal[i];
+            githubACurlVal = GIT_COOKIES.githubACurlVal[i];
             githubACheaderVal = GIT_COOKIES.githubACheaderVal[i];
             githubACbodyVal = GIT_COOKIES.githubACbodyVal[i];
+            HHAVal = GIT_COOKIES.HHAVal[i];
+            HHBVal = GIT_COOKIES.HHBVal[i];
+            MMAVal = GIT_COOKIES.MMAVal[i];
+            MMBVal = GIT_COOKIES.MMBVal[i];
+            MMCVal = GIT_COOKIES.MMCVal[i];
+            MMDVal = GIT_COOKIES.MMDVal[i];
+            MMEVal = GIT_COOKIES.MMEVal[i];
+            MMFVal = GIT_COOKIES.MMFVal[i];
+
+
+
+
+
+
+
+
         }
         if (!COOKIE.githubACheaderVal) {
-			githubACnameVal = githubACnameArr[i];	
-            githubACurlVal = githubACurlArr[i];			
+            githubACnameVal = githubACnameArr[i];
+            githubACurlVal = githubACurlArr[i];
             githubACheaderVal = githubACheaderArr[i];
             githubACbodyVal = githubACbodyArr[i];
+
+            HHAVal = HHAArr[i];
+            HHBVal = HHBArr[i];
+            MMAVal = MMAArr[i];
+            MMBVal = MMBArr[i];
+            MMCVal = MMCArr[i];
+            MMDVal = MMDArr[i];
+            MMEVal = MMEArr[i];
+            MMFVal = MMFArr[i];
+
+
+
+
+
         }
 
 
         O = (`${$.name + (i + 1)}🔔`);
-        await console.log(`-------------------------\n\n🔔开始运行${$.name + (i + 1)}【${githubACnameVal}】`)
-        
-        await githubAC(); //运行
-        
-        
-        
+        await console.log(`-------------------------\n\n🔔开始运行${$.name+(i+1)}【${githubACnameVal}】`)
 
-        
+        $.message += `【${githubACnameVal}】设置的时间是从${HHAVal}点到${HHBVal}点的 ${MMAVal} ${MMBVal} ${MMCVal} ${MMDVal} ${MMEVal} ${MMFVal} 分运行\n`
+        if ((nowTimes.getHours() >= HHAVal && nowTimes.getHours() <= HHBVal) && (nowTimes.getMinutes() == MMAVal || nowTimes.getMinutes() == MMBVal || nowTimes.getMinutes() == MMCVal || nowTimes.getMinutes() == MMDVal || nowTimes.getMinutes() == MMEVal || nowTimes.getMinutes() == MMFVal)) {
+
+            await githubAC(); //运行
+
+        } else {
+            console.log(`${githubACnameVal}:时间未到\n`)
+            $.message += `${githubACnameVal}:时间未到\n`
+
+        }
+
 
     }
 }
@@ -363,22 +608,17 @@ function msgShow() {
 //githubAC
 function githubAC(timeout = 0) {
     return new Promise((resolve) => {
-        setTimeout(() => {            
+        setTimeout(() => {
             let url = {
                 url: githubACurlVal,
-            headers:JSON.parse(githubACheaderVal),
+                headers: JSON.parse(githubACheaderVal),
                 body: githubACbodyVal,
             }
             $.post(url, async (err, resp, data) => {
                 try {
                     if (logs) $.log(`${O}, 运行🚩: ${data}`);
-if (data.match(/github.githubassets.com/g))
-
-$.message += `【${githubACnameVal}】:${time(Number(tts()))}运行成功\n`
-
-console.log(githubACnameVal+`${time(Number(tts()))}运行成功`)
-      
-                    
+                        console.log(githubACnameVal + `${time(Number(tts()))}运行成功\n`)
+                        $.message += githubACnameVal + `${time(Number(tts()))}运行成功\n`
                 } catch (e) {
                     $.logErr(e, resp);
                 } finally {
