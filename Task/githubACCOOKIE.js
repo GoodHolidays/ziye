@@ -1,25 +1,37 @@
+//独立COOKIE文件     ck在``里面填写，多js换行
+let githubACnameVal = ``
+let githubACurlVal = ``
 
+let HHAVal = ``
+let HHBVal = ``
 
-//独立COOKIE文件     ck在``里面填写，多账号换行
-let githubACnamebodyVal= ``
-let githubACurlVal= ``
-let githubACheaderVal= ``
-let githubACbodyVal= ``
+let MMAVal = ``
+let MMBVal = ``
+let MMCVal = ``
+let MMDVal = ``
+let MMEVal = ``
+let MMFVal = ``
+
 
 
 
 
 let githubACcookie = {
-  githubACnamebodyVal: githubACnamebodyVal, 
-  githubACurlVal: githubACurlVal,  
-  githubACheaderVal: githubACheaderVal,  
-  githubACbodyVal: githubACbodyVal, 
+    githubACnameVal: githubACnameVal,
+    githubACurlVal: githubACurlVal,
+    githubACheaderVal: githubACheaderVal,
+    githubACbodyVal: githubACbodyVal,
 
+    HHAVal: HHAVal,
+    HHBVal: HHBVal,
+    MMAVal: MMAVal,
+    MMBVal: MMBVal,
+    MMCVal: MMCVal,
+    MMDVal: MMDVal,
+    MMEVal: MMEVal,
+    MMFVal: MMFVal,
 
 
 }
 
-module.exports =  githubACcookie
-  
-
-
+module.exports = githubACcookie
