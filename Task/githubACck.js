@@ -27,6 +27,12 @@ const MMC=0
 const MMD=0  
 const MME=0  
 const MMF=0  
+const MMG=0  
+const MMH=0  
+const MMI=0  
+const MMJ=0  
+const MMK=0  
+const MML=0 
 
 
 const GG=''//默认为换行，也可以将需要隔开的符号填写在''内
@@ -80,6 +86,24 @@ let middleMME = [];
 const MMFArr = [];
 let MMFVal = ``;
 let middleMMF = [];
+const MMGArr = [];
+let MMGVal = ``;
+let middleMMG = [];
+const MMHArr = [];
+let MMHVal = ``;
+let middleMMH = [];
+const MMIArr = [];
+let MMIVal = ``;
+let middleMMI = [];
+const MMJArr = [];
+let MMJVal = ``;
+let middleMMJ = [];
+const MMKArr = [];
+let MMKVal = ``;
+let middleMMK = [];
+const MMLArr = [];
+let MMLVal = ``;
+let middleMML = [];
 
 
 
@@ -95,6 +119,12 @@ let middleMMF = [];
 		MMDArr.push($.getdata("MMD"));
 		MMEArr.push($.getdata("MME"));
 		MMFArr.push($.getdata("MMF"));
+		MMGArr.push($.getdata("MMG"));
+		MMHArr.push($.getdata("MMH"));
+		MMIArr.push($.getdata("MMI"));
+		MMJArr.push($.getdata("MMJ"));
+		MMKArr.push($.getdata("MMK"));
+		MMLArr.push($.getdata("MML"));
         // 根据boxjs中设置的额外账号数，添加存在的账号数据进行任务处理
 
         let githubACCount = ($.getval('githubACCount') || '1') - 0;
@@ -112,6 +142,12 @@ let middleMMF = [];
 				MMDArr.push($.getdata(`MMD${i}`));
 				MMEArr.push($.getdata(`MME${i}`));
 				MMFArr.push($.getdata(`MMF${i}`));
+				MMGArr.push($.getdata(`MMG${i}`));
+				MMHArr.push($.getdata(`MMH${i}`));
+				MMIArr.push($.getdata(`MMI${i}`));
+				MMJArr.push($.getdata(`MMJ${i}`));
+				MMKArr.push($.getdata(`MMK${i}`));
+				MMLArr.push($.getdata(`MML${i}`));
 
   
     }
@@ -164,6 +200,12 @@ if (Z==R)
   MMDVal = MMDArr[K-1];  
   MMEVal = MMEArr[K-1];  
   MMFVal = MMFArr[K-1];  
+  MMGVal = MMGArr[K-1];  
+  MMHVal = MMHArr[K-1];  
+  MMIVal = MMIArr[K-1];  
+  MMJVal = MMJArr[K-1];  
+  MMKVal = MMKArr[K-1];  
+  MMLVal = MMLArr[K-1]; 
 
 if(githubACname==1)console.log(githubACnameVal+GG)  
 if(githubACurl==1)console.log(githubACurlVal+GG)
@@ -178,6 +220,12 @@ if(MMC==1)console.log(MMCVal+GG)
 if(MMD==1)console.log(MMDVal+GG)
 if(MME==1)console.log(MMEVal+GG)
 if(MMF==1)console.log(MMFVal+GG)
+if(MMG==1)console.log(MMGVal+GG)
+if(MMH==1)console.log(MMHVal+GG)
+if(MMI==1)console.log(MMIVal+GG)
+if(MMJ==1)console.log(MMJVal+GG)
+if(MMK==1)console.log(MMKVal+GG)
+if(MML==1)console.log(MMLVal+GG)
 
   for (let i = 0; i < 1; i++) {
     (function (i) {
