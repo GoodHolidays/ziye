@@ -11,7 +11,12 @@ let MMCVal = ``
 let MMDVal = ``
 let MMEVal = ``
 let MMFVal = ``
-
+let MMGVal = ``
+let MMHVal = ``
+let MMIVal = ``
+let MMJVal = ``
+let MMKVal = ``
+let MMLVal = ``
 
 
 
@@ -30,6 +35,12 @@ let githubACcookie = {
     MMDVal: MMDVal,
     MMEVal: MMEVal,
     MMFVal: MMFVal,
+	MMGVal: MMGVal,
+    MMHVal: MMHVal,
+    MMIVal: MMIVal,
+    MMJVal: MMJVal,
+    MMKVal: MMKVal,
+    MMLVal: MMLVal,
 
 
 }
