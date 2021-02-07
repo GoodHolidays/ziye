@@ -10,6 +10,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 
 2.6 制作
 2.7 增加时间控制，多js换行，boxjs手动保存会话，填写，再应用，其他填写环境变量或者githubACCOOKIE.js
+2.7-2 修正判定
 
 ⚠️一共1个位置 3个ck  👉 12条 Secrets(8个时间变量) 
 多账号换行
@@ -22,6 +23,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 
 点击 Run workflow    Run workflow   运行获取githubACbodyVal  githubACheaderVal
 
+⚠️设置的时间是从 HHA 点到 HHB 点的  MMA  MMB MMC   MMD    MME    MMF   分运行      理解这句话就行
 
 githubACnameVal 👉GIT_githubACNAME
 githubACurlVal 👉GIT_githubACURL
@@ -617,8 +619,13 @@ function githubAC(timeout = 0) {
             $.post(url, async (err, resp, data) => {
                 try {
                     if (logs) $.log(`${O}, 运行🚩: ${data}`);
+                    if (data.match(/github.com/g)) {
                         console.log(githubACnameVal + `${time(Number(tts()))}运行成功\n`)
                         $.message += githubACnameVal + `${time(Number(tts()))}运行成功\n`
+                    }else {
+                        console.log(githubACnameVal + `请检查github的Action是否开启\n`)
+                        $.message += githubACnameVal + `请检查github的Action是否开启\n`
+                    }
                 } catch (e) {
                     $.logErr(e, resp);
                 } finally {
