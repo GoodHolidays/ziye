@@ -98,6 +98,20 @@
 "val": "0",
 "type": "number",
 "desc": "0不提现，可设置 0 1 15 30 100  "
+},
+{
+"id": "iboxpayphone",
+"name": "手机号",
+"val": "0",
+"type": "number",
+"desc": "请输入完整手机号"
+},
+{
+"id": "iboxpaysms",
+"name": "验证码",
+"val": "0",
+"type": "number",
+"desc": "输入短信验证码，默认为0，不启动获取token功能"
 }
 ],
 "repo": "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/iboxpay.js",
