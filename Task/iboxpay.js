@@ -33,6 +33,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 2.6 修复判定错误,增加surge获取token重写
 2.7 增加红包雨，设置LIVE等于3 开启
 2.7-2 调整红包雨运行机制
+2.8 修复无人直播出现的错误
 
 ⚠️一共2个位置 2个ck  👉 3条 Secrets 
 多账号换行
@@ -340,11 +341,13 @@ async function all() {
 
             if (LIVE >= 1 && nowTimes.getHours() >= 8 && nowTimes.getHours() <= 23 && $.sylist.resultCode && livecs < 30) {
                 await liveslist(); //直播节目表
+if(liveIdcd>=1){
                 dd = liveIdcd * 35 - 34
                 console.log(`📍本次直播运行需要${dd}秒` + '\n')
+
                 await lives(); //看直播
                 await $.wait(dd * 1000)
-
+}
             }
 
             if (LIVE != 2 && nowTimes.getHours() <= 18 && $.splimit.data.isUperLimit == false || tts() <= (Number(oldtime) + 48 * 60 * 60 * 1000)) {
@@ -840,13 +843,13 @@ function liveslist(timeout = 0) {
                 try {
                     if (logs) $.log(`${O}, 直播节目表🚩: ${data}`);
                     $.liveslist = JSON.parse(data);
-                    if ($.liveslist.resultCode == 1) {
+                    if ($.liveslist.resultCode == 1&&$.liveslist.data.liveIdList.length) {
                         liveId = $.liveslist.data.liveIdList
                         liveIdcd = liveId.length
-
+}
                         console.log(`直播节目表，当前${liveIdcd}个直播\n`);
                         $.message += `【直播节目表】：当前${liveIdcd}个直播\n`
-                    }
+                    
                     if ($.liveslist.resultCode == 0) {
                         console.log($.liveslist.errorDesc + '\n');
                         $.message += '【直播节目表】：' + $.liveslist.errorDesc + '\n';
