@@ -34,6 +34,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 2.7 增加红包雨，设置LIVE等于3 开启
 2.7-2 调整红包雨运行机制
 2.8 修复无人直播出现的错误
+2.8-2 修复红包雨结束报错
 
 ⚠️一共2个位置 2个ck  👉 3条 Secrets 
 多账号换行
@@ -316,7 +317,7 @@ async function all() {
         await console.log(`-------------------------\n\n🔔开始运行【${$.name+(i+1)}】`)
         console.log('CK获取时间:' + time(Number(oldtime)))
         await refreshtoken(); //更新TOKEN
-        if (LIVE == 3 && (nowTimes.getHours() === 12 || nowTimes.getHours() === 19 || nowTimes.getHours() === 21) && (nowTimes.getMinutes() >= 0 && nowTimes.getMinutes() <= 10)) {
+        if (LIVE == 999 && (nowTimes.getHours() === 12 || nowTimes.getHours() === 19 || nowTimes.getHours() === 21) && (nowTimes.getMinutes() >= 0 && nowTimes.getMinutes() <= 10)) {
             HBY = 1
             await hbylq(); //红包雨领取
         }
@@ -503,11 +504,15 @@ function hdid(timeout = 0) {
                     if ($.hdid.resultCode == 1) {
                         spid = $.hdid.data.everyDayActivityList.find(item => item.actTypeId === 9)
                         zbid = $.hdid.data.everyDayActivityList.find(item => item.actTypeId === 10)
-                        hbyid = $.hdid.data.everyDayActivityList.find(item => item.actTypeId === 11)
                         console.log(spid.actName + 'ID：' + spid.actId + '\n' +
-                            zbid.actName + 'ID：' + zbid.actId + '\n' + hbyid.actName + 'ID：' + hbyid.actId + '\n');
+                            zbid.actName + 'ID：' + zbid.actId + '\n');
                         $.message += '【' + spid.actName + 'ID】：' + spid.actId + '\n' +
-                            '【' + zbid.actName + 'ID】：' + zbid.actId + '\n' + '【' + hbyid.actName + 'ID】：' + hbyid.actId + '\n';
+                            '【' + zbid.actName + 'ID】：' + zbid.actId + '\n';
+                    }
+                    if ($.hdid.resultCode == 1&&$.hdid.data.everyDayActivityList.find(item => item.actTypeId === 11)) {                   
+                        hbyid = $.hdid.data.everyDayActivityList.find(item => item.actTypeId === 11)
+                        console.log(hbyid.actName + 'ID：' + hby.actId + '\n');
+                        $.message += '【' + hbyid.actName + 'ID】：' + hbyid.actId + '\n';
                     }
                 } catch (e) {
                     $.logErr(e, resp);
