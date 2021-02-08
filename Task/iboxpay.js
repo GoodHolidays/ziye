@@ -53,7 +53,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 已全部操作完成
 
 
-⚠️方法二（loon目前只能方法一或者自行抓包）
+⚠️方法二
 
 第一步 添加  hostname=veishop.iboxpay.com,
 
@@ -79,7 +79,7 @@ sms  👉  XP_sms
 
 ⚠️主机名以及重写👇
 
-（圈x  surge可以获取refreshTOKEN     其他开启抓包，然后登录笑谱，找到 https://veishop.iboxpay.com/nf_gateway/nf-user-auth-web/ignore_tk/veishop/v1/ 里的响应体 refreshTOKEN）
+（手机可以获取refreshTOKEN     其他开启抓包，然后登录笑谱，找到 https://veishop.iboxpay.com/nf_gateway/nf-user-auth-web/ignore_tk/veishop/v1/ 里的响应体 refreshTOKEN）
 
 hostname=veishop.iboxpay.com
 
@@ -89,7 +89,7 @@ hostname=veishop.iboxpay.com
 https:\/\/veishop\.iboxpay\.com\/nf_gateway\/nf-user-auth-web\/ignore_tk\/veishop\/v1\/* url script-response-body https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/iboxpay.js
 
 ############## loon
-自行抓包
+http-response https:\/\/veishop\.iboxpay\.com\/nf_gateway\/nf-user-auth-web\/ignore_tk\/veishop\/v1\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/iboxpay.js, requires-body=1,max-size=0, tag=笑普token
 
 ############## surge
 
