@@ -949,7 +949,7 @@ function sylist(timeout = 0) {
                     } else videoscs = 0;
 
                     spsy = $.goldcoin.data.coinSum - livecs * 500
-                    console.log('已获得红包雨奖励 ' + livecs + ' 次\n')
+                    console.log('已获得红包雨奖励 ' + hbycs + ' 次\n')
                     $.message +=
                         '【红包雨收益】：已获得红包雨奖励 ' + hbycs + ' 次\n'
                     console.log('已获得直播奖励 ' + livecs + ' 次，共' + livecs * 500 + '金币\n')
