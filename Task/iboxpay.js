@@ -36,14 +36,14 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 2.8 修复无人直播出现的错误
 2.8-2 修复红包雨结束报错
 
-⚠️一共2个位置 2个ck  👉 3条 Secrets 
+⚠️一共2个位置 2个ck  👉 4条 Secrets 
 多账号换行
 
 第一步 添加  hostname=veishop.iboxpay.com,
 
-第二步 添加笑谱获取更新TOKEN重写  
+第二步 ⚠️只 添加笑谱获取更新TOKEN重写  
 
-登录  获取更新TOKEN重写 
+登录笑谱(在登录状态就退出，重新登录)  获取更新TOKEN
 
 第三步 添加笑谱获取header重写
 
@@ -52,8 +52,8 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 iboxpayheaderVal 👉XP_iboxpayHEADER
 refreshtokenVal 👉XP_refreshTOKEN
 
-设置直播次数 可设置 0到60  0关闭
-LIVE  👉  XP_live
+设置任务 可设置 0 1 2    0开视频关直播 1开视频开直播 2关视频开直播
+ LIVE  👉  XP_live
 
 设置提现金额 可设置 0 1 15 30 50 100  默认0关闭
 CASH  👉  XP_CASH
