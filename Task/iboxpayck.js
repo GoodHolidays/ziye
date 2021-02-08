@@ -15,7 +15,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 //请先确定boxjs已经存在ck，想要导出哪个值，就设置为1
 
 //header
-const iboxpayheader = 1
+
 const refreshtoken = 1
 
 
@@ -33,8 +33,8 @@ $.idx = ($.idx = ($.getval('iboxpaySuffix') || '1') - 1) > 0 ? ($.idx + 1 + '') 
 const notify = $.isNode() ? require("./sendNotify") : "";
 
 let R=K
-const iboxpayheaderArr = [];
-let iboxpayheaderVal = "";
+
+
 
 const refreshtokenArr = [];
 let refreshtokenVal = "";
@@ -43,13 +43,13 @@ let refreshtokenVal = "";
 
 
 
-  iboxpayheaderArr.push($.getdata("iboxpayheader"));  
+
    refreshtokenArr.push($.getdata("refreshtoken"));     
   // 根据boxjs中设置的额外账号数，添加存在的账号数据进行任务处理
   let iboxpayCount = ($.getval('iboxpayCount') || '1') - 0;
   for (let i = 2; i <= iboxpayCount; i++) {
-    if ($.getdata(`iboxpayheader${i}`)) {	
-  iboxpayheaderArr.push($.getdata(`iboxpayheader${i}`));  
+    if ($.getdata(`refreshtoken${i}`)) {	
+
   refreshtokenArr.push($.getdata(`refreshtoken${i}`));   
     }
   }
@@ -57,7 +57,7 @@ let refreshtokenVal = "";
 
 
  console.log(
-    `============ 共${iboxpayheaderArr.length}个${$.name}账号  =============\n`
+    `============ 共${refreshtokenArr.length}个${$.name}账号  =============\n`
   );
   console.log(
     `============ 脚本执行-北京时间(UTC+8)：${new Date(
@@ -74,7 +74,7 @@ if (Z<K){
 }
 all();
 function all() {
-if (!iboxpayheaderArr[K-1]) {
+if (!refreshtokenArr[K-1]) {
 if (K>R)
     $.msg($.name+R+'到'+(K-1)+'打印成功'+K+'到'+Z+'打印失败', '⚠️提示：请先获取'+K+'到'+Z+'的ck','并在boxjs里设置好账号数')
 
@@ -89,9 +89,9 @@ if (Z==R)
   }
 
 
-  iboxpayheaderVal = iboxpayheaderArr[K-1];  
+ 
   refreshtokenVal = refreshtokenArr[K-1];   
-if(iboxpayheader==1)console.log(iboxpayheaderVal+GG)
+
 if(refreshtoken==1)console.log(refreshtokenVal+GG)
 
 
