@@ -35,7 +35,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 2.7-2 调整红包雨运行机制
 2.8 修复无人直播出现的错误
 2.8-2 修复红包雨结束报错
-2.8-3 增加通过验证码获取token功能，并且内置header
+2.8-3 增加通过验证码获取token功能，并且内置header，新人设置LIVE为888
 
 ⚠️一共1个位置 1个ck  👉 5条 Secrets 
 多账号换行
@@ -357,7 +357,7 @@ async function all() {
                 }
             }
 
-            if (LIVE != 2 && nowTimes.getHours() <= 18 && $.splimit.data.isUperLimit == false) {
+            if (nowTimes.getHours() <= 18 && (LIVE != 2 && $.splimit.data.isUperLimit == false||LIVE == 888)) {
 
                 await playo(); //播放o       
                 await videoo(); //视频o
