@@ -20,7 +20,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 
 第二步 添加body重写 
 
-登录多看点APP  获取ck
+登录多看点APP  点击  我的  获取ck
 
 
 duokandianbodyVal 👉DKD_duokandianBODY
