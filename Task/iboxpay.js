@@ -183,8 +183,12 @@ if (!COOKIE.refreshtokenVal) {
             }
         }
     }
-    Length = refreshtokenArr.length
+ 
+ if(refreshtokenArr==''){
+    Length =0
+      }else Length = refreshtokenArr.length
 }
+    
 
 
 function GetCookie() {
