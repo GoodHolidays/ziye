@@ -143,7 +143,9 @@ if (!COOKIE.duokandianbodyVal) {
             }
         }
     }
-    Length = duokandianbodyArr.length
+   if(duokandianbodyArr==''){
+    Length =0
+      }else Length = duokandianbodyArr.length
 }
 
 
