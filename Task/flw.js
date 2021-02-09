@@ -184,8 +184,11 @@ if (!COOKIE.flwurlVal) {
       }
     }
   }
-  Length = flwurlArr.length
+  if(flwurlArr==''){
+    Length =0
+      }else Length = flwurlArr.length
 }
+  
 
 function GetCookie() {
   //返利登录
