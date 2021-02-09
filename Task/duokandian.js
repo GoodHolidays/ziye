@@ -287,8 +287,9 @@ async function all() {
         }
         if (gg.status != 2) {
             await advideo(); //广告视频
+			await extratime(); //时段刷新
             await timeaward(); //时段奖励
-            await timeawardsss(); //时段翻倍
+            await timeawardsss(); //时段翻倍			
             await boxaward(); //宝箱奖励
             await boxbox(); //宝箱翻倍
         }
@@ -619,7 +620,40 @@ function advideo(timeout = 0) {
     })
 }
 
+//时段刷新
+function extratime(timeout = 0) {
+    return new Promise((resolve) => {
 
+        setTimeout(() => {
+            let url = {
+                url: `http://dkd-api.dysdk.com/video/extra_time`,
+                headers: duokandianheaderVal,
+                body: duokandianbodyVal,
+            }
+            $.post(url, async (err, resp, data) => {
+                try {
+                    if (logs) $.log(`${O}, 时段刷新🚩: ${data}`);
+                    $.extratime = JSON.parse(data);
+                    if ($.extratime.status_code == 200) {
+
+                        console.log(`【时段刷新】：刷新成功\n`);
+                        $.message += `【时段刷新】：刷新成功\n`;
+                    }
+                    if ($.extratime.status_code == 10020) {
+                        console.log(`【时段刷新】：${$.extratime.message}\n`);
+                        $.message += `【时段刷新】：${$.extratime.message}\n`;
+
+                    }
+
+                } catch (e) {
+                    $.logErr(e, resp);
+                } finally {
+                    resolve()
+                }
+            })
+        }, timeout)
+    })
+}
 //时段奖励
 function timeaward(timeout = 0) {
     return new Promise((resolve) => {
@@ -733,7 +767,7 @@ function boxbox(timeout = 0) {
 
         setTimeout(() => {
             let url = {
-                url: `http://dkd-api.dysdk.com/red/box_award`,
+                url: `http://dkd-api.dysdk.com/red/box_extra`,
                 headers: duokandianheaderVal,
                 body: duokandianbodyVal,
             }
