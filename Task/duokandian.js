@@ -57,7 +57,7 @@ const COOKIE = $.isNode() ? require("./duokandianCOOKIE") : ``;
 const logs = 0; // 0为关闭日志，1为开启
 const notifyttt = 1 // 0为关闭外部推送，1为12 23 点外部推送
 const notifyInterval = 2; // 0为关闭通知，1为所有通知，2为12 23 点通知  ， 3为 6 12 18 23 点通知 
-$.message = '', gg = '',sp = '',yi = '',er = '',COOKIES_SPLIT = '', CASH = '', ddtime = '';
+$.message = '', gg = '', sp = '', yi = '', er = '', txtx = '', COOKIES_SPLIT = '', CASH = '', ddtime = '';
 
 
 const duokandianbodyArr = [];
@@ -143,9 +143,9 @@ if (!COOKIE.duokandianbodyVal) {
             }
         }
     }
-   if(duokandianbodyArr==''){
-    Length =0
-      }else Length = duokandianbodyArr.length
+    if (duokandianbodyArr == '') {
+        Length = 0
+    } else Length = duokandianbodyArr.length
 }
 
 
@@ -287,9 +287,14 @@ async function all() {
         }
         if (gg.status != 2) {
             await advideo(); //广告视频
-			await extratime(); //时段刷新
-            await timeaward(); //时段奖励
-            await timeawardsss(); //时段翻倍			
+            await extratime(); //时段刷新
+
+            if (!$.extratime.data.status) {
+                await timeaward(); //时段奖励
+                await timeawardsss(); //时段翻倍
+            }
+
+
             await boxaward(); //宝箱奖励
             await boxbox(); //宝箱翻倍
         }
@@ -305,22 +310,22 @@ async function all() {
 
         await txcx(); //提现查询
 
-        if (CASH == 1 && $.user.data.cash >= 1 && $.txcx.data.with_list[0].is_special >= 5) {
+        if (CASH == 1 && $.user.data.cash >= 1 && txtx >= 5) {
             await tx(); //提现
 
         }
-        if (CASH == 3 && $.user.data.cash >= 3 && $.txcx.data.with_list[0].is_special >= 10) {
-            await tx(); //提现
-
-        }
-
-
-        if (CASH == 5 && $.user.data.cash >= 5 && $.txcx.data.with_list[0].is_special >= 15) {
+        if (CASH == 3 && $.user.data.cash >= 3 && txtx >= 10) {
             await tx(); //提现
 
         }
 
-        if (CASH == 15 && $.user.data.cash >= 15 && $.txcx.data.with_list[0].is_special >= 30) {
+
+        if (CASH == 5 && $.user.data.cash >= 5 && txtx >= 15) {
+            await tx(); //提现
+
+        }
+
+        if (CASH == 15 && $.user.data.cash >= 15 && txtx >= 30) {
             await tx(); //提现
 
         }
@@ -634,7 +639,7 @@ function extratime(timeout = 0) {
                 try {
                     if (logs) $.log(`${O}, 时段刷新🚩: ${data}`);
                     $.extratime = JSON.parse(data);
-                    if ($.extratime.status_code == 200) {
+                    if ($.extratime.status_code == 200 && !$.extratime.data.status) {
 
                         console.log(`【时段刷新】：刷新成功\n`);
                         $.message += `【时段刷新】：刷新成功\n`;
@@ -943,8 +948,10 @@ function txcx(timeout = 0) {
                     $.txcx = JSON.parse(data);
                     if ($.txcx.status_code == 200) {
 
-                        console.log(`【提现查询】：已连续签到${$.txcx.data.with_list[0].is_special}天\n`);
-                        $.message += `【提现查询】：已连续签到${$.txcx.data.with_list[0].is_special}天\n`;
+                        txtx = $.txcx.data.with_list[0].msg3.substr($.txcx.data.with_list[0].msg3.indexOf('已签到') + 3, 3).split('天')[0];
+
+                        console.log(`【提现查询】：已连续签到${txtx}天\n`);
+                        $.message += `【提现查询】：已连续签到${txtx}天\n`;
                     }
                     if ($.txcx.status_code == 10020) {
                         console.log(`【提现查询】：${$.txcx.message}\n`);
