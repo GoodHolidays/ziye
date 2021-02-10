@@ -37,9 +37,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 2.8-2 修复红包雨结束报错
 2.8-3 增加通过验证码获取token功能，并且内置header，新人设置LIVE为888
 2.8-4 修复错误
-2.9 修复时间戳错误
 2.10 修复红包雨问题，LIVE设置3  启动红包雨活动，修复版本问题
-
 
 ⚠️一共1个位置 1个ck  👉 5条 Secrets 
 多账号换行
@@ -129,7 +127,7 @@ if ($.isNode()) {
     // 没有设置 XP_phone 则默认为 0 
     phone = process.env.XP_phone || 0;
     // 没有设置 XP_sms 则默认0  不获取TOKEN
-    sms = process.env.XP_sms || 0;
+    sms = process.env.XP_sms || 0
 
 }
 if ($.isNode() && process.env.XP_refreshTOKEN) {
@@ -184,12 +182,8 @@ if (!COOKIE.refreshtokenVal) {
             }
         }
     }
-
-    if (refreshtokenArr == '') {
-        Length = 0
-    } else Length = refreshtokenArr.length
+    Length = refreshtokenArr.length
 }
-
 
 
 function GetCookie() {
@@ -331,7 +325,7 @@ async function all() {
 
         await refreshtoken(); //更新TOKEN
 
-        if (LIVE == 3 && (nowTimes.getHours() === 12 || nowTimes.getHours() === 19 || nowTimes.getHours() === 21) && (nowTimes.getMinutes() >= 0 && nowTimes.getMinutes() <= 10)) {
+        if (LIVE == 3 && (nowTimes.getHours() === 12 || nowTimes.getHours() === 19 || nowTimes.getHours() === 21) && (nowTimes.getMinutes() >= 0 && nowTimes.getMinutes() <= 59)) {
             HBY = 1
             await hbylq(); //红包雨领取
         }
@@ -341,8 +335,6 @@ async function all() {
             if (!cookie_is_live) {
                 continue;
             }
-
-
             await hdid(); //活动id
             await goldcoin(); //金币信息
             await coin(); //账户信息
@@ -431,7 +423,7 @@ function getTOKEN(timeout = 0) {
                     "source": "VEISHOP_APP_IOS",
                     "User-Agent": "VeiShop, 1.4.8 (iOS, 14.2, zh_CN, Apple, iPhone, )",
                     "X-User-Agent": "VeiShop, 1.4.8 (iOS, 14.2, zh_CN, Apple, iPhone, )",
-                    "traceid": "300000000000000000000000000000000000000000000",
+                    "traceid": "300000000000000000000000000000161000000000000",
                     "Host": "veishop.iboxpay.com",
                     "Accept-Language": "zh-Hans-CN;q=1",
                     "Accept": "*/*"
@@ -650,29 +642,41 @@ function hbylq(timeout = 0) {
     return new Promise((resolve) => {
         setTimeout(() => {
 
+
+            do playTime = Math.floor(Math.random() * 3333);
+            while (playTime < 2222)
+            do playTimess = Math.floor(Math.random() * 666);
+            while (playTimess < 222)
+
             hbylqbodyVal = `{
  "actId": "319"
 }`
+
             let url = {
                 url: `https://veishop.iboxpay.com/nf_gateway/nf_customer_activity/day_cash/v1/give_redbag_by_redbag_rain.json`,
                 headers: {
-                    "Connection": "keep-alive",
-                    "Accept-Encoding": "gzip, deflate, br",
-                    "version": "1.4.8",
-                    "mchtNo": "100529600058887",
-                    "Content-Type": "application/json; charset=utf-8",
-                    "source": "VEISHOP_APP_IOS",
-                    "shopkeeperId": "1148855820752977920",
-                    "User-Agent": "VeiShop, 1.4.8 (iOS, 14.2, zh_CN, Apple, iPhone, )",
+
+                    'random': `102EFFAD-409D-4084-AFFF-FF0D${playTime}A${playTimess}`,
+                    'Connection': `keep-alive`,
+                    'Accept-Encoding': `gzip, deflate, br`,
+                    'version': `1.4.8`,
+                    'mchtNo': `100529600058887`,
+                    'timestamp': `${tts()}`,
+                    'Content-Type': `application/json; charset=utf-8`,
+                    'source': `VEISHOP_APP_IOS`,
+                    'shopkeeperId': `1148855820752977920`,
+                    'User-Agent': `VeiShop, 1.4.8 (iOS, 14.2, zh_CN, Apple, iPhone,)`,
+                    'signature': `A92E355FF${playTime}05DC0B90585CB28F5103C6435F${playTimess}4499DD0BF3E2`,
+                    'X-User-Agent': `VeiShop, 1.4.8 (iOS, 14.2, zh_CN, Apple, iPhone,)`,
                     "token": `${TOKEN}`,
-                    "X-User-Agent": "VeiShop, 1.4.8 (iOS, 14.2, zh_CN, Apple, iPhone, )",
                     "traceid": "30000000000000000000" + tts() + "000000000000",
-                    "Host": "veishop.iboxpay.com",
-                    "Accept-Language": "zh-Hans-CN;q=1",
-                    "Accept": "*/*"
+                    'Host': `veishop.iboxpay.com`,
+                    'Accept-Language': `zh-Hans-CN;q=1`,
+                    'Accept': `*/*`
                 },
                 body: hbylqbodyVal,
             }
+
             $.post(url, async (err, resp, data) => {
                 try {
                     if (logs) $.log(`${O}, 红包雨领取🚩: ${data}`);
