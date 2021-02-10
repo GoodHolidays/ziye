@@ -17,7 +17,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 //header
 
 const duokandianbody = 1
-const duokandianbodyvideo = 1
+const duokandianvideobody = 1
 
 const GG=''//默认为换行，也可以将需要隔开的符号填写在''内
 
@@ -40,20 +40,20 @@ const duokandianbodyArr = [];
 let duokandianbodyVal = "";
 
 
-const duokandianbodyvideoArr = [];
-let duokandianbodyvideoVal = "";
+const duokandianvideobodyArr = [];
+let duokandianvideobodyVal = "";
 
 
 
    duokandianbodyArr.push($.getdata("duokandianbody"));     
-      duokandianbodyvideoArr.push($.getdata("duokandianbodyvideo")); 
+      duokandianvideobodyArr.push($.getdata("duokandianvideobody")); 
   // 根据boxjs中设置的额外账号数，添加存在的账号数据进行任务处理
   let duokandianCount = ($.getval('duokandianCount') || '1') - 0;
   for (let i = 2; i <= duokandianCount; i++) {
     if ($.getdata(`duokandianbody${i}`)) {	
 
   duokandianbodyArr.push($.getdata(`duokandianbody${i}`));  
-  duokandianbodyvideoArr.push($.getdata(`duokandianbodyvideo${i}`));     
+  duokandianvideobodyArr.push($.getdata(`duokandianvideobody${i}`));     
     }
   }
 
@@ -94,10 +94,10 @@ if (Z==R)
 
  
   duokandianbodyVal = duokandianbodyArr[K-1];   
-    duokandianbodyvideoVal = duokandianbodyvideoArr[K-1];   
+    duokandianvideobodyVal = duokandianvideobodyArr[K-1];   
 
 if(duokandianbody==1)console.log(duokandianbodyVal+GG)
-if(duokandianbodyvideo==1)console.log(duokandianbodyvideoVal+GG)
+if(duokandianvideobody==1)console.log(duokandianvideobodyVal+GG)
 
 
   for (let i = 0; i < 1; i++) {
