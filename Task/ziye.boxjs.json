@@ -183,7 +183,7 @@
         {
             "id": "duokandian",
             "name": "多看点APP",
-            "keys": ["duokandianbody", "duokandianbody2", "duokandianbody3", "duokandianbody4", "duokandianbody5", "duokandianbody6", "duokandianbody7", "duokandianbody8", "duokandianbody9", "duokandianbody10", "duokandianbody11", "duokandianbody12", "duokandianbody13", "duokandianbody14", "duokandianbody15", "duokandianbody16", "duokandianbody17", "duokandianbody18", "duokandianbody19", "duokandianbody20"],
+            "keys": ["duokandianbody", "duokandianvideobody","duokandianbody2", "duokandianvideobody2","duokandianbody3", "duokandianvideobody3","duokandianbody4", "duokandianvideobody4","duokandianbody5", "duokandianvideobody5","duokandianbody6", "duokandianvideobody6","duokandianbody7", "duokandianvideobody7","duokandianbody8", "duokandianvideobody8","duokandianbody9", "duokandianvideobody9","duokandianbody10", "duokandianvideobody10","duokandianbody11", "duokandianvideobody11","duokandianbody12", "duokandianvideobody12","duokandianbody13", "duokandianvideobody13","duokandianbody14", "duokandianvideobody14","duokandianbody15", "duokandianvideobody15","duokandianbody16", "duokandianvideobody16","duokandianbody17", "duokandianvideobody17","duokandianbody18", "duokandianvideobody18","duokandianbody19", "duokandianvideobody19","duokandianbody20", "duokandianvideobody20"],
             "author": "@ziye",
             "settings": [{
                     "id": "duokandianSuffix",
