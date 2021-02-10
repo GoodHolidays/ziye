@@ -298,6 +298,12 @@ async function all() {
             await boxaward(); //宝箱奖励
             await boxbox(); //宝箱翻倍
         }
+        //if (sp.status == 2) {
+            //await spaward(); //视频达成
+
+        //}
+
+
         if (yi.status == 1) {
             await rw1(); //日常任务1
         }
@@ -515,6 +521,40 @@ function sign(timeout = 0) {
     })
 }
 
+
+//视频达成
+function spaward(timeout = 0) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            let url = {
+                url: `http://dkd-api.dysdk.com/task/get_award`,
+                headers: duokandianheaderVal,
+                body: `id=52&${duokandianbodyVal}`,
+            }
+            $.post(url, async (err, resp, data) => {
+                try {
+                    if (logs) $.log(`${O}, 视频达成🚩: ${data}`);
+                    $.spaward = JSON.parse(data);
+                    if ($.spaward.status_code == 200) {
+
+                        console.log(`【视频达成】：${$.spaward.data.award}金币\n`);
+                        $.message += `【视频达成】：${$.spaward.data.award}金币\n`;
+                    }
+                    if ($.spaward.status_code == 10020) {
+                        console.log(`【视频达成】：${$.spaward.message}\n`);
+                        $.message += `【视频达成】：${$.spaward.message}\n`;
+
+                    }
+
+                } catch (e) {
+                    $.logErr(e, resp);
+                } finally {
+                    resolve()
+                }
+            })
+        }, timeout)
+    })
+}
 
 
 //抽奖次数
