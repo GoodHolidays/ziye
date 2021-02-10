@@ -326,10 +326,14 @@ async function all() {
         console.log(`【视频统计】：共有${videoBODY.length}个body,预计运行${tt}秒\n`);
         $.message += `【视频统计】：共有${videoBODY.length}个body,预计运行${tt}秒\n`
 
-        if (videoBODY.length != 0) {
+        if (videoBODY.length != 0 && sp.status != 2) {
             await video(); //刷视频
             await $.wait(tt * 1000)
         }
+
+
+
+
     }
 }
 //通知
