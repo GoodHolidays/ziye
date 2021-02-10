@@ -38,6 +38,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 2.8-3 增加通过验证码获取token功能，并且内置header，新人设置LIVE为888
 2.8-4 修复错误
 2.10 修复红包雨问题，LIVE设置3  启动红包雨活动，修复版本问题
+2.10-2 移除红包雨模块
 
 ⚠️一共1个位置 1个ck  👉 5条 Secrets 
 多账号换行
@@ -217,9 +218,6 @@ if (LIVE == 1) {
 if (LIVE == 2) {
     console.log(`============ 看直播开启，看视频关闭 =============\n`);
 }
-if (LIVE == 3) {
-    console.log(`============ 看直播开启，看视频开启，红包雨开启 =============\n`);
-}
 if (sms >= 1) {
     console.log(`============ TOKEN获取开启 =============\n`);
 }
@@ -323,64 +321,57 @@ async function all() {
         O = (`${$.name + (i + 1)}🔔`);
         await console.log(`-------------------------\n\n🔔开始运行【${$.name+(i+1)}】`)
 
-        await refreshtoken(); //更新TOKEN
-
-        if (LIVE == 3 && (nowTimes.getHours() === 12 || nowTimes.getHours() === 19 || nowTimes.getHours() === 21) && (nowTimes.getMinutes() >= 0 && nowTimes.getMinutes() <= 10)) {
-            HBY = 1
-            await hbylq(); //红包雨领取
+        await refreshtoken(); //更新TOKEN       
+        let cookie_is_live = await user(i + 1); //用户名
+        if (!cookie_is_live) {
+            continue;
+        }
+        await hdid(); //活动id
+        await goldcoin(); //金币信息
+        await coin(); //账户信息
+        await sylist(); //收益列表
+        await splimit(); //视频上限
+        await newcashlist(); //提现查询
+        await cashlist(); //今日提现查询
+        if (!cashcs.amount && CASH >= 1 && $.coin.data.balance / 100 >= CASH) {
+            await withdraw(); //提现
         }
 
-        if (HBY == 0) {
-            let cookie_is_live = await user(i + 1); //用户名
-            if (!cookie_is_live) {
-                continue;
-            }
-            await hdid(); //活动id
-            await goldcoin(); //金币信息
-            await coin(); //账户信息
-            await sylist(); //收益列表
-            await splimit(); //视频上限
-            await newcashlist(); //提现查询
-            await cashlist(); //今日提现查询
-            if (!cashcs.amount && CASH >= 1 && $.coin.data.balance / 100 >= CASH) {
-                await withdraw(); //提现
-            }
+        if (LIVE >= 1 && nowTimes.getHours() >= 8 && nowTimes.getHours() <= 23 && $.sylist.resultCode && livecs < 30) {
+            await liveslist(); //直播节目表
+            if (liveIdcd >= 1) {
+                dd = liveIdcd * 35 - 34
+                console.log(`📍本次直播运行需要${dd}秒` + '\n')
 
-            if (LIVE >= 1 && nowTimes.getHours() >= 8 && nowTimes.getHours() <= 23 && $.sylist.resultCode && livecs < 30) {
-                await liveslist(); //直播节目表
-                if (liveIdcd >= 1) {
-                    dd = liveIdcd * 35 - 34
-                    console.log(`📍本次直播运行需要${dd}秒` + '\n')
-
-                    await lives(); //看直播
-                    await $.wait(dd * 1000)
-                }
-            }
-
-            if (nowTimes.getHours() <= 18 && (LIVE != 2 && $.splimit.data.isUperLimit == false || LIVE == 888)) {
-
-                await playo(); //播放o       
-                await videoo(); //视频o
-
-                if (LIVES != 2) {
-                    await $.wait(30000)
-                    tt = CS * 30 - 29
-                    console.log(`📍本次视频运行需要${tt}秒` + '\n')
-                    await play(); //播放       
-                    await video(); //视频
-                    await $.wait(tt * 1000)
-                    if (!newcashcs.amount) {
-                        await newvideo(); //新人福利
-                    }
-                    if ($.video.data && $.video.data.goldCoinNumber != 0 && videoPublishId6) {
-                        await goldvideo(); //金蛋视频
-                    }
-
-
-                }
-
+                await lives(); //看直播
+                await $.wait(dd * 1000)
             }
         }
+
+        if (nowTimes.getHours() <= 18 && (LIVE != 2 && $.splimit.data.isUperLimit == false || LIVE == 888)) {
+
+            await playo(); //播放o       
+            await videoo(); //视频o
+
+            if (LIVES != 2) {
+                await $.wait(30000)
+                tt = CS * 30 - 29
+                console.log(`📍本次视频运行需要${tt}秒` + '\n')
+                await play(); //播放       
+                await video(); //视频
+                await $.wait(tt * 1000)
+                if (!newcashcs.amount) {
+                    await newvideo(); //新人福利
+                }
+                if ($.video.data && $.video.data.goldCoinNumber != 0 && videoPublishId6) {
+                    await goldvideo(); //金蛋视频
+                }
+
+
+            }
+
+        }
+
 
     }
 }
@@ -623,11 +614,7 @@ function hdid(timeout = 0) {
                         $.message += '【' + spid.actName + 'ID】：' + spid.actId + '\n' +
                             '【' + zbid.actName + 'ID】：' + zbid.actId + '\n';
                     }
-                    if ($.hdid.resultCode == 1 && $.hdid.data.everyDayActivityList.find(item => item.actTypeId === 11)) {
-                        hbyid = $.hdid.data.everyDayActivityList.find(item => item.actTypeId === 11)
-                        console.log(hbyid.actName + 'ID：' + hbyid.actId + '\n');
-                        $.message += '【' + hbyid.actName + 'ID】：' + hbyid.actId + '\n';
-                    }
+
                 } catch (e) {
                     $.logErr(e, resp);
                 } finally {
@@ -637,72 +624,7 @@ function hdid(timeout = 0) {
         }, timeout)
     })
 }
-//红包雨领取  
-function hbylq(timeout = 0) {
-    return new Promise((resolve) => {
-        setTimeout(() => {
 
-
-            do playTime = Math.floor(Math.random() * 3333);
-            while (playTime < 2222)
-            do playTimess = Math.floor(Math.random() * 666);
-            while (playTimess < 222)
-
-            hbylqbodyVal = `{
- "actId": "319"
-}`
-
-            let url = {
-                url: `https://veishop.iboxpay.com/nf_gateway/nf_customer_activity/day_cash/v1/give_redbag_by_redbag_rain.json`,
-                headers: {
-
-                    'random': `102EFFAD-409D-4084-AFFF-FF0D${playTime}A${playTimess}`,
-                    'Connection': `keep-alive`,
-                    'Accept-Encoding': `gzip, deflate, br`,
-                    'version': `1.4.8`,
-                    'mchtNo': `100529600058887`,
-                    'timestamp': `${tts()}`,
-                    'Content-Type': `application/json; charset=utf-8`,
-                    'source': `VEISHOP_APP_IOS`,
-                    'shopkeeperId': `1148855820752977920`,
-                    'User-Agent': `VeiShop, 1.4.8 (iOS, 14.2, zh_CN, Apple, iPhone,)`,
-                    'signature': `A92E355FF${playTime}05DC0B90585CB28F5103C6435F${playTimess}4499DD0BF3E2`,
-                    'X-User-Agent': `VeiShop, 1.4.8 (iOS, 14.2, zh_CN, Apple, iPhone,)`,
-                    "token": `${TOKEN}`,
-                    "traceid": "30000000000000000000" + tts() + "000000000000",
-                    'Host': `veishop.iboxpay.com`,
-                    'Accept-Language': `zh-Hans-CN;q=1`,
-                    'Accept': `*/*`
-                },
-                body: hbylqbodyVal,
-            }
-
-            $.post(url, async (err, resp, data) => {
-                try {
-                    if (logs) $.log(`${O}, 红包雨领取🚩: ${data}`);
-                    $.hbylq = JSON.parse(data);
-                    if ($.hbylq.resultCode == 1 && $.hbylq.data.goldCoinAmt != 0) {
-                        console.log(`${O} 红包雨领取：本次领取 ${$.hbylq.data.goldCoinAmt}金币,预估金额${$.hbylq.data.goldCoinAmt / 10000} 元\n`)
-                        $.message += `【${O} 红包雨领取】：本次领取 ${$.hbylq.data.goldCoinAmt}金币,预估金额${$.hbylq.data.goldCoinAmt / 10000} 元\n`
-
-                    }
-                    if ($.hbylq.resultCode == 1 && $.hbylq.data.goldCoinAmt == 0) {
-                        console.log(`${O} 红包雨领取：${$.hbylq.data.redbagDesc}\n`)
-                        $.message += `【${O} 红包雨领取】：${$.hbylq.data.redbagDesc}\n`;
-                    }
-                    if ($.hbylq.resultCode == 0) {
-                        console.log(`${O} 红包雨领取：${$.hbylq.errorDesc}\n`);
-                        $.message += `【${O} 红包雨领取】：${$.hbylq.errorDesc}\n`;
-                    }
-                } catch (e) {
-                    $.logErr(e, resp);
-                } finally {
-                    resolve()
-                }
-            })
-        }, timeout)
-    })
-}
 //账户信息  
 function coin(timeout = 0) {
     return new Promise((resolve) => {
