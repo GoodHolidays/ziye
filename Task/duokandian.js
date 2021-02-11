@@ -302,6 +302,13 @@ async function all() {
             await boxaward(); //宝箱奖励
             await boxbox(); //宝箱翻倍
         }
+        if (gg && gg.status == 2) {
+            console.log(`【时段奖励】：已完成\n`);
+            $.message += `【时段奖励】：已完成\n`
+            console.log(`【宝箱奖励】：已完成\n`);
+            $.message += `【宝箱奖励】：已完成\n`
+        }
+
         if (sp && sp.status == 1) {
             await spaward(); //视频达成
         }
@@ -325,15 +332,22 @@ async function all() {
             await tx(); //提现
         }
 
-        console.log(`【视频统计】：共有${videoBODY.length}个body,预计运行${tt}秒\n`);
-        $.message += `【视频统计】：共有${videoBODY.length}个body,预计运行${tt}秒\n`
+
 
         if (videoBODY.length != 0 && sp && sp.status != 2) {
+            console.log(`【视频统计】：共有${videoBODY.length}个body,预计运行${tt}秒\n`);
+            $.message += `【视频统计】：共有${videoBODY.length}个body,预计运行${tt}秒\n`
+
             await video(); //刷视频
             await $.wait(tt * 1000)
         }
 
 
+        if (videoBODY.length != 0 && sp && sp.status == 2) {
+            console.log(`【视频统计】：共有${videoBODY.length}个body,已完成\n`);
+            $.message += `【视频统计】：共有${videoBODY.length}个body,已完成\n`
+
+        }
 
 
     }
