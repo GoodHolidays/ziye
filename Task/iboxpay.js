@@ -415,7 +415,7 @@ function getTOKEN(timeout = 0) {
                     "source": "VEISHOP_APP_IOS",
                     "User-Agent": "VeiShop, 1.4.8 (iOS, 14.2, zh_CN, Apple, iPhone, )",
                     "X-User-Agent": "VeiShop, 1.4.8 (iOS, 14.2, zh_CN, Apple, iPhone, )",
-                    "traceid": "300000000000000000000000000000161000000000000",
+                    "traceid": "30000000000000000000" + tts() + "000000000000",
                     "Host": "veishop.iboxpay.com",
                     "Accept-Language": "zh-Hans-CN;q=1",
                     "Accept": "*/*"
