@@ -401,11 +401,15 @@ function days(timeout = 0) {
                 try {
                     if (logs) $.log(`${O}, 任务列表🚩: ${data}`);
                     $.days = JSON.parse(data);
-                    if ($.days.data&&$.days.status_code == 200) {
-                        sp = $.days.data.list.find(item => item.id === 11);
+                    if ($.days) {
+sp = $.days.data.list.find(item => item.id === 11);
                         gg = $.days.data.list.find(item => item.id === 12);
                         yi = $.days.data.Task_comp.data.find(item => item.pro === 20);
                         er = $.days.data.Task_comp.data.find(item => item.pro === 50);
+
+
+                    if ($.days.data&&$.days.status_code == 200) {
+                        
                         console.log(`【${sp.title}】：${sp.task_go}， ${sp.award}金币\n【${gg.title}】 ：${gg.task_go}， ${gg.award}金币\n`);
                         $.message += `【${sp.title}】：${sp.task_go}， ${sp.award}金币\n【${gg.title}】：${gg.task_go}， ${gg.award}金币\n`;
                         if (yi.status == 2) {
@@ -421,6 +425,9 @@ function days(timeout = 0) {
                         console.log(`任务列表：${$.days.message}\n`);
                         $.message += `任务列表：${$.days.message}\n`;
                     }
+
+}
+
                 } catch (e) {
                     $.logErr(e, resp);
                 } finally {
