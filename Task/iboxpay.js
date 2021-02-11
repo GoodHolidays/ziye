@@ -39,7 +39,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 2.8-4 修复错误
 2.10 修复红包雨问题，LIVE设置3  启动红包雨活动，修复版本问题
 2.10-2 移除红包雨模块
-2.11 移除视频时间限制
+2.11 移除视频时间限制，LIVE设置666做新人180秒任务
 
 ⚠️一共1个位置 1个ck  👉 5条 Secrets 
 多账号换行
@@ -361,7 +361,7 @@ async function all() {
                 await play(); //播放       
                 await video(); //视频
                 await $.wait(tt * 1000)
-                if (!newcashcs.amount) {
+                if (LIVE == 666) {
                     await newvideo(); //新人福利
                 }
                 if ($.video.data && $.video.data.goldCoinNumber != 0 && videoPublishId6) {
