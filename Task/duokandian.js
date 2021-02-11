@@ -12,6 +12,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 2.9 制作
 2.10 增加看视频，基本完善
 2.11 完善判定
+2.11-2  修复视频和广告以及提现判定问题
 
 ⚠️一共1个位置 1个ck  👉 2条 Secrets
 多账号换行
@@ -402,8 +403,8 @@ function days(timeout = 0) {
                     if (logs) $.log(`${O}, 任务列表🚩: ${data}`);
                     $.days = JSON.parse(data);
                     if ($.days) {
-                        sp = $.days.data.list.find(item => item.id === 11);
-                        gg = $.days.data.list.find(item => item.id === 12);
+                        sp = $.days.data.list.find(item => item.id === 1 || item.id === 11);
+                        gg = $.days.data.list.find(item => item.id === 2 || item.id === 12);
                         yi = $.days.data.Task_comp.data.find(item => item.pro === 20);
                         er = $.days.data.Task_comp.data.find(item => item.pro === 50);
 
@@ -1008,7 +1009,11 @@ function txcx(timeout = 0) {
                     if (logs) $.log(`${O}, 提现查询🚩: ${data}`);
                     $.txcx = JSON.parse(data);
                     if ($.txcx.data && $.txcx.status_code == 200) {
-                        txtx = $.txcx.data.with_list[0].msg3.substr($.txcx.data.with_list[0].msg3.indexOf('已签到') + 3, 3).split('天')[0];
+
+                        txtxid = $.txcx.data.with_list.find(item => item.money === 3);
+
+
+                        txtx = txtxid.msg3.substr(txtxid.msg3.indexOf('已签到') + 3, 3).split('天')[0];
                         console.log(`【提现查询】：已连续签到${txtx}天\n`);
                         $.message += `【提现查询】：已连续签到${txtx}天\n`;
                     }
