@@ -40,7 +40,7 @@ http:\/\/dkd-api\.dysdk\.com\/* url script-request-body https://raw.githubuserco
 http-request http:\/\/dkd-api\.dysdk\.com\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/duokandian.js,requires-body=1,max-size=0, tag=多看点APP获取body
 
 ############## surge
-多看点APP获取body = type=http-request,pattern=http:\/\/dkd-api\.dysdk\.com\*,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/duokandian.js 
+多看点APP获取body = type=http-request,pattern=http:\/\/dkd-api\.dysdk\.com\/*,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/duokandian.js 
 */
 
 
