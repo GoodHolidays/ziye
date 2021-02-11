@@ -11,6 +11,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 
 2.9 制作
 2.10 增加看视频，基本完善
+2.11 完善判定
 
 ⚠️一共1个位置 1个ck  👉 2条 Secrets
 多账号换行
@@ -282,51 +283,51 @@ async function all() {
 
         await user(); //用户信息
         await signindex(); //签到
-        if ($.user.data.today_gold >= 2000 && $.signindex.data.sign_status == 0) {
+        if ($.user.data&&$.user.data.today_gold >= 2000 && $.signindex.data.sign_status == 0) {
             await sign(); //签到
         }
         await days(); //任务列表
         await lottoindex(); //转盘查询
-        if ($.lottoindex.data.times >= 1) {
+        if ($.lottoindex.data&&$.lottoindex.data.times >= 1) {
             await lotto(); //转盘抽奖
         }
-        if (gg.status != 2) {
+        if (gg&&gg.status != 2) {
             await advideo(); //广告视频
             await extratime(); //时段刷新
-            if ($.extratime.data.status == 1) {
+            if ($.extratime.data&&$.extratime.data.status == 1) {
                 await timeaward(); //时段奖励
                 await timeawardsss(); //时段翻倍
             }
             await boxaward(); //宝箱奖励
             await boxbox(); //宝箱翻倍
         }
-        if (sp.status == 1) {
+        if (sp&&sp.status == 1) {
             await spaward(); //视频达成
         }
-        if (yi.status == 1) {
+        if (yi&&yi.status == 1) {
             await rw1(); //日常任务1
         }
-        if (er.status == 1) {
+        if (er&&er.status == 1) {
             await rw2(); //日常任务2
         }
         await txcx(); //提现查询
-        if (CASH == 1 && $.user.data.cash >= 1 && txtx >= 5) {
+        if (CASH == 1 &&$.user.data&& $.user.data.cash >= 1 && txtx >= 5) {
             await tx(); //提现
         }
-        if (CASH == 3 && $.user.data.cash >= 3 && txtx >= 10) {
+        if (CASH == 3 && $.user.data&&$.user.data.cash >= 3 && txtx >= 10) {
             await tx(); //提现
         }
-        if (CASH == 5 && $.user.data.cash >= 5 && txtx >= 15) {
+        if (CASH == 5 &&$.user.data&& $.user.data.cash >= 5 && txtx >= 15) {
             await tx(); //提现
         }
-        if (CASH == 15 && $.user.data.cash >= 15 && txtx >= 30) {
+        if (CASH == 15 &&$.user.data&& $.user.data.cash >= 15 && txtx >= 30) {
             await tx(); //提现
         }
 
         console.log(`【视频统计】：共有${videoBODY.length}个body,预计运行${tt}秒\n`);
         $.message += `【视频统计】：共有${videoBODY.length}个body,预计运行${tt}秒\n`
 
-        if (videoBODY.length != 0 && sp.status != 2) {
+        if (videoBODY.length != 0 && sp&&sp.status != 2) {
             await video(); //刷视频
             await $.wait(tt * 1000)
         }
@@ -369,7 +370,7 @@ function user(timeout = 0) {
                 try {
                     if (logs) $.log(`${O}, 用户信息🚩: ${data}`);
                     $.user = JSON.parse(data);
-                    if ($.user.status_code == 200) {
+                    if ($.user.data&&$.user.status_code == 200) {
                         console.log(`\n${O}\n========== 【${$.user.data.nickname}】 ==========\n`);
                         $.message += `\n${O}\n========== 【${$.user.data.nickname}】 ==========\n`;
                         $.message += `【账户信息】：账户余额${$.user.data.cash}元,今日获得${$.user.data.today_gold / 10000}元\n`;
@@ -400,7 +401,7 @@ function days(timeout = 0) {
                 try {
                     if (logs) $.log(`${O}, 任务列表🚩: ${data}`);
                     $.days = JSON.parse(data);
-                    if ($.days.status_code == 200) {
+                    if ($.days.data&&$.days.status_code == 200) {
                         sp = $.days.data.list.find(item => item.id === 11);
                         gg = $.days.data.list.find(item => item.id === 12);
                         yi = $.days.data.Task_comp.data.find(item => item.pro === 20);
@@ -442,7 +443,7 @@ function signindex(timeout = 0) {
                 try {
                     if (logs) $.log(`${O}, 签到查询🚩: ${data}`);
                     $.signindex = JSON.parse(data);
-                    if ($.signindex.status_code == 200 && $.signindex.data.sign_status == 1) {
+                    if ($.signindex.data&&$.signindex.status_code == 200 && $.signindex.data.sign_status == 1) {
                         console.log(`【签到查询】： 今日已签到\n`);
                         $.message += `【签到查询】： 今日已签到\n`;
                     }
@@ -472,7 +473,7 @@ function sign(timeout = 0) {
                 try {
                     if (logs) $.log(`${O}, 今日签到🚩: ${data}`);
                     $.sign = JSON.parse(data);
-                    if ($.sign.status_code == 200) {
+                    if ($.sign.data&&$.sign.status_code == 200) {
                         console.log(`【今日签到】： ${$.sign.data.sign_award}金币\n`);
                         $.message += `【今日签到】： ${$.sign.data.sign_award}金币\n`;
                     }
@@ -502,7 +503,7 @@ function spaward(timeout = 0) {
                 try {
                     if (logs) $.log(`${O}, 视频达成🚩: ${data}`);
                     $.spaward = JSON.parse(data);
-                    if ($.spaward.status_code == 200) {
+                    if ($.spaward.data&&$.spaward.status_code == 200) {
                         console.log(`【视频达成】：${$.spaward.data.award}金币\n`);
                         $.message += `【视频达成】：${$.spaward.data.award}金币\n`;
                     }
@@ -532,7 +533,7 @@ function lottoindex(timeout = 0) {
                 try {
                     if (logs) $.log(`${O}, 抽奖次数🚩: ${data}`);
                     $.lottoindex = JSON.parse(data);
-                    if ($.lottoindex.status_code == 200) {
+                    if ($.lottoindex.data&&$.lottoindex.status_code == 200) {
                         console.log(`【抽奖次数】：剩余${$.lottoindex.data.times}次\n`);
                         $.message += `【抽奖次数】：剩余${$.lottoindex.data.times}次\n`;
                     }
@@ -563,7 +564,7 @@ function lotto(timeout = 0) {
                     if (logs) $.log(`${O}, 转盘抽奖🚩: ${data}`);
                     $.lotto = JSON.parse(data);
                     A = 1
-                    if ($.lotto.status_code == 200) {
+                    if ($.lotto.data&&$.lotto.status_code == 200) {
                         console.log(`【转盘抽奖】：奖励 ${$.lotto.data.award}金币\n`);
                         $.message += `【转盘抽奖】：奖励 ${$.lotto.data.award}金币\n`;
                     }
@@ -593,7 +594,7 @@ function advideo(timeout = 0) {
                 try {
                     if (logs) $.log(`${O}, 广告视频🚩: ${data}`);
                     $.advideo = JSON.parse(data);
-                    if ($.advideo.status_code == 200) {
+                    if ($.advideo.data&&$.advideo.status_code == 200) {
                         console.log(`【广告视频】：奖励 ${$.advideo.data.award}金币\n`);
                         $.message += `【广告视频】：奖励 ${$.advideo.data.award}金币\n`;
                     }
@@ -653,7 +654,7 @@ function timeaward(timeout = 0) {
                 try {
                     if (logs) $.log(`${O}, 时段奖励🚩: ${data}`);
                     $.timeaward = JSON.parse(data);
-                    if ($.timeaward.status_code == 200 && !$.timeaward.data.status) {
+                    if ($.timeaward.data&&$.timeaward.status_code == 200 && !$.timeaward.data.status) {
                         console.log(`【时段奖励】：奖励 ${$.timeaward.data.award}金币\n`);
                         $.message += `【时段奖励】：奖励 ${$.timeaward.data.award}金币\n`;
                     }
@@ -683,7 +684,7 @@ function timeawardsss(timeout = 0) {
                 try {
                     if (logs) $.log(`${O}, 时段翻倍🚩: ${data}`);
                     $.timeawardsss = JSON.parse(data);
-                    if ($.timeawardsss.status_code == 200 && !$.timeaward.data.status) {
+                    if ($.timeawardsss.data&&$.timeawardsss.status_code == 200 && !$.timeaward.data.status) {
                         console.log(`【时段翻倍】：奖励 ${$.timeawardsss.data.award}金币\n`);
                         $.message += `【时段翻倍】：奖励 ${$.timeawardsss.data.award}金币\n`;
                     }
@@ -713,7 +714,7 @@ function boxaward(timeout = 0) {
                 try {
                     if (logs) $.log(`${O}, 宝箱奖励🚩: ${data}`);
                     $.boxaward = JSON.parse(data);
-                    if ($.boxaward.status_code == 200) {
+                    if ($.boxaward.data&&$.boxaward.status_code == 200) {
                         console.log(`【宝箱奖励】：奖励 ${$.boxaward.data.award}金币\n`);
                         $.message += `【宝箱奖励】：奖励 ${$.boxaward.data.award}金币\n`;
                     }
@@ -743,7 +744,7 @@ function boxbox(timeout = 0) {
                 try {
                     if (logs) $.log(`${O}, 宝箱翻倍🚩: ${data}`);
                     $.boxbox = JSON.parse(data);
-                    if ($.boxbox.status_code == 200) {
+                    if ($.boxbox.data&&$.boxbox.status_code == 200) {
                         console.log(`【宝箱翻倍】：奖励 ${$.boxbox.data.award}金币\n`);
                         $.message += `【宝箱翻倍】：奖励 ${$.boxbox.data.award}金币\n`;
                     }
@@ -773,7 +774,7 @@ function rw1(timeout = 0) {
                 try {
                     if (logs) $.log(`${O}, 日常任务1🚩: ${data}`);
                     $.rw1 = JSON.parse(data);
-                    if ($.rw1.status_code == 200) {
+                    if ($.rw1.data&&$.rw1.status_code == 200) {
                         console.log(`【日常任务1】：领取 ${$.rw1.data.award}金币\n`);
                         $.message += `【日常任务1】：领取 ${$.rw1.data.award}金币\n`;
                     }
@@ -803,7 +804,7 @@ function rw2(timeout = 0) {
                 try {
                     if (logs) $.log(`${O}, 日常任务2🚩: ${data}`);
                     $.rw2 = JSON.parse(data);
-                    if ($.rw2.status_code == 200) {
+                    if ($.rw2.data&&$.rw2.status_code == 200) {
                         console.log(`【日常任务2】：领取 ${$.rw2.data.award}金币\n`);
                         $.message += `【日常任务2】：领取 ${$.rw2.data.award}金币\n`;
                     }
@@ -839,7 +840,7 @@ function video(timeout = 0) {
                         try {
                             if (logs) $.log(`${O}, 刷视频🚩: ${data}`);
                             $.video = JSON.parse(data);
-                            if ($.video.status_code == 200) {
+                            if ($.video.data&&$.video.status_code == 200) {
                                 console.log(`【刷视频】：开始领取第${i+1}次视频奖励,获得${$.video.data.award}金币,等待30秒继续\n`);
                                 inss += $.video.data.award;
                                 ins += 1;
@@ -885,10 +886,10 @@ function videoyz(timeout = 0) {
                 try {
                     if (logs) $.log(`${O}, 验证视频🚩: ${data}`);
                     $.videoyz = JSON.parse(data);
-                    if ($.videoyz.status_code == 200 && $.videoyz.data.status == 2) {
+                    if ($.videoyz.data&&$.videoyz.status_code == 200 && $.videoyz.data.status == 2) {
                         console.log(`【验证视频】：剩余 ${$.videoyz.data.red_time}圈\n`);
                     }
-                    if ($.videoyz.status_code == 200 && $.videoyz.data.status == 3) {
+                    if ($.videoyz.data&&$.videoyz.status_code == 200 && $.videoyz.data.status == 3) {
                         console.log(`【验证视频】：验证通过\n`);
                     }
                     if ($.videoyz.status_code == 10020) {
@@ -917,7 +918,7 @@ function awardpost(timeout = 0) {
                 try {
                     if (logs) $.log(`${O}, 红包奖励🚩: ${data}`);
                     $.awardpost = JSON.parse(data);
-                    if ($.awardpost.status_code == 200) {
+                    if ($.awardpost.data&&$.awardpost.status_code == 200) {
                         console.log(`【红包奖励】：开始领取第${ABB+1}次奖励，获得 ${$.awardpost.data.award}金币\n`);
                         ADD += $.awardpost.data.award;
                         ABB += 1;
@@ -999,7 +1000,7 @@ function txcx(timeout = 0) {
                 try {
                     if (logs) $.log(`${O}, 提现查询🚩: ${data}`);
                     $.txcx = JSON.parse(data);
-                    if ($.txcx.status_code == 200) {
+                    if ($.txcx.data&&$.txcx.status_code == 200) {
                         txtx = $.txcx.data.with_list[0].msg3.substr($.txcx.data.with_list[0].msg3.indexOf('已签到') + 3, 3).split('天')[0];
                         console.log(`【提现查询】：已连续签到${txtx}天\n`);
                         $.message += `【提现查询】：已连续签到${txtx}天\n`;
