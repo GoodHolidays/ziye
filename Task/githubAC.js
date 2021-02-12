@@ -12,7 +12,6 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 2.7 增加时间控制，多js换行，boxjs手动保存会话，填写，再应用，其他填写环境变量或者githubACCOOKIE.js
 2.7-2 修正判定
 2.7-3 时间精确到5分
-2.12 增至6个时间段
 
 ⚠️一共1个位置 3个ck  👉 18条 Secrets(14个时间变量) 
 多账号换行
@@ -33,31 +32,14 @@ githubACheaderVal 👉GIT_githubACHEADER
 githubACbodyVal 👉GIT_githubACBODY
 HHA 👉GIT_HHA   
 HHB 👉GIT_HHB    
-HHA 👉GIT_HHA
-HHB 👉GIT_HHB
-HHC 👉GIT_HHC
-HHD 👉GIT_HHD
-HHE 👉GIT_HHE
-HHF 👉GIT_HHF
-HHG 👉GIT_HHG   
-HHH 👉GIT_HHH    
-HHI 👉GIT_HHI
-HHJ 👉GIT_HHJ
-HHK 👉GIT_HHK
-HHL 👉GIT_HHL
-HHM 👉GIT_HHM
-HHN 👉GIT_HHN
-HHA 👉GIT_HHA   
-HHB 👉GIT_HHB
-
 MMA 👉GIT_MMA
 MMB 👉GIT_MMB
 MMC 👉GIT_MMC
 MMD 👉GIT_MMD
 MME 👉GIT_MME
 MMF 👉GIT_MMF
-MMG 👉GIT_MMG   
-MMH 👉GIT_MMH    
+HHG 👉GIT_HHG   
+HHH 👉GIT_HHH    
 MMI 👉GIT_MMI
 MMJ 👉GIT_MMJ
 MMK 👉GIT_MMK
@@ -1036,7 +1018,45 @@ async function all() {
         await console.log(`-------------------------\n\n🔔开始运行${$.name+(i+1)}【${githubACnameVal}】`)
 
         $.message += `【${githubACnameVal}】${HHAVal}-${HHBVal} ${HHCVal}-${HHDVal} ${HHEVal}-${HHFVal} ${HHGVal}-${HHHVal} ${HHIVal}-${HHJVal} ${HHKVal}-${HHLVal} 的 ${MMAVal} ${MMBVal} ${MMCVal} ${MMDVal} ${MMEVal} ${MMFVal} ${MMGVal} ${MMHVal} ${MMIVal} ${MMJVal} ${MMKVal} ${MMLVal} 分运行\n`
-        if ((nowTimes.getHours() >= HHAVal && nowTimes.getHours() <= HHBVal) || (nowTimes.getHours() >= HHCVal && nowTimes.getHours() <= HHDVal) || (nowTimes.getHours() >= HHEVal && nowTimes.getHours() <= HHFVal) || (nowTimes.getHours() >= HHGVal && nowTimes.getHours() <= HHHVal) || (nowTimes.getHours() >= HHIVal && nowTimes.getHours() <= HHJVal) || (nowTimes.getHours() >= HHKVal && nowTimes.getHours() <= HHLVal) && (nowTimes.getMinutes() == MMAVal || nowTimes.getMinutes() == MMBVal || nowTimes.getMinutes() == MMCVal || nowTimes.getMinutes() == MMDVal || nowTimes.getMinutes() == MMEVal || nowTimes.getMinutes() == MMFVal || nowTimes.getMinutes() == MMGVal || nowTimes.getMinutes() == MMHVal || nowTimes.getMinutes() == MMIVal || nowTimes.getMinutes() == MMJVal || nowTimes.getMinutes() == MMKVal || nowTimes.getMinutes() == MMLVal)) {
+        
+        
+        
+        if ((nowTimes.getHours() >= HHAVal && nowTimes.getHours() <= HHBVal) && (nowTimes.getMinutes() == MMAVal || nowTimes.getMinutes() == MMBVal || nowTimes.getMinutes() == MMCVal || nowTimes.getMinutes() == MMDVal || nowTimes.getMinutes() == MMEVal || nowTimes.getMinutes() == MMFVal || nowTimes.getMinutes() == MMGVal || nowTimes.getMinutes() == MMHVal || nowTimes.getMinutes() == MMIVal || nowTimes.getMinutes() == MMJVal || nowTimes.getMinutes() == MMKVal || nowTimes.getMinutes() == MMLVal)) {
+
+            await githubAC(); //运行
+
+        } else
+
+        if ((nowTimes.getHours() >= HHCVal && nowTimes.getHours() <= HHDVal) && (nowTimes.getMinutes() == MMAVal || nowTimes.getMinutes() == MMBVal || nowTimes.getMinutes() == MMCVal || nowTimes.getMinutes() == MMDVal || nowTimes.getMinutes() == MMEVal || nowTimes.getMinutes() == MMFVal || nowTimes.getMinutes() == MMGVal || nowTimes.getMinutes() == MMHVal || nowTimes.getMinutes() == MMIVal || nowTimes.getMinutes() == MMJVal || nowTimes.getMinutes() == MMKVal || nowTimes.getMinutes() == MMLVal)) {
+
+            await githubAC(); //运行
+
+        } else
+
+
+        if ((nowTimes.getHours() >= HHEVal && nowTimes.getHours() <= HHFVal) && (nowTimes.getMinutes() == MMAVal || nowTimes.getMinutes() == MMBVal || nowTimes.getMinutes() == MMCVal || nowTimes.getMinutes() == MMDVal || nowTimes.getMinutes() == MMEVal || nowTimes.getMinutes() == MMFVal || nowTimes.getMinutes() == MMGVal || nowTimes.getMinutes() == MMHVal || nowTimes.getMinutes() == MMIVal || nowTimes.getMinutes() == MMJVal || nowTimes.getMinutes() == MMKVal || nowTimes.getMinutes() == MMLVal)) {
+
+            await githubAC(); //运行
+
+        } else
+
+
+        if ((nowTimes.getHours() >= HHGVal && nowTimes.getHours() <= HHHVal) && (nowTimes.getMinutes() == MMAVal || nowTimes.getMinutes() == MMBVal || nowTimes.getMinutes() == MMCVal || nowTimes.getMinutes() == MMDVal || nowTimes.getMinutes() == MMEVal || nowTimes.getMinutes() == MMFVal || nowTimes.getMinutes() == MMGVal || nowTimes.getMinutes() == MMHVal || nowTimes.getMinutes() == MMIVal || nowTimes.getMinutes() == MMJVal || nowTimes.getMinutes() == MMKVal || nowTimes.getMinutes() == MMLVal)) {
+
+            await githubAC(); //运行
+
+        } else
+
+
+
+        if ((nowTimes.getHours() >= HHIVal && nowTimes.getHours() <= HHJVal) && (nowTimes.getMinutes() == MMAVal || nowTimes.getMinutes() == MMBVal || nowTimes.getMinutes() == MMCVal || nowTimes.getMinutes() == MMDVal || nowTimes.getMinutes() == MMEVal || nowTimes.getMinutes() == MMFVal || nowTimes.getMinutes() == MMGVal || nowTimes.getMinutes() == MMHVal || nowTimes.getMinutes() == MMIVal || nowTimes.getMinutes() == MMJVal || nowTimes.getMinutes() == MMKVal || nowTimes.getMinutes() == MMLVal)) {
+
+            await githubAC(); //运行
+
+        } else
+
+
+        if ((nowTimes.getHours() >= HHKVal && nowTimes.getHours() <= HHLVal) && (nowTimes.getMinutes() == MMAVal || nowTimes.getMinutes() == MMBVal || nowTimes.getMinutes() == MMCVal || nowTimes.getMinutes() == MMDVal || nowTimes.getMinutes() == MMEVal || nowTimes.getMinutes() == MMFVal || nowTimes.getMinutes() == MMGVal || nowTimes.getMinutes() == MMHVal || nowTimes.getMinutes() == MMIVal || nowTimes.getMinutes() == MMJVal || nowTimes.getMinutes() == MMKVal || nowTimes.getMinutes() == MMLVal)) {
 
             await githubAC(); //运行
 
@@ -1045,6 +1065,7 @@ async function all() {
             $.message += `${githubACnameVal}:时间未到\n`
 
         }
+
 
 
     }
