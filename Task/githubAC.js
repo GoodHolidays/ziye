@@ -869,7 +869,7 @@ function tts(inputTime) {
         new Date().getTimezoneOffset() * 60 * 1000 + 8 * 60 * 60 * 1000).toString();
     return TTS;
 };
-console.log(tts())
+
 
 
 //当前10位时间戳
