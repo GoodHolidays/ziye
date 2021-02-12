@@ -21,6 +21,17 @@ const githubACbody = 1
 
 const HHA=0  
 const HHB=0  
+const HHC=0  
+const HHD=0  
+const HHE=0  
+const HHF=0  
+const HHG=0  
+const HHH=0  
+const HHI=0  
+const HHJ=0  
+const HHK=0  
+const HHL=0 
+
 const MMA=0  
 const MMB=0  
 const MMC=0  
@@ -68,6 +79,37 @@ let middleHHA = [];
 const HHBArr = [];
 let HHBVal = ``;
 let middleHHB = [];
+const HHCArr = [];
+let HHCVal = ``;
+let middleHHC = [];
+const HHDArr = [];
+let HHDVal = ``;
+let middleHHD = [];
+const HHEArr = [];
+let HHEVal = ``;
+let middleHHE = [];
+const HHFArr = [];
+let HHFVal = ``;
+let middleHHF = [];
+const HHGArr = [];
+let HHGVal = ``;
+let middleHHG = [];
+const HHHArr = [];
+let HHHVal = ``;
+let middleHHH = [];
+const HHIArr = [];
+let HHIVal = ``;
+let middleHHI = [];
+const HHJArr = [];
+let HHJVal = ``;
+let middleHHJ = [];
+const HHKArr = [];
+let HHKVal = ``;
+let middleHHK = [];
+const HHLArr = [];
+let HHLVal = ``;
+let middleHHL = [];
+
 const MMAArr = [];
 let MMAVal = ``;
 let middleMMA = [];
@@ -113,6 +155,17 @@ let middleMML = [];
         githubACbodyArr.push($.getdata("githubACbody"));
 		HHAArr.push($.getdata("HHA"));
 		HHBArr.push($.getdata("HHB"));
+		HHCArr.push($.getdata("HHC"));
+		HHDArr.push($.getdata("HHD"));
+		HHEArr.push($.getdata("HHE"));
+		HHFArr.push($.getdata("HHF"));
+		HHGArr.push($.getdata("HHG"));
+		HHHArr.push($.getdata("HHH"));
+		HHIArr.push($.getdata("HHI"));
+		HHJArr.push($.getdata("HHJ"));
+		HHKArr.push($.getdata("HHK"));
+		HHLArr.push($.getdata("HHL"));
+		
 		MMAArr.push($.getdata("MMA"));
 		MMBArr.push($.getdata("MMB"));
 		MMCArr.push($.getdata("MMC"));
@@ -136,6 +189,17 @@ let middleMML = [];
                 githubACbodyArr.push($.getdata(`githubACbody${i}`));
 				HHAArr.push($.getdata(`HHA${i}`));
 				HHBArr.push($.getdata(`HHB${i}`));
+				HHCArr.push($.getdata(`HHC${i}`));
+				HHDArr.push($.getdata(`HHD${i}`));
+				HHEArr.push($.getdata(`HHE${i}`));
+				HHFArr.push($.getdata(`HHF${i}`));
+				HHGArr.push($.getdata(`HHG${i}`));
+				HHHArr.push($.getdata(`HHH${i}`));
+				HHIArr.push($.getdata(`HHI${i}`));
+				HHJArr.push($.getdata(`HHJ${i}`));
+				HHKArr.push($.getdata(`HHK${i}`));
+				HHLArr.push($.getdata(`HHL${i}`));
+				
 				MMAArr.push($.getdata(`MMA${i}`));
 				MMBArr.push($.getdata(`MMB${i}`));
 				MMCArr.push($.getdata(`MMC${i}`));
@@ -194,6 +258,17 @@ if (Z==R)
   
   HHAVal = HHAArr[K-1];  
   HHBVal = HHBArr[K-1];  
+  HHCVal = HHCArr[K-1];  
+  HHDVal = HHDArr[K-1];  
+  HHEVal = HHEArr[K-1];  
+  HHFVal = HHFArr[K-1];  
+  HHGVal = HHGArr[K-1];  
+  HHHVal = HHHArr[K-1];  
+  HHIVal = HHIArr[K-1];  
+  HHJVal = HHJArr[K-1];  
+  HHKVal = HHKArr[K-1];  
+  HHLVal = HHLArr[K-1]; 
+  
   MMAVal = MMAArr[K-1];  
   MMBVal = MMBArr[K-1];  
   MMCVal = MMCArr[K-1];  
@@ -214,6 +289,17 @@ if(githubACbody==1)console.log(githubACbodyVal+GG)
 
 if(HHA==1)console.log(HHAVal+GG)
 if(HHB==1)console.log(HHBVal+GG)
+if(HHC==1)console.log(HHCVal+GG)
+if(HHD==1)console.log(HHDVal+GG)
+if(HHE==1)console.log(HHEVal+GG)
+if(HHF==1)console.log(HHFVal+GG)
+if(HHG==1)console.log(HHGVal+GG)
+if(HHH==1)console.log(HHHVal+GG)
+if(HHI==1)console.log(HHIVal+GG)
+if(HHJ==1)console.log(HHJVal+GG)
+if(HHK==1)console.log(HHKVal+GG)
+if(HHL==1)console.log(HHLVal+GG)
+
 if(MMA==1)console.log(MMAVal+GG)
 if(MMB==1)console.log(MMBVal+GG)
 if(MMC==1)console.log(MMCVal+GG)
