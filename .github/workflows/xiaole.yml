@@ -6,7 +6,7 @@ name: 小乐
 on:
   workflow_dispatch:
   schedule:
-     - cron: '17 8-23 * * *'
+     - cron: '19 0-15 * * *'
   watch:
     types: started
 jobs:
