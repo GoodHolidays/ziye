@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     env:
-        XP_iboxpayHEADER: ${{ secrets.XP_iboxpayHEADER }}
+        
         XP_refreshTOKEN: ${{ secrets.XP_refreshTOKEN }}
         XP_CASH: ${{ secrets.XP_CASH }}
         XP_live: ${{ secrets.XP_live }}
@@ -27,12 +27,12 @@ jobs:
         with:
           node-version: 12.x
       - name: npm install
-        if: env.XP_iboxpayHEADER
+        if: env.XP_refreshTOKEN
         run: |
           cd ~/JavaScript
           npm install
       - name: '运行 【笑谱】'
-        if: env.XP_iboxpayHEADER
+        if: env.XP_refreshTOKEN
         run: |
           cd ~/JavaScript
           node Task/iboxpay.js
