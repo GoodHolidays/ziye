@@ -281,14 +281,16 @@ function daytime(inputTime) {
 };
 //时间戳格式化日期
 function time(inputTime) {
-  var date = new Date(inputTime);
-  Y = date.getFullYear() + '-';
-  M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-  D = date.getDate() + ' ';
-  h = date.getHours() + ':';
-  m = date.getMinutes() + ':';
-  s = date.getSeconds();
-  return Y + M + D + h + m + s;
+    if ($.isNode()) {
+        var date = new Date(inputTime + 8 * 60 * 60 * 1000);
+    } else var date = new Date(inputTime);
+    Y = date.getFullYear() + '-';
+    M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+    D = date.getDate() + ' ';
+    h = date.getHours() + ':';
+    m = date.getMinutes() + ':';
+    s = date.getSeconds();
+    return Y + M + D + h + m + s;
 };
 let isGetCookie = typeof $request !== 'undefined'
 if (isGetCookie) {
