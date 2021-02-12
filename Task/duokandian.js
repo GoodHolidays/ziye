@@ -13,6 +13,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 2.10 增加看视频，基本完善
 2.11 完善判定
 2.11-2  修复视频和广告以及提现判定问题
+2.12 增加碎片显示以及兑换
 
 ⚠️一共1个位置 1个ck  👉 2条 Secrets
 多账号换行
@@ -292,6 +293,10 @@ async function all() {
         if ($.lottoindex.data && $.lottoindex.data.times >= 1) {
             await lotto(); //转盘抽奖
         }
+        if ($.lottoindex.data && $.lottoindex.data.chip >= 4) {
+            await chip(); //碎片兑换
+        }
+
         if (gg && gg.status != 2) {
             await advideo(); //广告视频
             await extratime(); //时段刷新
@@ -558,10 +563,14 @@ function lottoindex(timeout = 0) {
                     if ($.lottoindex.data && $.lottoindex.status_code == 200) {
                         console.log(`【抽奖次数】：剩余${$.lottoindex.data.times}次\n`);
                         $.message += `【抽奖次数】：剩余${$.lottoindex.data.times}次\n`;
+                        console.log(`【碎片信息】：剩余${$.lottoindex.data.chip}个\n`);
+                        $.message += `【碎片信息】：剩余${$.lottoindex.data.chip}个\n`;
                     }
                     if ($.lottoindex.status_code == 10020) {
                         console.log(`【抽奖次数】：${$.lottoindex.message}\n`);
                         $.message += `【抽奖次数】：${$.lottoindex.message}\n`;
+                        console.log(`【碎片信息】：${$.lottoindex.message}\n`);
+                        $.message += `【碎片信息】：${$.lottoindex.message}\n`;
                     }
                 } catch (e) {
                     $.logErr(e, resp);
@@ -603,6 +612,40 @@ function lotto(timeout = 0) {
         }, timeout)
     })
 }
+//碎片兑换
+function chip(timeout = 0) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            let url = {
+                url: `http://dkd-api.dysdk.com/lotto/convert?${duokandianbodyVal}`,
+                headers: duokandianheaderVal,
+                body: {
+                    "id": 4
+                },
+            }
+            $.post(url, async (err, resp, data) => {
+                try {
+                    if (logs) $.log(`${O}, 碎片兑换🚩: ${data}`);
+                    $.chip = JSON.parse(data);
+                    A = 1
+                    if ($.chip.data && $.chip.status_code == 200) {
+                        console.log(`【碎片兑换】：奖励 ${$.chip.data.award}金币\n`);
+                        $.message += `【碎片兑换】：奖励 ${$.chip.data.award}金币\n`;
+                    }
+                    if ($.chip.status_code == 10020) {
+                        console.log(`【碎片兑换】：${$.chip.message}\n`);
+                        $.message += `【碎片兑换】：${$.chip.message}\n`;
+                    }
+                } catch (e) {
+                    $.logErr(e, resp);
+                } finally {
+                    resolve()
+                }
+            })
+        }, timeout)
+    })
+}
+
 //广告视频
 function advideo(timeout = 0) {
     return new Promise((resolve) => {
