@@ -54,13 +54,20 @@ https:\/\/(huodong\.fanli\.com\/*||passport\.fanli\.com\/*||gw\.fanli\.com\/*) u
 ############## loon
 #返利网获取header
 http-request https:\/\/(huodong\.fanli\.com\/*||passport\.fanli\.com\/*||gw\.fanli\.com\/*) script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/flw.js, requires-header=true, tag=返利网获取header
-http-request https:\/\/(huodong\.fanli\.com\/*||passport\.fanli\.com\/*||gw\.fanli\.com\/*) script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/flw.js,requires-body=true, tag=返利网获取body
+
+http-request https:\/\/(huodong\.fanli\.com\/*||passport\.fanli\.com\/*||gw\.fanli\.com\/*) script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/flw.js,requires-body=1,max-size=0, tag=返利网获取body
 
 ############## surge
 #返利网获取header
-返利网获取header = type=http-request,pattern=https:\/\/(huodong\.fanli\.com\/*||passport\.fanli\.com\/*||gw\.fanli\.com\/*),script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/flw.js,
+返利网获取header = type=http-request,pattern=https:\/\/(huodong\.fanli\.com\/*||passport\.fanli\.com\/*||gw\.fanli\.com\/*),script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/flw.js
+
 #返利网获取body
-返利网获取body = type=http-request,pattern=https:\/\/(huodong\.fanli\.com\/*||passport\.fanli\.com\/*||gw\.fanli\.com\/*),script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/flw.js, 
+返利网获取body = type=http-request,pattern=https:\/\/(huodong\.fanli\.com\/*||passport\.fanli\.com\/*||gw\.fanli\.com\/*),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/flw.js
+
+
+
+
+
 */
 const $ = Env("返利网");
 $.idx = ($.idx = ($.getval('flwSuffix') || '1') - 1) > 0 ? ($.idx + 1 + '') : ''; // 账号扩展字符
