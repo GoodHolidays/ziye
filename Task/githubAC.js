@@ -1024,8 +1024,8 @@ async function all() {
             await githubAC(); //运行
 
         } else {
-            console.log(`${githubACnameVal}:时间未到\n`)
-            $.message += `${githubACnameVal}:时间未到\n`
+            console.log(`${githubACnameVal}:时间未到\n\n`)
+            $.message += `${githubACnameVal}:时间未到\n\n`
 
         }
 
@@ -1069,11 +1069,11 @@ function githubAC(timeout = 0) {
                 try {
                     if (logs) $.log(`${O}, 运行🚩: ${data}`);
                     if (data.match(/github.com/g)) {
-                        console.log(githubACnameVal + `${time(Number(tts()))}运行成功\n`)
-                        $.message += githubACnameVal + `${time(Number(tts()))}运行成功\n`
+                        console.log(githubACnameVal + `${time(Number(tts()))}运行成功\n\n`)
+                        $.message += githubACnameVal + `${time(Number(tts()))}运行成功\n\n`
                     } else {
-                        console.log(githubACnameVal + `请检查github的Action是否开启\n`)
-                        $.message += githubACnameVal + `请检查github的Action是否开启\n`
+                        console.log(githubACnameVal + `请检查github的Action是否开启\n\n`)
+                        $.message += githubACnameVal + `请检查github的Action是否开启\n\n`
                     }
                 } catch (e) {
                     $.logErr(e, resp);
