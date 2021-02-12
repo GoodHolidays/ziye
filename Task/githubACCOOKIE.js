@@ -1,6 +1,8 @@
 //独立COOKIE文件     ck在``里面填写，多js换行
 let githubACnameVal = ``
 let githubACurlVal = ``
+let githubACheaderVal = ``
+let githubACbodyVal = ``
 
 let HHAVal = ``
 let HHBVal = ``
