@@ -9,7 +9,6 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 
 
 2.13 制作
-2.15 修复
 
 ⚠️一共1个位置 1个ck  👉 1条 Secrets
 多账号换行
@@ -259,6 +258,9 @@ async function all() {
          O = (`${$.name + (i + 1)}🔔`);
         await console.log(`-------------------------\n\n🔔开始运行【${$.name+(i+1)}】`)
 
+
+console.log(`\n${O}\n========== 【${O}】 ==========\n`);
+                        $.message += `\n${O}\n========== 【${O}】 ==========\n`;
             await zhimasx()
             await zhima(); //运行
 
