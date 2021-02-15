@@ -262,7 +262,7 @@ async function all() {
 
 console.log(`\n${O}\n========== 【${O}】 ==========\n`);
                         $.message += `\n${O}\n========== 【${O}】 ==========\n`;
-            await zhimasx()
+           
             await zhima(); //运行
 
  
@@ -371,6 +371,7 @@ $.zhima= JSON.parse(data);
                         console.log(`【晶石收取】:${time(Number(tts()))}领取晶石成功,等待11秒后进行下次收取\n\n`)
                         $.message +=`【晶石收取】:${time(Number(tts()))}领取晶石成功,等待11秒后进行下次收取\n\n`
 
+await zhimasx()
 await $.wait(11000)
 await zhima()
 
