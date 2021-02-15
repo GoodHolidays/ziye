@@ -39,12 +39,12 @@ https:\/\/api\.sxsjyzm\.com\/* url script-request-body https://raw.githubusercon
 
 ############## loon
 #芝嫲视频获取body
-http-request https:\/\/github\.com\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/zhima.js,requires-body=true, tag=芝嫲视频获取body
+http-request https:\/\/api\.sxsjyzm\.com\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/zhima.js,requires-body=true, tag=芝嫲视频获取body
 
 ############## surge
 
 #芝嫲视频获取body
-芝嫲视频获取body = type=http-request,pattern=https:\/\/github\.com\/*,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/zhima.js 
+芝嫲视频获取body = type=http-request,pattern=https:\/\/api\.sxsjyzm\.com\/*,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/zhima.js 
 
 
 
