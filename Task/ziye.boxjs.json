@@ -210,6 +210,30 @@
             "repo": "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/duokandian.js",
             "icons": ["https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/duokandian.png", "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/duokandian.png"],
             "script": "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/duokandian.js"
+        },
+        {
+            "id": "zhima",
+            "name": "芝嫲视频",
+            "keys": ["zhimabody", "zhimabody2", "zhimabody3", "zhimabody4", "zhimabody5", "zhimabody6", "zhimabody7", "zhimabody8", "zhimabody9", "zhimabody10", "zhimabody11", "zhimabody12", "zhimabody13", "zhimabody14", "zhimabody15", "zhimabody16", "zhimabody17", "zhimabody18", "zhimabody19", "zhimabody20"],
+            "author": "@ziye",
+            "settings": [{
+                    "id": "zhimaSuffix",
+                    "name": "当前账号",
+                    "val": "1",
+                    "type": "number",
+                    "desc": "当前抓取ck记录的账号序号，如：1、2、3、"
+                },
+                {
+                    "id": "zhimaCount",
+                    "name": "账号个数",
+                    "val": "1",
+                    "type": "number",
+                    "desc": "指定任务最多跑几个账号，根据抓取的账号数据个数来设值"
+                }
+            ],
+            "repo": "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/zhima.js",
+            "icons": ["https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/zhima.png", "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/zhima.png"],
+            "script": "https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/zhima.js"
         }
     ]
 }
