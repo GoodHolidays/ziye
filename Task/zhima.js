@@ -9,7 +9,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 
 
 2.13 制作
-2.15 修复刷新问题,修复部分问题
+2.15 修复刷新问题,修复部分问题,点夺宝获取ck
 
 ⚠️一共1个位置 1个ck  👉 1条 Secrets
 多账号换行
@@ -25,7 +25,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 
 第二步 添加body重写 
 
-点击夺宝  一键收取 获取body
+点击夺宝   获取body
 
 
 zhimabodyVal 👉ZM_zhimabody
@@ -140,7 +140,7 @@ if (zhimabodyArr == '') {
 
 
 function GetCookie() {
-    if ($request && $request.url.indexOf("loot") >= 0 && $request.url.indexOf("quickgetloot") >= 0) {
+    if ($request && $request.url.indexOf("loot") >= 0 && $request.url.indexOf("index") >= 0) {
         const zhimabodyVal = $request.body;
         if (zhimabodyVal) $.setdata(zhimabodyVal, "zhimabody" + $.idx);
         $.log(
