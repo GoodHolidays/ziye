@@ -9,7 +9,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 
 
 2.13 制作
-2.15 修复
+2.15 修复刷新问题
 
 ⚠️一共1个位置 1个ck  👉 1条 Secrets
 多账号换行
