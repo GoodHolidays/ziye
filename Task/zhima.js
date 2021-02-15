@@ -14,6 +14,13 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 ⚠️一共1个位置 1个ck  👉 1条 Secrets
 多账号换行
 
+点击 https://h5.sxsjyzm.com/sesameH5/public/sesameLogin/register.html?onlyid=612545154 下载APP
+
+或者商店搜索 芝嫲视频 邀请码612545154
+
+谢谢支持
+
+
 第一步 添加  hostname=api.sxsjyzm.com,
 
 第二步 添加body重写 
@@ -27,6 +34,7 @@ zhimabodyVal 👉ZM_zhimabody
 
 ⚠️主机名以及重写👇
 
+时间建议设置一小时一次   如 0 * * * *
 
 hostname=api.sxsjyzm.com,
 
